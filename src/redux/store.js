@@ -11,7 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import storage from "react-persist/lib/storage";
+import storage from "redux-persist/lib/storage";
 
 import userReducer from "./userAccount/userAccount-slice";
 
@@ -21,8 +21,7 @@ const persistConfig = {
   whitelist: ["accessToken"], // поменять если надо
 };
 
-const percictedUserReducer = persistReducer(persistConfig, userReducer);
-
+const persistedUserReducer = persistReducer(persistConfig, userReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedUserReducer,
