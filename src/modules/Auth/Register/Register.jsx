@@ -36,8 +36,8 @@ const Register = () => {
          <h2 className={style.form_title}>Реєстрація</h2>
          <form className={style.form} onSubmit={handleSubmit}>
             <div className={style.inputs_wrapper}>
-                    <Input                        
-                        name="userName"                        
+                    <Input                       
+                        name="userName"          
                         value={form.userName}
                         type="text"
                         placeholder="Ім'я *"
@@ -67,10 +67,20 @@ const Register = () => {
                     
             </div>
             <div className={style.btn_wrapper}>
-               <Button type="button" onClick={() => navigate('/LoginPage')}>
-                  Вхід
-               </Button>
-               <Button type="submit">Реєстрація</Button>
+
+               <Button 
+               type="button"
+               onClickBtn={() => navigate('/LoginPage')}
+               btnText="Вхід"
+               className={style.button}
+               /> 
+
+               <Button 
+               type="submit"
+               onClickBtn={handleSubmit} 
+               btnText="Реєстрація"              
+               className={style.button}
+               />
             </div>
          </form>
       </div>
