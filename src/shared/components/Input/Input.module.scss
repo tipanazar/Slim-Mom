@@ -1,0 +1,24 @@
+@import '../../../sass/main.scss';
+
+.input {
+   margin: 0;
+   padding: 0;
+   width: 280px;
+   @include mq(tablet) {
+    width: 240px;
+  }
+   height: 35px;
+   border: none;
+   border-bottom: 1px solid var(--horizontal-row-color);
+   margin-bottom: 20px;   
+}
+
+.input::placeholder {
+   font-family: var(--main-font);
+   font-style: normal;
+   font-weight: bold;
+   font-size: 14px;
+   line-height: 17px;
+   letter-spacing: 0.04em;
+   color:var(--font-grey-color);
+}

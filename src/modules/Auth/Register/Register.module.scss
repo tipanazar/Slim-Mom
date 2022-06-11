@@ -1,0 +1,66 @@
+@import '../../../sass/main.scss';
+
+.form_wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 300px;
+
+   @include mq(tablet) {
+    width: 380px;
+      align-items: flex-start;
+  }
+}
+
+.form_title {
+   margin: 0;
+   font-family: var(--second-font);
+   font-style: normal;
+   font-weight: bold;
+   font-size: 14px;
+   line-height: 13.4px;
+   text-align: center;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+   color: var(--button-orange-color);
+   margin-bottom: 60px;
+}
+
+.form {
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 30px;
+   width: 300px;
+
+   @include mq(tablet) {
+   width: 100%;
+  }
+}
+
+.inputs_wrapper {
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 40px;
+
+   @include mq(tablet) {
+     width: 100%;
+      align-items: start;
+  }
+}
+
+.btn_wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+
+   @include mq(tablet) {
+   flex-direction: row;
+   justify-content: space-between;
+  }
+}
+
