@@ -1,18 +1,30 @@
-import React from 'react';
+import { memo } from 'react';
 
-import styles from './Input.module.scss';
+import PropTypes from 'prop-types';
 
-const Input = ({ ...props }) => {
-   const { onChange } = props;
-
-   return (
-      <input
-         className={styles.input}
-         {...props}
-         required
-         onChange={({ target }) => onChange(target)}
-      />
-   );
+const Input = ({ type, name, value, placeholder, required, onType, className }) => {
+ 
+  return (
+    <input
+      className={className}
+      type={type}
+      value={value}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      onChange={onType}
+    />
+  );
 };
 
-export default Input;
+
+Input.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  onType: PropTypes.func,
+};
+
+export default memo(Input);

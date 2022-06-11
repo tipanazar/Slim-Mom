@@ -40,29 +40,37 @@ const Register = () => {
                         name="userName"          
                         value={form.userName}
                         type="text"
-                        placeholder="Ім'я *"
-                        onChange={handleChange}
+                        placeholder="Ім'я *"                        
+                        onType={handleChange}
+                        className={style.input}
+                        required                        
                     />
                     <Input
                         name="email"
                         value={form.email}
                         type="email"
                         placeholder="Електронна адреса *"
-                        onChange={handleChange}
+                        onType={handleChange}
+                        className={style.input}
+                        required
                     />
                     <Input
                         name="password"
                         value={form.password}
                         type="password"
                         placeholder="Пароль *"
-                        onChange={handleChange}
+                        onType={handleChange}
+                        className={style.input}
+                        required
                     />
                     <Input
                         name="passwordConfirmation"
                         value={form.passwordConfirmation}
                         type="password"
                         placeholder="Повторіть пароль *"
-                        onChange={handleChange}
+                        onType={handleChange}
+                        className={style.input}
+                        required
                     />
                     
             </div>
