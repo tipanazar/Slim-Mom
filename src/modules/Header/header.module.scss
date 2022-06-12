@@ -1,0 +1,23 @@
+@import "../../sass/main.scss";
+
+.logoLink {
+  display: flex;
+  align-items: center;
+
+  @include mq(desktop) {
+    align-items: flex-end;
+  }
+}
+
+.logoImg {
+  width: 46.5px;
+  margin-right: 8px;
+
+  @include mq(tablet) {
+    margin-right: 10.33px;
+  }
+
+  @include mq(desktop) {
+    margin-right: -8px;
+  }
+}

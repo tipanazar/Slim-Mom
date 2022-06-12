@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import authApi from '../../shared/api/userApi/authApi';
+import auth from '../../shared/api/auth';
 
 const registerUser = createAsyncThunk(
   '/auth/register',
   async (userData, { rejectWithValue }) => {
     try {
-      const result = await authApi.registerUser(userData);
+      const result = await auth.registerUser(userData);
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -18,7 +18,7 @@ const loginUser = createAsyncThunk(
   '/auth/login',
   async (userData, { rejectWithValue }) => {
     try {
-      const result = await authApi.loginUser(userData);
+      const result = await auth.loginUser(userData);
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -30,7 +30,7 @@ const logoutUser = createAsyncThunk(
   '/auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const result = await authApi.logoutUser();
+      const result = await auth.logoutUser();
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -43,7 +43,7 @@ const getCurrentUser = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const { auth } = getState();
-      const result = await authApi.getCurrentUser(auth.accessToken);
+      const result = await auth.getCurrentUser(auth.accessToken);
       return result;
     } catch (err) {
       return rejectWithValue(err);
