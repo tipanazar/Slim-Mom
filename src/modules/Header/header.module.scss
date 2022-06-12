@@ -1,23 +1,110 @@
 @import "../../sass/main.scss";
 
-.logoLink {
+%rowRules {
+  position: absolute;
+  display: block;
+  content: "";
+  outline: 1px solid var(--horizontal-row-color);
+}
+
+.header {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  @include mq(desktop) {
+    padding: 80px 0 0 16px;
+  }
+  &::after {
+    @extend %rowRules;
+    top: 100%;
+    width: 100%;
+    @include mq(desktop) {
+      display: none;
+    }
+  }
+}
+
+.headerLinksBlock {
   display: flex;
   align-items: center;
-
+  padding: 20px 0 16px 20px;
+  width: 100%;
+  justify-content: space-between;
+  margin-right: 20px;
+  @include mq(tablet-only) {
+    margin-right: 32px;
+  }
   @include mq(desktop) {
-    align-items: flex-end;
+    padding: 0;
+    margin-right: 0;
+  justify-content: flex-start;
+    align-items: end;
+  }
+}
+
+.authLinks {
+  &::before {
+    @extend %rowRules;
+    // display: none;
+    @include mq(desktop) {
+      top: 121px;
+      left: 203px;
+      height: 32px;
+    }
+  }
+}
+
+.logoBig {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+    margin-right: 40px;
+  }
+}
+
+.logoMed {
+  display: none;
+  @include mq(tablet-only) {
+    display: block;
+    // margin-right: 361px;
+  }
+}
+
+.logoSmall {
+  @include mq(tablet) {
+    display: none;
   }
 }
 
 .logoImg {
-  width: 46.5px;
-  margin-right: 8px;
-
+  width: 46.7px;
+  height: 41.7px;
+  margin-right: 52px;
   @include mq(tablet) {
-    margin-right: 10.33px;
+    display: none;
   }
+}
 
-  @include mq(desktop) {
-    margin-right: -8px;
-  }
+.authLinks a {
+  margin-right: 16px;
+  text-transform: uppercase;
+  font-family: var(--secondary-font);
+  color: #2a355d;
+  // color: var(--font-black-color);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.07;
+  letter-spacing: 0.04em;
+}
+
+.authLinks a:last-child {
+  margin-right: 0;
+}
+
+.activeLink {
+  color: var(--button-orange-color);
+}
+
+.modalButton {
+  background-color: orange;
 }

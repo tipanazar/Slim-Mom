@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Outlet } from "react-router-dom";
 
 const Button = ({ onClickBtn, btnText, type, className }) => {
 //   console.log('Button render')
@@ -15,6 +16,5 @@ Button.propTypes = {
   className: PropTypes.string.isRequired,
   onClickBtn: PropTypes.func,
   btnText: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
   type: PropTypes.oneOf(["button", "submit", "reset"]).isRequired,
 };
