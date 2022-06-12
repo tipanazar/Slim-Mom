@@ -13,6 +13,7 @@
   width: 100vw;
   @include mq(desktop) {
     padding: 80px 0 0 16px;
+    align-items: flex-end;
   }
   &::after {
     @extend %rowRules;
@@ -30,22 +31,24 @@
   padding: 20px 0 16px 20px;
   width: 100%;
   justify-content: space-between;
+  margin-right: auto;
+  @include mq(desktop) {
+    padding: 0;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+}
+
+.authLinks {
   margin-right: 20px;
   @include mq(tablet-only) {
     margin-right: 32px;
   }
   @include mq(desktop) {
-    padding: 0;
     margin-right: 0;
-  justify-content: flex-start;
-    align-items: end;
   }
-}
-
-.authLinks {
   &::before {
     @extend %rowRules;
-    // display: none;
     @include mq(desktop) {
       top: 121px;
       left: 203px;
@@ -66,7 +69,6 @@
   display: none;
   @include mq(tablet-only) {
     display: block;
-    // margin-right: 361px;
   }
 }
 
@@ -85,26 +87,35 @@
   }
 }
 
-.authLinks a {
-  margin-right: 16px;
-  text-transform: uppercase;
-  font-family: var(--secondary-font);
-  color: #2a355d;
-  // color: var(--font-black-color);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.07;
-  letter-spacing: 0.04em;
+.navigationBlock {
+  display: none;
+  margin-right: 20px;
+  @include mq(tablet) {
+    margin-right: 32px;
+  }
+  @include mq(desktop) {
+    display: block;
+  }
 }
 
-.authLinks a:last-child {
-  margin-right: 0;
-}
-
-.activeLink {
-  color: var(--button-orange-color);
+.userInfoBlock {
+  display: none;
+  @include mq(tablet) {
+    display: flex;
+    align-items: center;
+  }
+  @include mq(desktop) {
+    height: 66px;
+    align-items: flex-end;
+  }
 }
 
 .modalButton {
-  background-color: orange;
+  min-width: 86px;
+  background-color: white;
+  padding: 0;
+  border: 0;
+  @include mq(desktop) {
+    display: none;
+  }
 }

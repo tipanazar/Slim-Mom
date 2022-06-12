@@ -6,12 +6,12 @@ const { registerUser, loginUser, logoutUser, getCurrentUser } = userOperations;
 
 const initialState = {
   user: {
-    email: "  ",
+    email: "",
     password: "",
-    name: "",
+    name: "UserName",
   },
   accessToken: "",
-  isUserLogin: false,
+  isUserLogin: true,
   loading: false,
   refreshError: null,
   error: null,

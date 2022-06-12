@@ -1,0 +1,12 @@
+@import "../../sass/main.scss";
+
+.bar {
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  background-color: var(--header-grey-color);
+
+  @include mq(tablet) {
+    display: none;
+  }
+}

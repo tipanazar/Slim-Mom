@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
-import { Outlet } from "react-router-dom";
 
 const Button = ({ onClickBtn, btnText, type, className }) => {
-//   console.log('Button render')
   return (
     <button className={className} type={type} onClick={onClickBtn}>
       {btnText}

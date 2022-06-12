@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useRef } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 
 import { getIsLogin } from "../../redux/userAccount/userAccount-selectors";
 
-import Button from "../../shared/components/Button";
-
 import Logo from "./Logo";
+import Navigation from "../Navigation/Navigation";
+import Button from "../../shared/components/Button";
+import UserInfo from "../../shared/components/UserInfo/UserInfo";
 
 import styles from "./header.module.scss";
 
-const linkClassName = ({ isActive }) =>
-  isActive ? styles.activeLink : styles.inactiveLink;
-
 const Header = () => {
+  let visibility = useRef(null);
   const isLogin = useSelector(getIsLogin, shallowEqual);
+
+  if (!isLogin) {
+    visibility = { display: "block" };
+  }
   return (
     <header className={styles.header}>
       <div className={styles.headerLinksBlock}>
@@ -25,16 +27,20 @@ const Header = () => {
           logoSmallClassName={styles.logoSmall}
           logoImg={styles.logoImg}
         />
-        <nav className={styles.authLinks}>
-          <NavLink className={linkClassName} to="/signin">
-            Вхід
-          </NavLink>
-          <NavLink className={linkClassName} to="/signup">
-            Реєстрація
-          </NavLink>
-        </nav>
+        {console.log(visibility)}
+        <div className={styles.navigationBlock} style={visibility}>
+          <Navigation />
+        </div>
       </div>
-      {!isLogin || <Button className={styles.modalButton} btnText="btn" type="button" />}
+
+      {!isLogin || (
+        <>
+          <div className={styles.userInfoBlock}>
+            <UserInfo />
+          </div>
+          <Button className={styles.modalButton} btnText="btn" type="button" />
+        </>
+      )}
     </header>
   );
 };

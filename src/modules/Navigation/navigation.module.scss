@@ -1,0 +1,22 @@
+.navLinks a {
+    margin-right: 16px;
+    text-transform: uppercase;
+    font-family: var(--secondary-font);
+    // color: #2a355d;
+    // color: var(--font-black-color);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.07;
+    letter-spacing: 0.04em;
+  }
+  
+  .navLinks a:last-child {
+    margin-right: 0;
+  }
+  
+  .activeLink {
+    color: var(--button-orange-color);
+  }
+  .inactiveLink {
+    color: #2a355d;
+  }
