@@ -1,36 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useDispatch } from "react-redux";
+import styles from "./modal.module.scss";
+import SvgBtn from "../../../modules/DailyCaloriesForm/SvgComponents/SvgBtn";
+import SvgClose from "../../../modules/DailyCaloriesForm/SvgComponents/SvgClose";
 
-import Modal from "../../shared/components/Modal";
-import SvgBtn from "./SvgComponents/SvgBtn";
-import SvgClose from "./SvgComponents/SvgClose";
+const modalRoot = document.getElementById("modalRoot");
 
-import styles from "./dailyCaloriesForm.module.scss";
-
-const modalRoot = document.querySelector("#modalRoot");
-
-const DailyCaloriesForm = () => {
+const Modal = ({ openClose }) => {
   const [value, setValue] = useState("");
-  const [isModalOpen, setModalOpen] = useState(false);
-
   const handleChange = ({ target: { value } }) => setValue(value);
+  // const [modal, setModal] = useState({
+  //     open: false,
+  //     content: null
+  // });
 
-  // !isModalOpen
-  //   ? (modalRoot.style.display = "block")
-  //   : (modalRoot.style.display = "none");
-  // modalRoot.style.backgroundColor = "rgba(0,0,0,0)";
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const handleKeyDown = (el) => {
+      if (el.code === "Escape") {
+        dispatch(openClose());
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [dispatch, openClose]);
 
-  modalRoot.style.display = "block";
-  modalRoot.style.backgroundColor = "rgba(33, 33, 33, 0.12)";
-
-  const closeBackdrop = () => {
-    // !isModalOpen
-    modalRoot.style.display = "none";
-    //   : (modalRoot.style.display = "none");
-    // modalRoot.style.backgroundColor = "rgba(0,0,0,0)";
+  const closeBackdrop = (el) => {
+    if (el.currentTarget === el.target) {
+      dispatch(openClose());
+    }
   };
 
-  return (
-    <Modal>
+  return createPortal(
+    <div className={styles.modalOverlay}>
       <div className={styles.modalWindow}>
         <div className={styles.modalLogo} onClick={closeBackdrop}>
           <div className={styles.modalContainer}>
@@ -62,8 +67,9 @@ const DailyCaloriesForm = () => {
           </div>
         </div>
       </div>
-    </Modal>
+    </div>,
+    modalRoot
   );
 };
 
-export default DailyCaloriesForm;
+export default Modal;

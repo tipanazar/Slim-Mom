@@ -1,0 +1,156 @@
+@import '../../sass/main.scss';
+
+
+// Modal styles below
+.modalWindow {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 56%;
+    background-color: #fff;
+    max-height: 100vh;
+    box-shadow: 0px 22px 40px rgba(0, 0, 0, 0.1);
+  
+    @include mq(tablet) {
+      width: 672px;
+      top: 50%;
+    }
+  }
+  
+  .modalLogo {
+    @include mq(tablet) {
+      display: none;
+    }
+  }
+  
+  .modalContainer {
+    width: 320px;
+    margin: 0 auto;
+    padding: 0 15px;
+  
+    @include mq(tablet) {
+      padding: 0 87px;
+    }
+  
+    @include mq(desktop) {
+      padding: 0 115px;
+    }
+  }
+  
+  .modalBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 320px;
+    height: 40px;
+    border: none;
+    right: 15px;
+    padding: 20px 0 15px 20px;
+  }
+  
+  .modalBtn:hover,
+  .modalBtn:focus {
+    fill: #ffff00;
+  }
+  
+  .iconBtn {
+    width: 16px;
+    height: 10px;
+  }
+  
+  .iconBtn:hover,
+  .iconBtn:focus {
+    stroke: #ffff00;
+  }
+  
+  .modalWrapper {
+    padding: 0 20px 15px;
+  
+    @include mq(tablet) {
+      padding: 0 104px;
+    }
+  }
+  
+  .modalTitle {
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--font-black-color);
+    margin: 40px 0;
+  
+    @include mq(tablet) {
+      font-size: 26px;
+      line-height: 1.2;
+      margin: 64px 0px 20px;
+    }
+  }
+  
+  .iconClose {
+    position: absolute;
+    display: none;
+    width: 15px;
+    height: 15px;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+  
+    @include mq(tablet) {
+      display: block;
+    }
+  }
+  
+  .iconClose:hover,
+  .iconClose:focus {
+    fill: #ffff00;
+  }
+  
+  .modalCalory {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--universal-darkblue-color);
+    margin-bottom: 32px;
+  }
+  
+  .modalCalorySpan {
+    font-size: 16px;
+  }
+  
+  .products {
+    @include mq(tablet) {
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+  
+  .textInput {
+    position: relative;
+    width: 92%;
+    border: 0;
+    border-bottom: 1px solid var(--horizontal-row-color);
+    margin-bottom: 20px;
+  
+    @include mq(tablet) {
+      margin-bottom: 12px;
+    }
+  }
+  
+  .productsTitle {
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--font-black-color);
+    margin-bottom: 20px;
+  }
+  
