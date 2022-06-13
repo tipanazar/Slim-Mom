@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 
@@ -17,12 +18,19 @@ const Logo = ({
   logoSmallClassName,
   logoImg,
 }) => {
+  const [pageWidth, setPageWidth] = useState(0);
   const isLogin = useSelector(getIsLogin, shallowEqual);
+
+  useEffect(() => setPageWidth(window.innerWidth), []);
+  window.addEventListener("resize", () => setPageWidth(window.innerWidth));
+  console.log("render");
+
   return (
     <Link className={logoLinkClassName} to="/">
       <LogoBig className={logoBigClassName} />
       <LogoMedium className={logoMediumClassName} />
-      {isLogin ? (
+      {console.log(pageWidth)}
+      {isLogin || pageWidth >= 400 ? (
         <LogoSmall className={logoSmallClassName} />
       ) : (
         <img className={logoImg} src={headerLogo} alt="Logo" />

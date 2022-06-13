@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 
 import { getIsLogin } from "../../redux/userAccount/userAccount-selectors";
@@ -27,7 +27,6 @@ const Header = () => {
           logoSmallClassName={styles.logoSmall}
           logoImg={styles.logoImg}
         />
-        {console.log(visibility)}
         <div className={styles.navigationBlock} style={visibility}>
           <Navigation />
         </div>

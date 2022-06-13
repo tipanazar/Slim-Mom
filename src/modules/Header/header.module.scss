@@ -73,6 +73,10 @@
 }
 
 .logoSmall {
+  // display: none;
+  @include mq(mobile-medium) {
+    display: block;
+  }
   @include mq(tablet) {
     display: none;
   }
@@ -82,7 +86,7 @@
   width: 46.7px;
   height: 41.7px;
   margin-right: 52px;
-  @include mq(tablet) {
+  @include mq(mobile-medium) {
     display: none;
   }
 }
