@@ -13,6 +13,6 @@ export default Button;
 Button.propTypes = {
   className: PropTypes.string.isRequired,
   onClickBtn: PropTypes.func,
-  btnText: PropTypes.string.isRequired,
+  btnText: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string]),
   type: PropTypes.oneOf(["button", "submit", "reset"]).isRequired,
 };

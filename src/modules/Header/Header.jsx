@@ -8,6 +8,7 @@ import Navigation from "../../shared/components/Navigation/Navigation";
 import Button from "../../shared/components/Button";
 import UserInfo from "../../shared/components/UserInfo/UserInfo";
 import Modal from "../../shared/components/ModalDub/Modal";
+import { OpenIcon, CloseIcon } from "./ModalButtonIcons";
 
 import styles from "./header.module.scss";
 
@@ -26,6 +27,10 @@ const Header = () => {
   if (!isLogin) {
     visibility = { display: "block" };
   }
+
+  const linkOnClick = () => {
+    setModalOpen(false);
+  };
   return (
     <header className={styles.header}>
       <div className={styles.headerLinksBlock}>
@@ -48,7 +53,7 @@ const Header = () => {
           </div>
           <Button
             className={styles.modalButton}
-            btnText="btn"
+            btnText={isModalOpen ? <CloseIcon color={"black"} /> : <OpenIcon />}
             type="button"
             onClickBtn={() => setModalOpen((prevState) => !prevState)}
           />
@@ -58,7 +63,7 @@ const Header = () => {
       {!isModalOpen || (
         <Modal isModalOpen={isModalOpen}>
           <div className={styles.modalBlock}>
-            <Navigation />
+            <Navigation linkOnClick={linkOnClick} />
           </div>
         </Modal>
       )}
