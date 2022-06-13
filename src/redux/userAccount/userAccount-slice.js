@@ -11,7 +11,7 @@ const initialState = {
     name: "UserName",
   },
   accessToken: "",
-  isUserLogin: false,
+  isUserLogin: true,
   loading: false,
   refreshError: null,
   error: null,

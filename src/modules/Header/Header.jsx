@@ -4,7 +4,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import { getIsLogin } from "../../redux/userAccount/userAccount-selectors";
 
 import Logo from "./Logo";
-import Navigation from "../Navigation/Navigation";
+import Navigation from "../../shared/components/Navigation/Navigation";
 import Button from "../../shared/components/Button";
 import UserInfo from "../../shared/components/UserInfo/UserInfo";
 
@@ -28,7 +28,7 @@ const Header = () => {
           logoImg={styles.logoImg}
         />
         <div className={styles.navigationBlock} style={visibility}>
-          <Navigation />
+          <Navigation isVisible={true}/>
         </div>
       </div>
 

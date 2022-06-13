@@ -23,13 +23,11 @@ const Logo = ({
 
   useEffect(() => setPageWidth(window.innerWidth), []);
   window.addEventListener("resize", () => setPageWidth(window.innerWidth));
-  console.log("render");
 
   return (
     <Link className={logoLinkClassName} to="/">
       <LogoBig className={logoBigClassName} />
       <LogoMedium className={logoMediumClassName} />
-      {console.log(pageWidth)}
       {isLogin || pageWidth >= 400 ? (
         <LogoSmall className={logoSmallClassName} />
       ) : (

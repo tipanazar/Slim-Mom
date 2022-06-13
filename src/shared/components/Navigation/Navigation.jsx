@@ -1,15 +1,22 @@
+import { useRef } from "react";
 import { useSelector, shallowEqual } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { getIsLogin } from "../../redux/userAccount/userAccount-selectors";
+import PropTypes from "prop-types";
+
+import { getIsLogin } from "../../../redux/userAccount/userAccount-selectors";
 
 import styles from "./navigation.module.scss";
 
 const linkClassName = ({ isActive }) =>
   isActive ? styles.activeLink : styles.inactiveLink;
 
-const Navigation = () => {
+const Navigation = ({ isVisible }) => {
+  let visibility = useRef(null);
   const isLogin = useSelector(getIsLogin, shallowEqual);
+  if (isVisible) {
+    visibility = { display: "inline" };
+  }
   return (
     <nav className={styles.navLinks}>
       {!isLogin ? (
@@ -23,10 +30,14 @@ const Navigation = () => {
         </>
       ) : (
         <>
-          <NavLink className={linkClassName} to="/diary">
+          <NavLink className={linkClassName} style={visibility} to="/diary">
             Щоденник
           </NavLink>
-          <NavLink className={linkClassName} to="/calculator">
+          <NavLink
+            className={linkClassName}
+            style={visibility}
+            to="/calculator"
+          >
             Калькулятор
           </NavLink>
         </>
@@ -36,3 +47,7 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+Navigation.propTypes = {
+  isVisible: PropTypes.bool,
+};
