@@ -8,33 +8,42 @@ import { getIsLogin } from "../../../redux/userAccount/userAccount-selectors";
 
 import styles from "./navigation.module.scss";
 
-const linkClassName = ({ isActive }) =>
-  isActive ? styles.activeLink : styles.inactiveLink;
+const navLinkClassName = ({ isActive }) =>
+  isActive ? styles.activeNavLink : styles.inactiveNavLink;
+
+const authLinkClassName = ({ isActive }) =>
+  isActive ? styles.activeAuthLink : styles.inactiveAuthLink;
 
 const Navigation = ({ isVisible }) => {
   let visibility = useRef(null);
+  let linksDisplay = useRef(null);
   const isLogin = useSelector(getIsLogin, shallowEqual);
+
+  const navBlockClassName = () => {
+    return isLogin ? styles.navLinksBlock : styles.authLinksBlock;
+  };
+
   if (isVisible) {
     visibility = { display: "inline" };
   }
   return (
-    <nav className={styles.navLinks}>
+    <nav className={navBlockClassName()} style={linksDisplay}>
       {!isLogin ? (
         <>
-          <NavLink className={linkClassName} to="/signin">
+          <NavLink className={authLinkClassName} to="/signin">
             Вхід
           </NavLink>
-          <NavLink className={linkClassName} to="/signup">
+          <NavLink className={authLinkClassName} to="/signup">
             Реєстрація
           </NavLink>
         </>
       ) : (
         <>
-          <NavLink className={linkClassName} style={visibility} to="/diary">
+          <NavLink className={navLinkClassName} style={visibility} to="/diary">
             Щоденник
           </NavLink>
           <NavLink
-            className={linkClassName}
+            className={navLinkClassName}
             style={visibility}
             to="/calculator"
           >

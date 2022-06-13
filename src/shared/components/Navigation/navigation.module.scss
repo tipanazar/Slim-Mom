@@ -1,22 +1,73 @@
-.navLinks a {
+@import "../../../sass/main.scss";
+
+.navLinksBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include mq(desktop) {
+    display: inline;
+  }
+}
+
+.navLinksBlock a {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+  &:first-child {
+    margin-bottom: 5vh;
+  }
+  @include mq(tablet) {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  @include mq(desktop) {
     margin-right: 16px;
     text-transform: uppercase;
     font-family: var(--secondary-font);
-    // color: #2a355d;
-    // color: var(--font-black-color);
     font-weight: 600;
     font-size: 14px;
     line-height: 1.07;
     letter-spacing: 0.04em;
+    &:first-child {
+      margin-bottom: 0;
+    }
   }
-  
-  .navLinks a:last-child {
-    margin-right: 0;
+}
+
+.navLinksBlock a:last-child {
+  margin-right: 0;
+}
+
+.activeNavLink {
+  color: var(--button-orange-color);
+}
+
+.inactiveNavLink {
+  color: white;
+  @include mq(desktop) {
+    color: #2e3550;
   }
-  
-  .activeLink {
-    color: var(--button-orange-color);
+}
+
+.activeAuthLink {
+  color: var(--button-orange-color);
+}
+
+.inactiveAuthLink {
+  color: #2e3550;
+}
+
+.authLinksBlock a {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.07;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--secondary-font);
+
+  &:first-child {
+    margin-right: 16px;
   }
-  .inactiveLink {
-    color: #2a355d;
-  }
+}

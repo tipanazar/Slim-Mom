@@ -5,12 +5,14 @@
   display: block;
   content: "";
   outline: 1px solid var(--horizontal-row-color);
+  z-index: 100;
 }
 
 .header {
   position: relative;
   display: flex;
   width: 100vw;
+  min-height: 83px;
   @include mq(desktop) {
     padding: 80px 0 0 16px;
     align-items: flex-end;
@@ -119,7 +121,21 @@
   background-color: white;
   padding: 0;
   border: 0;
+  z-index: 10;
   @include mq(desktop) {
     display: none;
+  }
+}
+
+// Modal Styles
+.modalBlock {
+  position: relative;
+  background-color: var(--universal-darkblue-color);
+  height: 100vh;
+  width: 100vw;
+  top: 84px;
+  padding-top: 10vh;
+  @include mq(tablet) {
+    padding-top: 13vh;
   }
 }
