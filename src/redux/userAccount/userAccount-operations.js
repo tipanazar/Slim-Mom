@@ -30,8 +30,9 @@ const logoutUser = createAsyncThunk(
   '/auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const result = await auth.logoutUser();
-      return result;
+      console.log('logout')
+      // const result = await auth.logoutUser();
+      // return result;
     } catch (err) {
       return rejectWithValue(err);
     }

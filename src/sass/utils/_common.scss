@@ -17,7 +17,7 @@ body {
 
 div#root {
   min-height: 100vh;
-  background-color: var(--main-background-color);
+  // background-color: var(--main-background-color);
   display: flex;
   flex-direction: column;
 }
@@ -46,7 +46,7 @@ ul {
 
 a {
   text-decoration: none;
-  //   color: var(--main-text-color);
+    color: var(--main-text-color);
 }
 
 ol,
