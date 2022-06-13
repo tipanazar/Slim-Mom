@@ -22,6 +22,20 @@ div#root {
   flex-direction: column;
 }
 
+div#modalRoot {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--modal-background-grey-color); // убрать
+  z-index: 5;
+}
+
 // main {
 //   flex-grow: 1;  //что бы растягивалось на всю высоту экрана
 // }
