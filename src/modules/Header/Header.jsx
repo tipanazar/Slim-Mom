@@ -7,7 +7,7 @@ import Logo from "./Logo";
 import Navigation from "../../shared/components/Navigation/Navigation";
 import Button from "../../shared/components/Button";
 import UserInfo from "../../shared/components/UserInfo/UserInfo";
-import Modal from "../../shared/components/ModalDub/Modal";
+import Modal from "../../shared/components/Modal";
 import { OpenIcon, CloseIcon } from "./ModalButtonIcons";
 
 import styles from "./header.module.scss";
