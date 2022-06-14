@@ -14,7 +14,7 @@ const navLinkClassName = ({ isActive }) =>
 const authLinkClassName = ({ isActive }) =>
   isActive ? styles.activeAuthLink : styles.inactiveAuthLink;
 
-const Navigation = ({ isVisible, linkOnClick }) => {
+const Navigation = ({ isVisible, closeModal }) => {
   let visibility = useRef(null);
   let linksDisplay = useRef(null);
   const isLogin = useSelector(getIsLogin, shallowEqual);
@@ -43,7 +43,7 @@ const Navigation = ({ isVisible, linkOnClick }) => {
             className={navLinkClassName}
             style={visibility}
             to="/diary"
-            onClick={linkOnClick}
+            onClick={closeModal}
           >
             Щоденник
           </NavLink>
@@ -51,7 +51,7 @@ const Navigation = ({ isVisible, linkOnClick }) => {
             className={navLinkClassName}
             style={visibility}
             to="/calculator"
-            onClick={linkOnClick}
+            onClick={closeModal}
           >
             Калькулятор
           </NavLink>
@@ -65,5 +65,5 @@ export default Navigation;
 
 Navigation.propTypes = {
   isVisible: PropTypes.bool,
-  linkOnClick: PropTypes.func,
+  closeModal: PropTypes.func,
 };

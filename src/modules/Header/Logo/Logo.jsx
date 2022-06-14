@@ -17,6 +17,7 @@ const Logo = ({
   logoMediumClassName,
   logoSmallClassName,
   logoImg,
+  closeModal,
 }) => {
   const [pageWidth, setPageWidth] = useState(0);
   const isLogin = useSelector(getIsLogin, shallowEqual);
@@ -25,7 +26,7 @@ const Logo = ({
   window.addEventListener("resize", () => setPageWidth(window.innerWidth));
 
   return (
-    <Link className={logoLinkClassName} to="/">
+    <Link className={logoLinkClassName} to="/" onClick={closeModal}>
       <LogoBig className={logoBigClassName} />
       <LogoMedium className={logoMediumClassName} />
       {isLogin || pageWidth >= 400 ? (
@@ -45,4 +46,5 @@ Logo.propTypes = {
   logoMediumClassName: PropTypes.string,
   logoSmallClassName: PropTypes.string,
   logoImg: PropTypes.string,
+  closeModal: PropTypes.func.isRequired
 };
