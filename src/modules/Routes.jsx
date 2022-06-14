@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Provider } from 'react-redux'
-import {persistor} from "../redux/store"
+import {store} from "../redux/store"
 import PublicRoute from "../shared/components/PublicRoute";
 import PrivateRoute from "../shared/components/PrivateRoute";
 
@@ -17,7 +17,7 @@ const CalculatorPage = lazy(() => import("../pages/CalculatorPage"));
 
 const MyRoutes = () => {
   return (
-    <Provider store={persistor}>
+    <Provider store={store}>
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<LayoutPage />}>

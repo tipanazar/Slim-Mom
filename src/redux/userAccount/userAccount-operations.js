@@ -19,8 +19,11 @@ const loginUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.loginUser(userData);
+      console.log(result);
       return result;
+      
     } catch (err) {
+      console.log(err);
       return rejectWithValue(err);
     }
   }
