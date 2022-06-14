@@ -26,7 +26,7 @@ const Logo = ({
   window.addEventListener("resize", () => setPageWidth(window.innerWidth));
 
   return (
-    <Link className={logoLinkClassName} to="/" onClick={closeModal}>
+    <Link className={logoLinkClassName} to="/diary" onClick={closeModal}>
       <LogoBig className={logoBigClassName} />
       <LogoMedium className={logoMediumClassName} />
       {isLogin || pageWidth >= 400 ? (
