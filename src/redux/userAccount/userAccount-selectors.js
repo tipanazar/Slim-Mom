@@ -1,5 +1,4 @@
 export const getGlobalStore = ({ auth }) => auth; // убрать если не неадо
-export const getUser = ({ auth }) => auth.user;
 export const getToken = ({ auth }) => auth.token;
 export const getUserName = ({ auth }) => auth.user.name;
 export const getIsLogin = ({ auth }) => auth.isUserLogin;
