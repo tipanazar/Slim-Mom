@@ -25,7 +25,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [registerUser.fullfiled]: (state, { payload }) => {
+    [registerUser.fulfilled]: (state, { payload }) => {
       state.user = { ...payload };
       state.isUserLogin = true;
       state.isUserLogin = true; // если что убрать
@@ -41,7 +41,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [loginUser.fullfiled]: (state, { payload }) => {
+    [loginUser.fulfilled]: (state, { payload }) => {
       state.user = { ...payload.user }; // .user может быть другое
       state.accessToken = payload.accessToken;
       state.isUserLogin = true;
@@ -56,7 +56,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [logoutUser.fullfiled]: (state, { payload }) => {
+    [logoutUser.fulfilled]: (state, { payload }) => {
       state.user = { ...initialState.user }; // можно поменять на пейлоад
       state.accessToken = "";
       state.isUserLogin = false;
@@ -71,7 +71,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.refreshError = null;
     },
-    [getCurrentUser.fullfiled]: (state, { payload }) => {
+    [getCurrentUser.fulfilled]: (state, { payload }) => {
       // payload user, отправить с бека имя и почту
       state.isUserLogin = true;
       state.loading = false;

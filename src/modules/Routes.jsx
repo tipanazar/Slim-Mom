@@ -1,8 +1,7 @@
 import { lazy, Suspense } from "react";
 
 import { Route, Routes, Navigate } from "react-router-dom";
-import { Provider } from "react-redux";
-import { persistor } from "../redux/store";
+
 import PublicRoute from "../shared/components/PublicRoute";
 import PrivateRoute from "../shared/components/PrivateRoute";
 
