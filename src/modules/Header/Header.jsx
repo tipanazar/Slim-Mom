@@ -15,22 +15,26 @@ import styles from "./header.module.scss";
 const modalRoot = document.querySelector("#modalRoot");
 
 const Header = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
   let visibility = useRef(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const isLogin = useSelector(getIsLogin, shallowEqual);
 
   isModalOpen
     ? (modalRoot.style.display = "block")
     : (modalRoot.style.display = "none");
-  modalRoot.style.backgroundColor = "rgba(0,0,0,0)";
+
+  isModalOpen ? (modalRoot.style.top = "84px") : (modalRoot.style.top = 0);
 
   if (!isLogin) {
     visibility = { display: "block" };
   }
 
-  const linkOnClick = () => {
+  const closeModal = () => {
     setModalOpen(false);
   };
+  console.log("render");
+
   return (
     <header className={styles.header}>
       <div className={styles.headerLinksBlock}>
@@ -40,6 +44,7 @@ const Header = () => {
           logoMediumClassName={styles.logoMed}
           logoSmallClassName={styles.logoSmall}
           logoImg={styles.logoImg}
+          closeModal={closeModal}
         />
         <div className={styles.navigationBlock} style={visibility}>
           <Navigation isVisible={true} />
@@ -61,9 +66,9 @@ const Header = () => {
       )}
 
       {!isModalOpen || (
-        <Modal isModalOpen={isModalOpen}>
+        <Modal closeModal={closeModal}>
           <div className={styles.modalBlock}>
-            <Navigation linkOnClick={linkOnClick} />
+            <Navigation closeModal={closeModal} />
           </div>
         </Modal>
       )}

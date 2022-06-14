@@ -5,7 +5,7 @@
   display: block;
   content: "";
   outline: 1px solid var(--horizontal-row-color);
-  z-index: 100;
+  // z-index: 10000;
 }
 
 .header {
@@ -75,7 +75,6 @@
 }
 
 .logoSmall {
-  // display: none;
   @include mq(mobile-medium) {
     display: block;
   }
@@ -121,19 +120,18 @@
   background-color: white;
   padding: 0;
   border: 0;
-  z-index: 10;
+  // z-index: 100000;
   @include mq(desktop) {
     display: none;
   }
 }
- 
+
 // Modal Styles
 .modalBlock {
   position: relative;
   background-color: var(--universal-darkblue-color);
   height: 100vh;
   width: 100vw;
-  top: 84px;
   padding-top: 10vh;
   @include mq(tablet) {
     padding-top: 13vh;
