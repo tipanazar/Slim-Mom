@@ -1,6 +1,9 @@
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import { getError, getUserName } from "../../../redux/userAccount/userAccount-selectors";
+import {
+  getError,
+  getUserName,
+} from "../../../redux/userAccount/userAccount-selectors";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 
 import Button from "../Button";
@@ -11,7 +14,7 @@ const UserInfo = () => {
   const userName = useSelector(getUserName, shallowEqual);
   const error = useSelector(getError, shallowEqual);
   const dispatch = useDispatch();
-  !error || console.log(error)
+  !error || console.log(error);
   return (
     <div className={styles.userInfoBlock}>
       <p className={styles.userName}>{userName}</p>

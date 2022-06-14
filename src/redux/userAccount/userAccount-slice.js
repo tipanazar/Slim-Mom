@@ -6,7 +6,6 @@ const { registerUser, loginUser, logoutUser, getCurrentUser } = userOperations;
 
 const initialState = {
   user: {
-    email: "",
     name: "",
   },
   token: "",
@@ -27,7 +26,6 @@ const userSlice = createSlice({
     [registerUser.fulfilled]: (state, { payload }) => {
       state.user = { ...payload };
       state.isUserLogin = true;
-      state.isUserLogin = true; // если что убрать
       state.loading = false;
     },
     [registerUser.rejected]: (state, { payload }) => {
@@ -41,7 +39,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      state.user = { ...payload.user }; // .user может быть другое
+      state.user = payload.user.name;
       state.token = payload.token;
       state.isUserLogin = true;
       state.loading = false;
@@ -71,7 +69,7 @@ const userSlice = createSlice({
       state.refreshError = null;
     },
     [getCurrentUser.fulfilled]: (state, { payload }) => {
-      state.user.name={...payload};
+      state.user = { ...payload };
       state.isUserLogin = true;
       state.loading = false;
     },

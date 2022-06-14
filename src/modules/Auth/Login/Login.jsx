@@ -1,20 +1,22 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+
+import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
+import { userOperations } from "../../../redux/userAccount/userAccount-operations";
+
 import Input from "../../../shared/components/Input/Input";
 import Button from "../../../shared/components/Button/Button";
-import {
-  getGlobalStore
-} from "../../../redux/userAccount/userAccount-selectors.js";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { userOperations } from "../../../redux/userAccount/userAccount-operations";
-import style from "./login.module.scss"
+
+import styles from "./login.module.scss";
+
 const initialState = {
   email: "",
   password: "",
 };
+
 const Login = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getLoading, shallowEqual);
   const error = useSelector(getError, shallowEqual);
   !error || console.log(error);
 
@@ -35,28 +37,30 @@ const Login = () => {
   };
 
   return (
-    <div className={style.wrapper}>
-      <h1 className={style.header}>ВХІД</h1>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>ВХІД</h1>
       <form action="submit" onSubmit={submitForm}>
-        <div className={style.inputWrapper}>
-          <p className={style.paragrahp}>Логін</p>
-        <Input
-          className={style.input}
-          name="email"
-          onType={handleChange}
-          value={userInfo.email}
-        ></Input>
-        <p className={style.paragrahpSecond}>Пароль</p>
-        <Input
-        className={style.input}
-          name="password"
-          onType={handleChange}
-          value={userInfo.password}
-        ></Input>
+        <div className={styles.inputWrapper}>
+          <p className={styles.paragrahp}>Логін</p>
+          <Input
+            className={styles.input}
+            name="email"
+            onType={handleChange}
+            value={userInfo.email}
+          ></Input>
+          <p className={styles.paragrahpSecond}>Пароль</p>
+          <Input
+            className={styles.input}
+            name="password"
+            onType={handleChange}
+            value={userInfo.password}
+          ></Input>
         </div>
-        <div className={style.wrapperButtons}>
-        <Button btnText="Вхід"  type="submit" className={style.button} />
-        <Link to="/signup" className={style.link}>Реєстрація</Link>
+        <div className={styles.wrapperButtons}>
+          <Button btnText="Вхід" type="submit" className={styles.button} />
+          <Link to="/signup" className={styles.link}>
+            Реєстрація
+          </Link>
         </div>
       </form>
     </div>
