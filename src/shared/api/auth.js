@@ -13,7 +13,7 @@ const loginUser = async (userData) => {
 };
 const getCurrentUser = async accToken => {
   addAccessToken(accToken);
-  const { data: result } = await axios.get('/auth/user');
+  const  result  = await axios.get('/auth/user');
   return result;
 };
 

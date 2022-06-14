@@ -71,7 +71,7 @@ const userSlice = createSlice({
       state.refreshError = null;
     },
     [getCurrentUser.fulfilled]: (state, { payload }) => {
-      state.user.name=payload.name
+      state.user.name={...payload};
       state.isUserLogin = true;
       state.loading = false;
     },

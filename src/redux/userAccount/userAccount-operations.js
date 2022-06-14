@@ -45,6 +45,7 @@ const getCurrentUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.getCurrentUser(userData);
+    
       return result;      
     } catch (err) {
       return rejectWithValue(err.response.data.message);
