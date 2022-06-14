@@ -1,6 +1,6 @@
 import Input from "../../../shared/components/Input/Input";
 import Button from "../../../shared/components/Button/Button";
-import {getGlobalStore} from "../../../redux/userAccount/userAccount-selectors.js"
+import {getLoading} from "../../../redux/userAccount/userAccount-selectors.js"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
@@ -12,7 +12,7 @@ const initialState = {
 };
 const Login = () => {
   const dispatch=useDispatch()
-  const isLoading = useSelector(getGlobalStore, shallowEqual);
+  const isLoading = useSelector(getLoading, shallowEqual);
   
   const [userInfo, setUserInfo] = useState({
     ...initialState,
