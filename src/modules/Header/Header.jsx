@@ -33,7 +33,6 @@ const Header = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  console.log("render");
 
   return (
     <header className={styles.header}>

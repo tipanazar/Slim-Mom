@@ -1,9 +1,12 @@
 import Input from "../../../shared/components/Input/Input";
 import Button from "../../../shared/components/Button/Button";
-import {getLoading} from "../../../redux/userAccount/userAccount-selectors.js"
+import {
+  getLoading,
+  getError,
+} from "../../../redux/userAccount/userAccount-selectors.js";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useSelector, shallowEqual, useDispatch } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 
 const initialState = {
@@ -11,15 +14,17 @@ const initialState = {
   password: "",
 };
 const Login = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const isLoading = useSelector(getLoading, shallowEqual);
-  
+  const error = useSelector(getError, shallowEqual);
+  console.log(error);
+
   const [userInfo, setUserInfo] = useState({
     ...initialState,
   });
   const submitForm = (e) => {
     e.preventDefault();
-    dispatch(userOperations.loginUser(userInfo))
+    dispatch(userOperations.loginUser(userInfo));
     setUserInfo(initialState);
   };
   const handleChange = ({ target }) => {

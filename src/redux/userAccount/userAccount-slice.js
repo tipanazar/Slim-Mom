@@ -7,10 +7,9 @@ const { registerUser, loginUser, logoutUser, getCurrentUser } = userOperations;
 const initialState = {
   user: {
     email: "",
-    password: "",
     name: "",
   },
-  accessToken: "",
+  token: "",
   isUserLogin: false,
   loading: false,
   refreshError: null,
@@ -43,12 +42,12 @@ const userSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.user = { ...payload.user }; // .user может быть другое
-      state.accessToken = payload.accessToken;
+      state.token = payload.token;
       state.isUserLogin = true;
       state.loading = false;
     },
     [loginUser.rejected]: (state, { payload }) => {
-      state.error = true; // распылить пэйлоад
+      state.error = payload;
       state.loading = false;
     },
 
@@ -58,7 +57,7 @@ const userSlice = createSlice({
     },
     [logoutUser.fulfilled]: (state, { payload }) => {
       state.user = { ...initialState.user }; // можно поменять на пейлоад
-      state.accessToken = "";
+      state.token = "";
       state.isUserLogin = false;
       state.loading = false;
     },
