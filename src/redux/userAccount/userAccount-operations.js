@@ -41,24 +41,21 @@ const logoutUser = createAsyncThunk(
 );
 
 const getCurrentUser = createAsyncThunk(
-  "/user",
-  async (_, { getState, rejectWithValue }) => {
+  '/auth/user',
+  async (userData, { rejectWithValue }) => {
     try {
-      const { auth } = getState();
-      const result = await auth.getCurrentUser(auth.accessToken);
-      return result;
+      const result = await auth.getCurrentUser(userData);
+    
+      return result;      
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data.message);
     }
-  },
-  {
-    condition: (_, { getState }) => {
-      const { auth } = getState();
-      if (!auth.accessToken) {
-        return false;
-      }
-    },
-  }
+  },{
+  condition:(userData)=>{
+    if(!userData){
+      return false;
+    }
+  }}
 );
 
 export const userOperations = {

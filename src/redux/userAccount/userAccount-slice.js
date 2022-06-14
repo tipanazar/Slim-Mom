@@ -71,7 +71,7 @@ const userSlice = createSlice({
       state.refreshError = null;
     },
     [getCurrentUser.fulfilled]: (state, { payload }) => {
-      // payload user, отправить с бека имя и почту
+      state.user.name={...payload};
       state.isUserLogin = true;
       state.loading = false;
     },
