@@ -10,7 +10,7 @@ const modalRoot = document.querySelector("#modalRoot");
 
 const DailyCaloriesForm = () => {
   const [value, setValue] = useState("");
-  const [isModalOpen, setModalOpen] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false); // Поставить, "true" что бы по умолчанию была открыта
 
   const handleChange = ({ target: { value } }) => setValue(value);
 
