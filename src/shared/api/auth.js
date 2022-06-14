@@ -1,21 +1,20 @@
 import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:4000/api";
+
 const addAccessToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
- const loginUser = async (userData) => {
-  console.log(userData);
-  const { data: result } = await axios.post("http://localhost:4000/api/auth/login/", userData);
-  addAccessToken(result.accessToken);
-  return result;
+const loginUser = async (userData) => {
+  const { data } = await axios.post("/auth/login", userData);
+  console.log(data.code)
+  addAccessToken(data.token);
+  return data;
 };
 
 const authApi = {
+  loginUser,
+};
 
-    loginUser,
-
-
-  };
-  
-  export default authApi;
+export default authApi;
