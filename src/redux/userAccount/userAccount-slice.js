@@ -10,7 +10,7 @@ const initialState = {
     name: "",
   },
   token: "",
-  isUserLogin: true,
+  isUserLogin: false,
   loading: false,
   refreshError: null,
   error: null,
