@@ -10,16 +10,27 @@ body {
   text-rendering: optimizeSpeed;
   margin: 0;
   font-family: var(--main-font);
-  //   &::-webkit-scrollbar {
-  //     display: none;   // скрывает скроллбар со страницы
-  //   }
+  // &::-webkit-scrollbar {
+  //   display: block; // скрывает скроллбар со страницы
+  // }
 }
 
 div#root {
   min-height: 100vh;
-  background-color: var(--main-background-color);
   display: flex;
   flex-direction: column;
+}
+
+div#modalRoot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  background-color: var(--modal-background-grey-color); // убрать
+  z-index: 2;
+  cursor: pointer;
 }
 
 // main {
@@ -46,7 +57,7 @@ ul {
 
 a {
   text-decoration: none;
-  //   color: var(--main-text-color);
+  color: var(--main-text-color);
 }
 
 ol,

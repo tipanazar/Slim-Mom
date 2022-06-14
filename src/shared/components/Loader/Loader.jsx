@@ -1,7 +1,7 @@
-import styles from "./loader.module.scss";
+import styles from './loader.module.scss';
 
 const Loader = () => {
-  return <div>Loading...</div>;
+  return <div className={styles.ldsDualRing}></div>;
 };
 
 export default Loader;
