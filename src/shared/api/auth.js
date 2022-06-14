@@ -12,9 +12,15 @@ const loginUser = async (userData) => {
   addAccessToken(data.token);
   return data;
 };
+const getCurrentUser = async accToken => {
+  addAccessToken(accToken);
+  const { data: result } = await axios.get('/auth/user');
+  return result;
+};
 
 const authApi = {
   loginUser,
+  getCurrentUser,
 };
 
 export default authApi;
