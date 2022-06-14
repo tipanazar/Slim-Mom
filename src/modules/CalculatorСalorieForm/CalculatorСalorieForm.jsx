@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
+
+import style from "./calculatorСalorieForm.module.scss";
 const CalculatorСalorieForm = ({
-  title = "Здесь может быть ваша реклама!",
+  title = "Тут може бути ваша реклама, але ніхто не спонсує :(",
   onChange,
 }) => {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
@@ -14,106 +17,168 @@ const CalculatorСalorieForm = ({
       bloodType: "1",
     },
   });
+
+  const watchCurrentWeight = watch("currentWeight")
+
+
+
+
   const onSubmit = (data) => {
     console.log(data);
     reset();
   };
 
   return (
-    <div>
+    <div className={style.form_wrapper}>
+      <h2 className={style.form_title}>{title}</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>{title}</h2>
-        <div>
-          <input
-            placeholder={"Рост *"}
-            {...register("height", {
-              min: { value: 100, message: "Минимальный рост 100см!" },
-              max: { value: 220, message: "Максимальный рост 220см!" },
-              required: "Введите свой рост! Поле обязательное!",
-            })}
-          />
-          {errors?.height && <p>{errors?.height?.message}</p>}
+        <div className={style.row_wrapper}>
+          <div className={style.tablet_input_wrapper}>
+            <div className={style.inputs_wrapper}>
+              <input
+                className={style.input}
+                placeholder={"Зріст *"}
+                {...register("height", {
+                  min: { value: 100, message: "Мінімальний зріст 100см!" },
+                  max: { value: 220, message: "Максимальний зріст 220см!" },
+                  required: "Введіть свій зріст! Поле обов'язкове!",
+                  pattern: {
+                    value: /[0-9]{3}/,
+                    message: 'Не допустимі символи!'
+                  },
+                })}
+              />
+              {errors?.height && (
+                <p className={style.error}>{errors?.height?.message}</p>
+              )}
+            </div>
+            <div className={style.inputs_wrapper}>
+              <input
+                className={style.input}
+                placeholder={"Вік *"}
+                {...register("age", {
+                  min: { value: 18, message: "Мінімальний вік 18 років!" },
+                  max: { value: 99, message: "Максимальний вік 99 років!" },
+                  required: "Введіть свій вік! Поле обов'язкове",
+                  pattern: {
+                    value: /[0-9]{2}/,
+                    message: 'Не допустимі символи!'
+                  },
+                })}
+              />
+              {errors?.age && (
+                <p className={style.error}>{errors?.age?.message}</p>
+              )}
+            </div>
+            <div className={style.inputs_wrapper}>
+              <input
+                className={style.input}
+                placeholder={"Поточна вага *"}
+                {...register("currentWeight", {
+                  min: { value: 40, message: "Мінімальна вага 40кг!" },
+                  max: { value: 200, message: "Максимальна вага 200кг!" },
+                  required: "Введіть свою вагу! Поле обов'язкове!",
+                  pattern: {
+                    value: /[0-9]/,
+                    message: 'Не допустимі символи!'
+                  },
+                })}
+              />
+              {errors?.currentWeight && (
+                <p className={style.error}>{errors?.currentWeight?.message}</p>
+              )}
+            </div>
+          </div>
+          <div className={style.tablet_input_wrapper}>
+            <div className={style.inputs_wrapper}>
+              <input
+                className={style.input}
+                placeholder={"Бажана вага *"}
+                {...register("desiredWeight", {
+                  min: { value: 40, message: "Мінімальна бажана вага 40кг!" },
+                  max: {
+                    value: 200,
+                    message: "Максимальна бажана вага 200кг!",
+                  },
+                  required: "Введіть свою бажану вагу! Поле обов'язкове!",
+                  pattern: {
+                    value: /[0-9]/,
+                    message: 'Не допустимі символи!'
+                  },
+                  validate: value => value <= watchCurrentWeight || 'Бажана вага не може бути більшою за поточну!'
+                })}
+              />
+              {errors?.desiredWeight && (
+                <p className={style.error}>{errors?.desiredWeight?.message}</p>
+              )}
+            </div>
+            <div>
+              <p className={style.bloodType}>Група крові *</p>
+              <div className={style.radioBtns_wrapper}>
+                <div className={style.oneRadioBtn_wrapper}>
+                  <label className={style.customRadioBtn}>
+                    <input
+                      type="radio"
+                      value={"1"}
+                      {...register("bloodType", {
+                        required: "Оберіть свою групу крові! Це обов'язково!",
+                      })}
+                    />
+                    <span className={style.checkmark}></span>
+                  </label>
+                  <p className={style.radioBtnText}>1</p>
+                </div>
+                <div className={style.oneRadioBtn_wrapper}>
+                  <label className={style.customRadioBtn}>
+                    <input
+                      type="radio"
+                      value={"2"}
+                      {...register("bloodType", {
+                        required: "Оберіть свою групу крові! Це обов'язково!",
+                      })}
+                    />
+                    <span className={style.checkmark}></span>
+                  </label>
+                  <p className={style.radioBtnText}>2</p>
+                </div>
+                <div className={style.oneRadioBtn_wrapper}>
+                  <label className={style.customRadioBtn}>
+                    <input
+                      type="radio"
+                      value={"3"}
+                      {...register("bloodType", {
+                        required: "Оберіть свою групу крові! Це обов'язково!!",
+                      })}
+                    />
+                    <span className={style.checkmark}></span>
+                  </label>
+                  <p className={style.radioBtnText}>3</p>
+                </div>
+                <div className={style.oneRadioBtn_wrapper}>
+                  <label className={style.customRadioBtn}>
+                    <input
+                      type="radio"
+                      value={"4"}
+                      {...register("bloodType", {
+                        required: "Оберіть свою групу крові! Це обов'язково!",
+                      })}
+                    />
+                    <span className={style.checkmark}></span>
+                  </label>
+                  <p className={style.radioBtnText}>4</p>
+                </div>
+                {errors?.bloodType && (
+                  <p className={style.error}>{errors?.bloodType?.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <input
-            placeholder={"Возвраст *"}
-            {...register("age", {
-              min: { value: 18, message: "Минимальный возвраст 18 лет!" },
-              max: { value: 99, message: "Максимальный возвраст 99 лет!" },
-              required: "Введите свой возвраст! Поле обязательное!",
-            })}
-          />
-          {errors?.age && <p>{errors?.age?.message}</p>}
+        <div className={style.btn_wrapper}>
+          <button className={style.button} type="submit" disabled={!isValid}>
+            Схуднути!
+          </button>
         </div>
-        <div>
-          <input
-            placeholder={"Текущий вес *"}
-            {...register("currentWeight", {
-              min: { value: 40, message: "Минимальный текущий вес 40кг!" },
-              max: { value: 200, message: "Максимальный текущий вес 200кг!" },
-              required: "Введите свой вес! Поле обязательное!",
-            })}
-          />
-          {errors?.currentWeight && <p>{errors?.currentWeight?.message}</p>}
-        </div>
-        <div>
-          <input
-            placeholder={"Желаемый вес *"}
-            {...register("desiredWeight", {
-              min: { value: 40, message: "Минимальный желаемый вес 40кг!" },
-              max: { value: 200, message: "Максимальный желаемый вес 200кг!" },
-              required: "Введите желаемый вес! Поле обязательное!",
-            })}
-          />
-          {errors?.desiredWeight && <p>{errors?.desiredWeight?.message}</p>}
-        </div>
-        <div>
-          <p>Группа крови *</p>
-          <label>
-            <input
-              type="radio"
-              value={"1"}
-              {...register("bloodType", {
-                required: "Выберите группу крови! Это обязательно!",
-              })}
-            />
-            1
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={"2"}
-              {...register("bloodType", {
-                required: "Выберите группу крови! Это обязательно!",
-              })}
-            />
-            2
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={"3"}
-              {...register("bloodType", {
-                required: "Выберите группу крови! Это обязательно!",
-              })}
-            />
-            3
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={"4"}
-              {...register("bloodType", {
-                required: "Выберите группу крови! Это обязательно!",
-              })}
-            />
-            4
-          </label>
-          {errors?.bloodType && <p>{errors?.bloodType?.message}</p>}
-        </div>
-        <button type="submit" disabled={!isValid}>
-          Похудеть!
-        </button>
       </form>
     </div>
   );
