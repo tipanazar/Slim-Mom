@@ -56,13 +56,13 @@ const userSlice = createSlice({
       state.error = null;
     },
     [logoutUser.fulfilled]: (state, { payload }) => {
-      state.user = { ...initialState.user }; // можно поменять на пейлоад
+      state.user = { ...initialState.user };
       state.token = "";
       state.isUserLogin = false;
       state.loading = false;
     },
     [logoutUser.rejected]: (state, { payload }) => {
-      state.error = true; // распылить пэйлоад
+      state.error = payload;
       state.loading = false;
     },
 

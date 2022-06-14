@@ -1,9 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import auth from '../../shared/api/auth';
+import auth from "../../shared/api/auth";
 
 const registerUser = createAsyncThunk(
-  '/auth/register',
+  "/auth/register",
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.registerUser(userData);
@@ -15,12 +15,12 @@ const registerUser = createAsyncThunk(
 );
 
 const loginUser = createAsyncThunk(
-  '/auth/login',
+  "/auth/login",
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.loginUser(userData);
       // console.log(result);
-      return result;      
+      return result;
     } catch (err) {
       // console.log(err.response.data.message);
       return rejectWithValue(err.response.data.message);
@@ -29,39 +29,17 @@ const loginUser = createAsyncThunk(
 );
 
 const logoutUser = createAsyncThunk(
-  '/auth/logout',
+  "/auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      console.log('logout')
-      // const result = await auth.logoutUser();
-      // return result;
+      const result = await auth.logoutUser();
+      return result;
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
 
-// const getCurrentUser = createAsyncThunk(
-//   '/auth/user',
-//   async (_, { getState, rejectWithValue }) => {
-//     try {
-//       const { auth } = getState;
-//       console.log(auth);
-//       const result = await auth.getCurrentUser(auth.token);
-//       return result;
-//     } catch (err) {
-//       return rejectWithValue(err);
-//     }
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const { auth } = getState();
-//       if (!auth.accessToken) {
-//         return false;
-//       }
-//     },
-//   }
-// );
 const getCurrentUser = createAsyncThunk(
   '/auth/user',
   async (userData, { rejectWithValue }) => {
@@ -71,7 +49,6 @@ const getCurrentUser = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response.data.message);
     }
-   
   },{
   condition:(userData)=>{
     if(!userData){

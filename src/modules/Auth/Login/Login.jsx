@@ -14,7 +14,9 @@ const initialState = {
 };
 const Login = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getGlobalStore, shallowEqual);
+  const isLoading = useSelector(getLoading, shallowEqual);
+  const error = useSelector(getError, shallowEqual);
+  // console.log(error);
 
   const [userInfo, setUserInfo] = useState({
     ...initialState,
