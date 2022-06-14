@@ -1,4 +1,4 @@
-@import '../../../sass/main.scss';
+@import "../../../sass/main.scss";
 
 /* Loader Styles Below */
 .ldsDualRing {
@@ -14,10 +14,10 @@
 }
 .ldsDualRing:after {
   position: absolute;
-  content: ' ';
+  content: "";
   display: block;
-  top: 40%;
-  left: 43%;
+  top: 44%;
+  left: 40%;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -26,7 +26,7 @@
   animation: ldsDualRing 1.2s linear infinite;
 
   @include mq(tablet) {
-    top: 40%;
+    top: 43%;
     left: 44.5%;
     width: 90px;
     height: 90px;
