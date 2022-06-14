@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useDispatch } from "react-redux";
 import styles from "./modal.module.scss";
 import SvgBtn from "../../../modules/DailyCaloriesForm/SvgComponents/SvgBtn";
 import SvgClose from "../../../modules/DailyCaloriesForm/SvgComponents/SvgClose";
@@ -10,34 +9,29 @@ const modalRoot = document.getElementById("modalRoot");
 const Modal = ({ openClose }) => {
   const [value, setValue] = useState("");
   const handleChange = ({ target: { value } }) => setValue(value);
-  // const [modal, setModal] = useState({
-  //     open: false,
-  //     content: null
-  // });
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    const handleKeyDown = (el) => {
+    const close = (el) => {
       if (el.code === "Escape") {
-        dispatch(openClose());
+        openClose();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", close);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", close);
     };
-  }, [dispatch, openClose]);
+  }, [openClose]);
 
-  const closeBackdrop = (el) => {
+  const close = (el) => {
     if (el.currentTarget === el.target) {
-      dispatch(openClose());
+      openClose();
     }
   };
 
   return createPortal(
     <div className={styles.modalOverlay}>
       <div className={styles.modalWindow}>
-        <div className={styles.modalLogo} onClick={closeBackdrop}>
+        <div className={styles.modalLogo} onClick={close}>
           <div className={styles.modalContainer}>
             <button className={styles.modalBtn}>
               <SvgBtn className={styles.iconBtn} />
@@ -48,7 +42,7 @@ const Modal = ({ openClose }) => {
           <h2 className={styles.modalTitle}>
             Ваша рекомендована добова норма калорій становить
           </h2>
-          <SvgClose onClick={closeBackdrop} className={styles.iconClose} />
+          <SvgClose onClick={close} className={styles.iconClose} />
           <p className={styles.modalCalory}>
             2280 <span className={styles.modalCalorySpan}>kkal</span>
           </p>
