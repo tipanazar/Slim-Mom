@@ -1,0 +1,100 @@
+@import '../../../sass/main.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+    @include mq(mobile-only){
+        text-align: center;
+    }
+   
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fc842d;
+}
+.inputWrapper {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+}
+.input {
+  border: 1px solid #e0e0e0;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+.input:focus {
+  outline: none;
+  border-bottom: 2px solid #fc842d;
+}
+
+.paragrahp{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+.paragrahpSecond{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #9b9faa;
+    margin-top: 40px;
+}
+
+.button {
+    @include mq(mobile-only){
+       margin-bottom:20px ;
+       margin-right: 0px;
+    }
+    
+  background-color: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  width: 182px;
+  height: 44px;
+  border: 0px;
+  color: #ffffff;
+  margin-right: 32px;
+  margin-top: 73px;
+  //font
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.82px;
+}
+.link {
+  width: 182px;
+  height: 44px;
+  background-color: #ffffff;
+  text-align: center;
+  padding-top: 10px;
+  display: inline-block;
+  background: #ffffff;
+  border: 2px solid #fc842d;
+  border-radius: 30px;
+  color: #fc842d;
+  //font
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.82px;
+}
+.wrapperButtons{
+    @include mq(mobile-only){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}

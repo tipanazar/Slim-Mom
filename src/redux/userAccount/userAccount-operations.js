@@ -1,9 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import auth from '../../shared/api/auth';
+import auth from "../../shared/api/auth";
 
 const registerUser = createAsyncThunk(
-  '/auth/register',
+  "/auth/register",
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.registerUser(userData);
@@ -15,45 +15,44 @@ const registerUser = createAsyncThunk(
 );
 
 const loginUser = createAsyncThunk(
-  '/auth/login',
+  "/auth/login",
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.loginUser(userData);
+      // console.log(result);
       return result;
     } catch (err) {
-      return rejectWithValue(err);
+      // console.log(err.response.data.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
 
 const logoutUser = createAsyncThunk(
-  '/auth/logout',
+  "/auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      console.log('logout')
-      // const result = await auth.logoutUser();
-      // return result;
+      const result = await auth.logoutUser();
+      return result;
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
 
 const getCurrentUser = createAsyncThunk(
-  '/user',
-  async (_, { getState, rejectWithValue }) => {
+  "/auth/user",
+  async (userData, { rejectWithValue }) => {
     try {
-      const { auth } = getState();
-      const result = await auth.getCurrentUser(auth.accessToken);
+      const result = await auth.getCurrentUser(userData);
       return result;
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data.message);
     }
   },
   {
-    condition: (_, { getState }) => {
-      const { auth } = getState();
-      if (!auth.accessToken) {
+    condition: (userData) => {
+      if (!userData) {
         return false;
       }
     },

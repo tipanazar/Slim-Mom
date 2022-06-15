@@ -6,11 +6,9 @@ const { registerUser, loginUser, logoutUser, getCurrentUser } = userOperations;
 
 const initialState = {
   user: {
-    email: "",
-    password: "",
     name: "",
   },
-  accessToken: "",
+  token: "",
   isUserLogin: false,
   loading: false,
   refreshError: null,
@@ -25,10 +23,9 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [registerUser.fullfiled]: (state, { payload }) => {
+    [registerUser.fulfilled]: (state, { payload }) => {
       state.user = { ...payload };
       state.isUserLogin = true;
-      state.isUserLogin = true; // если что убрать
       state.loading = false;
     },
     [registerUser.rejected]: (state, { payload }) => {
@@ -41,14 +38,14 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [loginUser.fullfiled]: (state, { payload }) => {
-      state.user = { ...payload.user }; // .user может быть другое
-      state.accessToken = payload.accessToken;
+    [loginUser.fulfilled]: (state, { payload }) => {
+      state.user = payload.user.name;
+      state.token = payload.token;
       state.isUserLogin = true;
       state.loading = false;
     },
     [loginUser.rejected]: (state, { payload }) => {
-      state.error = true; // распылить пэйлоад
+      state.error = payload;
       state.loading = false;
     },
 
@@ -56,14 +53,14 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [logoutUser.fullfiled]: (state, { payload }) => {
-      state.user = { ...initialState.user }; // можно поменять на пейлоад
-      state.accessToken = "";
+    [logoutUser.fulfilled]: (state, { payload }) => {
+      state.user = { ...initialState.user };
+      state.token = "";
       state.isUserLogin = false;
       state.loading = false;
     },
     [logoutUser.rejected]: (state, { payload }) => {
-      state.error = true; // распылить пэйлоад
+      state.error = payload;
       state.loading = false;
     },
 
@@ -71,8 +68,8 @@ const userSlice = createSlice({
       state.loading = true;
       state.refreshError = null;
     },
-    [getCurrentUser.fullfiled]: (state, { payload }) => {
-      // payload user, отправить с бека имя и почту
+    [getCurrentUser.fulfilled]: (state, { payload }) => {
+      state.user = { ...payload };
       state.isUserLogin = true;
       state.loading = false;
     },
