@@ -1,4 +1,6 @@
 import { useState, useCallback } from "react";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 import { initialState } from "./initialState";
 import Input from "../../../shared/components/Input";
@@ -6,7 +8,13 @@ import Button from "../../../shared/components/Button";
 
 import style from "./Register.module.scss";
 
+
+
 const Register = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({ ...initialState });
   const { userName, email, password, passwordConfirmation } = form;
 
@@ -17,9 +25,11 @@ const Register = () => {
       return;
     }
     console.log(userName, email, password);
+    navigate('/signup/confirmation');
   };
 
-  const handleChange = useCallback((target) => {
+  const handleChange = useCallback(({ target }) => {
+    // console.log(target)
     const { name, value } = target;
     setForm((prevForm) => ({
       ...prevForm,
