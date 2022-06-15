@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useDispatch } from 'react-redux';
 
 import { initialState } from "./initialState";
 import Input from "../../../shared/components/Input";
@@ -19,7 +20,8 @@ const Register = () => {
     console.log(userName, email, password);
   };
 
-  const handleChange = useCallback((target) => {
+  const handleChange = useCallback(({ target }) => {
+    // console.log(target)
     const { name, value } = target;
     setForm((prevForm) => ({
       ...prevForm,
