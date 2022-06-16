@@ -30,7 +30,7 @@ const userSlice = createSlice({
     },
     [registerUser.rejected]: (state, { payload }) => {
       console.log("Payload userSlice: ", payload);
-      state.error = true; // распылить сюда пэйлоад что бы пользователь получил сообщение с бекенда
+      state.error = payload; // распылить сюда пэйлоад что бы пользователь получил сообщение с бекенда
       state.loading = false;
     },
 
