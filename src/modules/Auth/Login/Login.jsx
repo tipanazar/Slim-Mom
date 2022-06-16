@@ -103,12 +103,16 @@ const Login = () => {
                 required
               ></Input>
             </label> */}
-            <FormControl sx={{ m: 0, width: "25ch" }} variant="standard" color="warning">
+            <FormControl
+              sx={{ m: 0, width: "25ch" }}
+              variant="standard"
+              color="warning"
+            >
               <InputLabelStyled htmlFor="Login" className="InputLabel">
                 Login
               </InputLabelStyled>
               <Input
-               required
+                required
                 style={{ marginBottom: 40 }}
                 color="warning"
                 fullWidth
@@ -129,11 +133,15 @@ const Login = () => {
                 type={showPassword ? "password" : "text"}
               ></Input>
             </label> */}
-            <FormControl sx={{ m: 0, width: "25ch" }} variant="standard" color="warning">
+            <FormControl
+              sx={{ m: 0, width: "25ch" }}
+              variant="standard"
+              color="warning"
+            >
               <InputLabelStyled htmlFor="password">Password</InputLabelStyled>
 
               <Input
-              required
+                required
                 color="warning"
                 fullWidth
                 id="password"
@@ -150,7 +158,7 @@ const Login = () => {
                       }}
                       edge="end"
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 }
