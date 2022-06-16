@@ -39,8 +39,9 @@ const userSlice = createSlice({
       state.error = null;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      state.user = payload.user.name;
-      state.token = payload.token;
+      const {name,token}=payload
+      state.user = name;
+      state.token = token;
       state.isUserLogin = true;
       state.loading = false;
     },
