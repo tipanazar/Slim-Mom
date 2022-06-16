@@ -3,6 +3,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  margin-top: 160px;
+  padding: 16px;
 }
 .header {
     @include mq(mobile-only){
@@ -24,15 +26,17 @@
   flex-direction: column;
   width: 240px;
 }
+
 .input {
-  border: 1px solid #e0e0e0;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
+  // border: 2px solid #e0e0e0 !important;
+  // border-top: 0px !important;
+  // border-left: 0px !important;
+  // border-right: 0px !important;
+  margin-top: 40px;
 }
 .input:focus {
-  outline: none;
-  border-bottom: 2px solid #fc842d;
+  outline: none !important;
+  border-bottom: 2px solid #fc842d !important;
 }
 
 .paragrahp{
@@ -52,6 +56,7 @@
 }
 
 .button {
+  position: relative;
     @include mq(mobile-only){
        margin-bottom:20px ;
        margin-right: 0px;
@@ -65,7 +70,7 @@
   border: 0px;
   color: #ffffff;
   margin-right: 32px;
-  margin-top: 73px;
+  margin-top: 60px;
   //font
   font-weight: 700;
   font-size: 14px;
@@ -97,4 +102,12 @@
         align-items: center;
     }
     
+}
+.hide{
+  top: 470px;
+      left: 205px;
+  position: absolute;
+  width: 100px;
+  border: 0px;
+  background-color: inherit;
 }
