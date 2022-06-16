@@ -29,7 +29,7 @@ const DailyCaloriesForm = () => {
 
   const onChange = (e) => {
     e.preventDefault();
-    openModal();
+    // setModalOpen(false);
     // onSubmit(form);
   };
 
@@ -44,80 +44,73 @@ const DailyCaloriesForm = () => {
     ? (modalRoot.style.display = "flex")
     : (modalRoot.style.display = "none");
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
   const closeModal = () => {
     setModalOpen(false);
   };
 
   return (
     <>
-      <>
-        <CalculatorСalorieForm
-          title={"Прорахуй свою добову норму калорій зараз"}
-          onSubmit={onChange}
-          handleChange={handleChange}
-        />
-      </>
-      <Button onClickBtn={() => setModalOpen(true)}></Button>
-      {isModalOpen ? (
-        <>
-          <Modal handleClose={closeModal}>
-            <div className={styles.modalOverlay}>
-              <div className={styles.modalWindow}>
-                <div className={styles.modalLogo}>
-                  <Button
-                    className={styles.modalBtn}
-                    btnText={<SvgBtn className={styles.iconBtn} />}
-                    type="button"
-                    onClickBtn={() => setModalOpen(false)}
-                  ></Button>
-                </div>
+      <CalculatorСalorieForm
+        title={"Прорахуй свою добову норму калорій зараз"}
+        onSubmit={onChange}
+        handleChange={handleChange}
+      />
+      <Button
+        onClickBtn={() => setModalOpen(true)}
+        className={styles.modalOpenButton}
+        btnText={"Open Modal"}
+        type="button"
+      />
+      {!isModalOpen || (
+        <Modal closeModal={closeModal}>
+            <div className={styles.modalWindow}>
+              <div className={styles.modalLogo}>
                 <Button
-                  className={styles.modalButton}
-                  btnText={<SvgClose className={styles.iconClose} />}
+                  className={styles.modalBtn}
+                  btnText={<SvgBtn className={styles.iconBtn} />}
                   type="button"
                   onClickBtn={() => setModalOpen(false)}
-                ></Button>
-                <div className={styles.modalWrapper}>
-                  <div className={styles.modalHeader}>
-                    <h2 className={styles.modalTitle}>
-                      Ваша рекомендована добова норма калорій становить
-                    </h2>
-                    <p className={styles.modalCalory}>
-                      {DailyRate}
-                      <span className={styles.modalCalorySpan}>ккал</span>
-                    </p>
-                  </div>
-                  <div className={styles.products}>
-                    <p className={styles.productsTitle}>
-                      Продукти, які вам не варто вживати
-                    </p>
-                    <ul className={styles.modalList}>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                    </ul>
-                  </div>
-                </div>
-                <Link to="/signup">
-                  <Button
-                    className={styles.button}
-                    btnText={"Почати худнути"}
-                    type="submit"
-                    onClickBtn={() => setModalOpen(false)}
-                  ></Button>
-                </Link>
+                />
               </div>
+              <Button
+                className={styles.modalButton}
+                btnText={<SvgClose className={styles.iconClose} />}
+                type="button"
+                onClickBtn={() => setModalOpen(false)}
+              />
+              <div className={styles.modalWrapper}>
+                <div className={styles.modalHeader}>
+                  <h2 className={styles.modalTitle}>
+                    Ваша рекомендована добова норма калорій становить
+                  </h2>
+                  <p className={styles.modalCalory}>
+                    {DailyRate}
+                    <span className={styles.modalCalorySpan}>ккал</span>
+                  </p>
+                </div>
+                <div className={styles.products}>
+                  <p className={styles.productsTitle}>
+                    Продукти, які вам не варто вживати
+                  </p>
+                  <ul className={styles.modalList}>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                </div>
+              </div>
+              <Link to="/signup">
+                <Button
+                  className={styles.button}
+                  btnText={"Почати худнути"}
+                  type="submit"
+                  onClickBtn={() => setModalOpen(false)}
+                />
+              </Link>
             </div>
-          </Modal>
-        </>
-      ) : (
-        ""
+        </Modal>
       )}
     </>
   );
