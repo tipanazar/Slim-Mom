@@ -1,19 +1,21 @@
 @import "../../sass/main.scss";
 
 // Modal styles below
-.modalOverlay {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--modal-background-grey-color);
-  z-index: 1000;
-}
+// .modalOverlay {
+//   position: fixed;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: var(--modal-background-grey-color);
+//   z-index: 1000;
+// }
+
+// Эти стили скорее всего не нужны т.к они прописаны в _common.js
 
 .modalWindow {
   position: fixed;
