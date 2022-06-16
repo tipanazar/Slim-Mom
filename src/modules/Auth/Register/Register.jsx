@@ -1,5 +1,7 @@
 import { useState, useCallback } from "react";
-import { useDispatch } from 'react-redux';
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
+import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 import { useNavigate } from "react-router-dom";
 
 import { initialState } from "./initialState";
@@ -13,10 +15,12 @@ import style from "./Register.module.scss";
 const Register = () => {
 
   const dispatch = useDispatch();
+  const error = useSelector(getError, shallowEqual);
+  !error || console.log(error);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ ...initialState });
-  const { userName, email, password, passwordConfirmation } = form;
+  const { userName, email, password, passwordConfirmation } = form;  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,8 +28,16 @@ const Register = () => {
       alert("Введені паролі не співпадають!");
       return;
     }
-    console.log(userName, email, password);
+    // console.log(userName, email, password);
+    const userData = {
+    name: userName,
+    email,
+    password
+  };
+    dispatch(userOperations.registerUser(userData));
+
     navigate('/signup/confirmation');
+    setForm(initialState);
   };
 
   const handleChange = useCallback(({ target }) => {
