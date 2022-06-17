@@ -3,7 +3,6 @@ import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
-// import Input from "../../../shared/components/Input/Input";
 import Input from "@mui/material/Input";
 
 import { styled } from "@mui/material/styles";
@@ -200,7 +199,7 @@ const Login = () => {
                       }}
                       edge="end"
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 }

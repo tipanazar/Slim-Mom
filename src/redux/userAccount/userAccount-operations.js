@@ -9,7 +9,7 @@ const registerUser = createAsyncThunk(
       const result = await auth.registerUser(userData);
       return result;
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
