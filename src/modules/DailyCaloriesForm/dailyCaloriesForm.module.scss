@@ -4,8 +4,8 @@
 .modalWindow {
   position: fixed;
   left: 50%;
-  transform: translate(-50%, -50%);
   top: 56%;
+  transform: translate(-50%, -50%);
   background-color: #fff;
   max-height: 100vh;
   box-shadow: 0px 22px 40px rgba(0, 0, 0, 0.1);
@@ -45,13 +45,7 @@
   width: 320px;
   height: 40px;
   border: none;
-  right: 15px;
   padding: 20px 0 15px 20px;
-}
-
-.modalBtn:hover,
-.modalBtn:focus {
-  fill: #ffff00;
 }
 
 .iconBtn {
@@ -59,16 +53,41 @@
   height: 10px;
 }
 
-.iconBtn:hover,
-.iconBtn:focus {
-  stroke: #ffff00;
-}
-
 .modalWrapper {
-  padding: 0 20px 15px;
+  padding: 0 20px;
 
   @include mq(tablet) {
     padding: 0 104px;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 0;
+  margin-right: 0;
+  &::after {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid var(--horizontal-row-color);
+    content: "";
+  }
+
+  @include mq(tablet) {
+    margin-bottom: 12px;
+    &::after {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 70%;
+      border-top: 1px solid var(--horizontal-row-color);
+      content: "";
+    }
   }
 }
 
@@ -77,34 +96,58 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 1.4;
-  text-align: center;
+  text-align: left;
   color: var(--font-black-color);
   margin: 40px 0;
 
   @include mq(tablet) {
+    text-align: center;
     font-size: 26px;
     line-height: 1.2;
     margin: 64px 0px 20px;
   }
 }
 
-.iconClose {
-  position: absolute;
+.modalButton {
+  position: relative;
+  float: right;
+  clear: left;
   display: none;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+
+  @include mq(tablet) {
+    display: block;
+    top: 31px;
+    right: 40px;
+  }
+  @include mq(desktop) {
+    display: block;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.iconClose {
+  display: none;
   top: 24px;
   right: 24px;
   cursor: pointer;
 
   @include mq(tablet) {
     display: block;
+    top: 31px;
+    right: 40px;
   }
-}
-
-.iconClose:hover,
-.iconClose:focus {
-  fill: #ffff00;
+  @include mq(desktop) {
+    display: block;
+    top: 20px;
+    right: 20px;
+  }
 }
 
 .modalCalory {
@@ -132,18 +175,6 @@
   }
 }
 
-.textInput {
-  position: relative;
-  width: 92%;
-  border: 0;
-  border-bottom: 1px solid var(--horizontal-row-color);
-  margin-bottom: 20px;
-
-  @include mq(tablet) {
-    margin-bottom: 12px;
-  }
-}
-
 .productsTitle {
   font-family: var(--main-font);
   font-weight: 700;
@@ -152,4 +183,41 @@
   letter-spacing: 0.04em;
   color: var(--font-black-color);
   margin-bottom: 20px;
+}
+
+.modalList {
+  padding-bottom: 40px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: var(--main-font);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  width: 182px;
+  height: 43px;
+  margin: 0;
+  padding: 13px 20px;
+  color: #fff;
+  background-color: var(--button-orange-color);
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border: 2px solid var(--button-orange-color);
+  border-radius: 30px;
+  margin: 0px 70px 80px;
+
+  @include mq(tablet) {
+    margin: 0px 265px 53px 225px;
+  }
+
+  @include mq(desktop) {
+    margin: 0px 245px 64px;
+  }
+}
+
+.modalOpenButton{
+  width: 300px;
 }
