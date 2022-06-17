@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
@@ -9,7 +8,9 @@ import Input from "@mui/material/Input";
 import { styled } from "@mui/material/styles";
 import FormControl from "@mui/material/FormControl";
 
-import Button from "../../../shared/components/Button/Button";
+import Button from "@mui/material/Button";
+
+// import Button from "../../../shared/components/Button/Button";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import InputLabel from "@mui/material/InputLabel";
@@ -17,7 +18,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import styles from "./login.module.scss";
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Snackbar, Typography } from "@mui/material";
 
 const initialState = {
   email: "",
@@ -32,6 +33,7 @@ const Login = () => {
   const [userInfo, setUserInfo] = useState({
     ...initialState,
   });
+
   const [state] = useState({
     vertical: "top",
     horizontal: "center",
@@ -59,6 +61,47 @@ const Login = () => {
       color: #fc842d;
     }
   `;
+  const validateEmail = (email) => {
+    return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+    };
+    
+    console.log(validateEmail(userInfo.email));
+
+  const ButtonColor = styled(Button)({
+    boxShadow: "0px 4px 10px rgba(252, 132, 45, 0.5)",
+    textTransform: "none",
+    fontSize: 14,
+    border: "0px solid",
+    borderRadius: "30px",
+    lineHeight: 1.5,
+    backgroundColor: "#fc842d",
+    fontWeight: 700,
+    letterSpacing: 0.82,
+    width: 182,
+    height: 44,
+    color: "#ffffff",
+    marginTop: 60,
+    marginRight: 32,
+
+    "&:hover": {
+      backgroundColor: "#0069d9",
+      borderColor: "#0062cc",
+      boxShadow: "none",
+    },
+    "&:active": {
+      boxShadow: "none",
+      backgroundColor: "#0062cc",
+      borderColor: "#005cbf",
+    },
+    "&:focus": {
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
+    },
+  });
+
   const handleChange1 = (prop) => (event) => {
     setUserInfo({ ...userInfo, [prop]: event.target.value });
   };
@@ -104,15 +147,15 @@ const Login = () => {
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
-              color="warning"
+              color={validateEmail(userInfo.email)?"warning":"error"}
             >
               <InputLabelStyled htmlFor="Login" className="InputLabel">
-                Login
+              {validateEmail(userInfo.email)?"все добре ви молодець":"Введите корректний email"}
               </InputLabelStyled>
               <Input
                 required
                 style={{ marginBottom: 40 }}
-                color="warning"
+                color={validateEmail(userInfo.email)?"warning":"error"}
                 fullWidth
                 id="Login"
                 value={userInfo.email}
@@ -136,7 +179,7 @@ const Login = () => {
               variant="standard"
               color="warning"
             >
-              <InputLabelStyled htmlFor="password">Password</InputLabelStyled>
+              <InputLabelStyled htmlFor="password">Пароль</InputLabelStyled>
 
               <Input
                 required
@@ -164,10 +207,17 @@ const Login = () => {
             </FormControl>
           </div>{" "}
           <div className={styles.wrapperButtons}>
-            <Button btnText="Вхід" type="submit" className={styles.button} />
-            <Link to="/signup" className={styles.link}>
+            {userInfo.email.length >= 5 && userInfo.password.length >= 5 && validateEmail(userInfo.email) ? (
+              <ButtonColor type="submit">Логін</ButtonColor>
+            ) : (
+              <ButtonColor disabled type="submit" style={{}}>
+                Непрацює
+              </ButtonColor>
+            )}
+
+            {/* <Link to="/signup" className={styles.link}>
               Реєстрація
-            </Link>
+            </Link> */}
           </div>
         </form>
         {/* <Button
