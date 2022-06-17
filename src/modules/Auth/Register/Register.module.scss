@@ -74,10 +74,10 @@
    height: 35px;
    border: none;
    border-bottom: 1px solid var(--horizontal-row-color);
-   margin-bottom: 20px;   
+   margin-bottom: 10px;   
 }
 
-.input::placeholder {
+.label {
    font-family: var(--main-font);
    font-style: normal;
    font-weight: bold;
@@ -121,6 +121,17 @@
    color: var(--button-orange-color);
    box-sizing: border-box;
    box-shadow: none;
+}
+
+.alert {
+   height: 40px;
+   font-family: var(--main-font);
+   font-style: normal;   
+   font-size: 14px;
+   line-height: 17px;
+   letter-spacing: 0.04em;
+   color: red;
+
 }
 
 
