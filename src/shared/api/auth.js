@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4000/api";
+axios.defaults.baseURL = "https://slim-mom--backend.herokuapp.com/api";
 
 const addAccessToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

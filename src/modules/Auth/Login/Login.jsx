@@ -29,7 +29,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
   const [showPassword, setShow] = useState(false);
-  const [verification,setVerification]=useState(false)
+  const [verification, setVerification] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [userInfo, setUserInfo] = useState({
     ...initialState,
@@ -45,8 +45,7 @@ const Login = () => {
       setShowModal(true);
       return dispatch(userOperations.loginUser(userInfo));
     }
-    setVerification(true)
-
+    setVerification(true);
   };
   // const handleChange = ({ target }) => {
   //   const { name, value } = target;
@@ -73,7 +72,6 @@ const Login = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
-
 
   const ButtonColor = styled(Button)({
     boxShadow: "0px 4px 10px rgba(252, 132, 45, 0.5)",
@@ -121,7 +119,7 @@ const Login = () => {
   return (
     <>
       <div className={styles.wrapper}>
-      {verification ?(
+        {verification ? (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
             open={verification}
@@ -131,7 +129,10 @@ const Login = () => {
             <Alert severity="error" sx={{ width: "100%" }} onClose={closeModal}>
               Введіть email с равликом(@) та доменом
             </Alert>
-          </Snackbar>):""}
+          </Snackbar>
+        ) : (
+          ""
+        )}
         {showModal ? (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
@@ -166,7 +167,7 @@ const Login = () => {
               color={validateEmail(userInfo.email) ? "warning" : "error"}
             >
               <InputLabelStyled htmlFor="Login" className="InputLabel">
-                введіть Email
+                Email
               </InputLabelStyled>
               <Input
                 required
@@ -193,13 +194,13 @@ const Login = () => {
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
-              color={userInfo.password.length>5 ? "warning" : "error"}
+              color={userInfo.password.length > 5 ? "warning" : "error"}
             >
               <InputLabelStyled htmlFor="password">Пароль</InputLabelStyled>
 
               <Input
                 required
-                color={userInfo.password.length>5 ? "warning" : "error"}
+                color={userInfo.password.length > 5 ? "warning" : "error"}
                 fullWidth
                 id="password"
                 type={showPassword ? "text" : "password"}
