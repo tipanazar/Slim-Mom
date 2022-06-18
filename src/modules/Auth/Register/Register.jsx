@@ -1,24 +1,28 @@
-// import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
+import { getError, getUserName } from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 import { useNavigate } from "react-router-dom";
 
-// import { initialState } from "./initialState";
-// import Input from "../../../shared/components/Input";
 import Button from "../../../shared/components/Button";
 
 import style from "./Register.module.scss";
 
 const emailRegexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const nameRegexp = /^[а-яА-ЯёЁa-zA-Z]+$/;
+const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ'a-zA-Z]+$/;
+
 
 const Register = () => {
+
+  const [isActivReg, setActivReg] = useState(true);
+  const [userEmail, setUserEmail] = useState("");
 
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
   !error || console.log(error);
+  const userName = useSelector(getUserName, shallowEqual);  
+  
   const navigate = useNavigate();
 
   const {
@@ -36,21 +40,68 @@ const Register = () => {
   const name = watch("name");
   const email = watch("email");
   const password = watch("password");
-  const passwordConfirmation = watch("passwordConfirmation");  
+  const passwordConfirmation = watch("passwordConfirmation");
 
+  let MessageToUser = null;  
+  let ButtonOk = null;  
+
+  let MessageConfirmation = <p className={style.message_confirm}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та підтвердіть реєстрацію. Після цього залогіньтеся.</p>
+
+  let MessageError = <p className={style.alert} >{error}. Спробуйте ще раз!</p>
+
+  let MessageNothing = <p className={style.alert} > Ой, щось пішло не так. Спробуйте ще раз!</p>  
+  
+  const onButtonToSignin = () => {
+    navigate('/signin');
+    setActivReg(true);    
+  };
+  const onButtonToSignup = () => {
+    navigate('/signup');
+    setActivReg(true);
+  };
+
+    let ButtonConfirm = <Button
+            type="button"
+            onClickBtn={onButtonToSignin}
+            btnText="Добре"
+    className={style.button} />
+  
+    let ButtonError = <Button
+            type="button"
+            onClickBtn={onButtonToSignup}
+            btnText="Добре"
+            className={style.button}/>
+
+    if (!isActivReg) {
+      if (!error && userName) {
+        MessageToUser = MessageConfirmation;
+        ButtonOk = ButtonConfirm;
+      };
+      if (error && !userName) {
+        MessageToUser = MessageError;
+        ButtonOk = ButtonError;
+      };
+      if (!error && !userName) {
+        MessageToUser = MessageNothing;
+        ButtonOk = ButtonError;
+      };      
+    } else {
+      MessageToUser = null;
+      ButtonOk = null;      
+  };  
+ 
   const onSubmit = (data) => {
-    // alert(JSON.stringify(data));   
+    
+    setUserEmail(email);
     dispatch(userOperations.registerUser({
       name,
       email,
       password
     }));
-
-    !error || console.log(error);
-
-    navigate('/signup/confirmation');
-    reset()
-  };
+    
+    setActivReg(false);     
+    reset();  
+  };  
   
   return (
     <div className={style.form_wrapper}>
@@ -67,8 +118,7 @@ const Register = () => {
             <input
               id="name"                   
               className={style.input}                      
-            {...register("name", {
-                // value: "form.name",
+            {...register("name", {                
                 required: "Поле обов'язково для заповнення",
                 pattern: {
                     value: nameRegexp,
@@ -89,8 +139,7 @@ const Register = () => {
           <input
             id="mail"                          
               className={style.input}                
-            {...register("email", {
-                // value: "form.name",
+            {...register("email", {              
                 required: "Поле обов'язково для заповнення",
                 pattern: {
                     value: emailRegexp,
@@ -109,8 +158,7 @@ const Register = () => {
           <input
             id="password"                      
               className={style.input}              
-            {...register("password", {
-                // value: "form.name",
+            {...register("password", {               
                 required: "Поле обов'язково для заповнення",                
                 minLength: { value: 6, message: "Мінімальна кількість знаків - 6!" },
                 maxLength: { value: 20, message: "Максимальна кількість знаків - 20!" }
@@ -137,9 +185,11 @@ const Register = () => {
             {errors?.passwordConfirmation && <p>{errors?.passwordConfirmation?.message}</p>}
             { password !== passwordConfirmation && <p className={style.alert}>Введені паролі не співпадають!</p>              
             }
+            { !isActivReg && MessageToUser }
           </div>          
         </div>
         <div className={style.btn_wrapper}>
+          {!isActivReg && ButtonOk}
           <Button
             type="submit"
             onClickBtn={handleSubmit}
