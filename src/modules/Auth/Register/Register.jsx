@@ -20,7 +20,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
-  !error || console.log(error);
+  
   const userName = useSelector(getUserName, shallowEqual);  
   
   const navigate = useNavigate();
@@ -45,46 +45,55 @@ const Register = () => {
   let MessageToUser = null;  
   let ButtonOk = null;  
 
-  let MessageConfirmation = <p className={style.message_confirm}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та підтвердіть реєстрацію. Після цього залогіньтеся.</p>
+  const MessageConfirmation = <p className={style.message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та підтвердіть реєстрацію. Після цього залогіньтеся.</p>
 
-  let MessageError = <p className={style.alert} >{error}. Спробуйте ще раз!</p>
+  const MessageError = <p className={style.alert} >{error}. Спробуйте ще раз!</p>
 
-  let MessageNothing = <p className={style.alert} > Ой, щось пішло не так. Спробуйте ще раз!</p>  
+  const MessageNothing = <p className={style.alert} > Ой, щось пішло не так. Спробуйте ще раз!</p>  
   
   const onButtonToSignin = () => {
     navigate('/signin');
-    setActivReg(true);    
+    setActivReg(true);
+    reset();
   };
   const onButtonToSignup = () => {
     navigate('/signup');
     setActivReg(true);
+    reset();
   };
+  
+  const ButtonReg = <Button
+            type="submit"
+            onClickBtn={handleSubmit}
+            btnText="Реєстрація"
+            className={style.button} />
 
-    let ButtonConfirm = <Button
+  const ButtonConfirm = <Button
             type="button"
             onClickBtn={onButtonToSignin}
-            btnText="Добре"
+            btnText="Далі"
     className={style.button} />
   
-    let ButtonError = <Button
+  const ButtonError = <Button
             type="button"
             onClickBtn={onButtonToSignup}
             btnText="Добре"
-            className={style.button}/>
-
+    className={style.button} />
+  
     if (!isActivReg) {
-      if (!error && userName) {
-        MessageToUser = MessageConfirmation;
-        ButtonOk = ButtonConfirm;
+       if (!error && !userName) {
+        MessageToUser = MessageNothing;
+        ButtonOk = ButtonError;
       };
       if (error && !userName) {
         MessageToUser = MessageError;
         ButtonOk = ButtonError;
+      }; 
+      if (!error && userName) {
+        MessageToUser = MessageConfirmation;
+        ButtonOk = ButtonConfirm;
       };
-      if (!error && !userName) {
-        MessageToUser = MessageNothing;
-        ButtonOk = ButtonError;
-      };      
+                
     } else {
       MessageToUser = null;
       ButtonOk = null;      
@@ -93,14 +102,17 @@ const Register = () => {
   const onSubmit = (data) => {
     
     setUserEmail(email);
+    setActivReg(false);
     dispatch(userOperations.registerUser({
       name,
       email,
       password
-    }));
-    
-    setActivReg(false);     
-    reset();  
+    }));    
+    setTimeout(function () {    
+    // navigate('/signin');
+    navigate('/signup');
+    }, 1000);
+    // reset();      
   };  
   
   return (
@@ -190,12 +202,13 @@ const Register = () => {
         </div>
         <div className={style.btn_wrapper}>
           {!isActivReg && ButtonOk}
-          <Button
+          {isActivReg && ButtonReg}
+          {/* <Button
             type="submit"
             onClickBtn={handleSubmit}
             btnText="Реєстрація"
             className={style.button}
-          />
+          /> */}
         </div>
       </form>
     </div>
