@@ -45,11 +45,11 @@ const Register = () => {
   let MessageToUser = null;  
   let ButtonOk = null;  
 
-  const MessageConfirmation = <p className={style.message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та підтвердіть реєстрацію. Після цього залогіньтеся.</p>
+  const MessageConfirmation = <p className={style.message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>
 
-  const MessageError = <p className={style.alert} >{error}. Спробуйте ще раз!</p>
+  const MessageError = <p className={style.alert} >{error}.<span className={style.form_title}>Спробуйте ще раз!</span></p>
 
-  const MessageNothing = <p className={style.alert} > Ой, щось пішло не так. Спробуйте ще раз!</p>  
+  const MessageNothing = <p className={style.alert} > Ой, щось пішло не так. <span className={style.form_title}>Спробуйте ще раз!</span></p>  
   
   const onButtonToSignin = () => {
     navigate('/signin');
@@ -99,24 +99,29 @@ const Register = () => {
       ButtonOk = null;      
   };  
  
+  // const consol = () => {
+  //   console.log(isActivReg);
+  // };
+
   const onSubmit = (data) => {
-    
-    setUserEmail(email);
+
     setActivReg(false);
+    setUserEmail(email);    
     dispatch(userOperations.registerUser({
       name,
       email,
       password
-    }));    
-    setTimeout(function () {    
-    // navigate('/signin');
-    navigate('/signup');
-    }, 1000);
-    // reset();      
+    }));
+    // console.log(isActivReg)
+    // setTimeout(function () {    
+    //   consol();
+    // }, 1000);
+       
   };  
   
   return (
-    <div className={style.form_wrapper}>
+    <div className={style.wrapper}>
+     <div className={style.form_wrapper}>
       <h2 className={style.form_title}>Реєстрація</h2>
       <form
         className={style.form}
@@ -140,7 +145,7 @@ const Register = () => {
                 maxLength: { value: 16, message: "Максимальна кількість букв - 16!" }
             })}                      
             />           
-          <div className={style.alert}>
+          <div className={style.input_alert}>
             {errors?.name && <p>{errors?.name?.message }</p>}
           </div>
 
@@ -159,7 +164,7 @@ const Register = () => {
                 },                
             })}                      
             />            
-          <div className={style.alert}>
+          <div className={style.input_alert}>
             {errors?.email && <p>{errors?.email?.message }</p>}
           </div>
 
@@ -176,7 +181,7 @@ const Register = () => {
                 maxLength: { value: 20, message: "Максимальна кількість знаків - 20!" }
             })}                      
             />            
-          <div className={style.alert}>
+          <div className={style.input_alert}>
             {errors?.password && <p>{errors?.password?.message }</p>}
           </div>
 
@@ -193,9 +198,9 @@ const Register = () => {
                 maxLength: { value: 20, message: "Максимальна кількість знаків - 20!" }
             })}                      
             />            
-          <div className={style.alert}>
+          <div className={style.input_alert}>
             {errors?.passwordConfirmation && <p>{errors?.passwordConfirmation?.message}</p>}
-            { password !== passwordConfirmation && <p className={style.alert}>Введені паролі не співпадають!</p>              
+            { password !== passwordConfirmation && <p className={style.input_alert}>Введені паролі не співпадають!</p>              
             }
             { !isActivReg && MessageToUser }
           </div>          
@@ -211,7 +216,9 @@ const Register = () => {
           /> */}
         </div>
       </form>
+    </div> 
     </div>
+    
   );
 };
 
