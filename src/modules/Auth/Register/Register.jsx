@@ -71,7 +71,7 @@ const Register = () => {
   const ButtonToSignin = <Button
             type="button"
             onClickBtn={onButtonToSignin}
-            btnText="Увійти"
+            btnText="Логін"
     className={style.button} />
   
   const ButtonToSignup = <Button

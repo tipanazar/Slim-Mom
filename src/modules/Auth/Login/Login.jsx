@@ -17,6 +17,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Alert, Snackbar } from "@mui/material";
+import ButtonComp from "../../../shared/components/Button/Button";
 
 import styles from "./login.module.scss";
 
@@ -76,11 +77,11 @@ const Login = () => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     bgcolor: "background.paper",
-    // border: "2px solid #fc842d",
     boxShadow: 24,
     p: 4,
     textAlign: "center",
-    width: 500,
+    width: "95vw",
+    maxWidth: "max-content",
     height: "auto",
   };
   const ButtonColor = styled(Button)({
@@ -124,7 +125,6 @@ const Login = () => {
     setShowModal(false);
     setVerification(false);
   };
-  console.log(error);
 
   const { vertical, horizontal } = state;
   return (
@@ -142,11 +142,11 @@ const Login = () => {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Верифікуйте свій Email
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Надіслати повторно листа на {userInfo.email}?
+              <Typography id="modal-modal-description" sx={{ mt: 1, mb: 2, fontSize: 16 }}>
+                Надіслати повторно листа на "{userInfo.email}"?
               </Typography>
-            
-                <div className={styles.buttonwraper}>
+
+              <div className={styles.buttonwraper}>
                 <ButtonColor
                   type="button"
                   onClick={resendVerification}
@@ -161,7 +161,7 @@ const Login = () => {
                 >
                   Ні
                 </ButtonColor>
-                </div>
+              </div>
             </Box>
           </Modal>
         )}
@@ -248,9 +248,12 @@ const Login = () => {
           {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
             <ButtonColor type="submit">Логін</ButtonColor>
           ) : (
-            <ButtonColor disabled type="submit" style={{backgroundColor: "gray",color:"warning",    boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)", cursor:"not-allowed" }}>
-              Логін
-            </ButtonColor>
+            <ButtonComp
+              type="button"
+              btnText="Логін"
+              className={styles.disabledBtn}
+              isDisabled={true}
+            />
           )}
         </form>
       </div>

@@ -110,12 +110,29 @@
   border: 0px;
   background-color: inherit;
 }
-.buttonwraper{
-  @include mq(mobile-only){
+.buttonwraper {
+  @include mq(mobile-big) {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+  }
   display: flex;
   justify-content: space-between;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  border: 0;
+  border-radius: 30px;
+  background-color: grey;
+  width: 182px;
+  height: 44px;
+  color: #ffffff;
+  margin-top: 60px;
+  margin-right: 32px;
 }
