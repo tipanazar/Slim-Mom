@@ -10,7 +10,7 @@ import Button from "../../../shared/components/Button";
 import style from "./Register.module.scss";
 
 const emailRegexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ'a-zA-Z]+$/;
+const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ' a-zA-Z]+$/;
 
 
 const Register = () => {
