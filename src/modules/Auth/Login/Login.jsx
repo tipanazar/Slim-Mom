@@ -1,32 +1,24 @@
 import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import {
-  getError,
-  getToken,
-  getVerify,
-} from "../../../redux/userAccount/userAccount-selectors.js";
+import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
-import Input from "@mui/material/Input";
 
+import Input from "@mui/material/Input";
 import { styled } from "@mui/material/styles";
 import FormControl from "@mui/material/FormControl";
-
 import Button from "@mui/material/Button";
-
-// import Button from "../../../shared/components/Button/Button";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import InputLabel from "@mui/material/InputLabel";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { Alert, Snackbar } from "@mui/material";
 
 import styles from "./login.module.scss";
-import { Alert, Snackbar } from "@mui/material";
 
 const initialState = {
   email: "",
@@ -35,12 +27,9 @@ const initialState = {
 
 const Login = () => {
   const dispatch = useDispatch();
-  const error = useSelector(getError, shallowEqual);
-  const verify = useSelector(getVerify, shallowEqual);
   const [showPassword, setShow] = useState(false);
   const [verification, setVerification] = useState(false);
   const [showModal, setShowModal] = useState(true);
-  
   const [userInfo, setUserInfo] = useState({
     ...initialState,
   });
@@ -48,8 +37,7 @@ const Login = () => {
     vertical: "top",
     horizontal: "center",
   });
-
-  console.log(verify);
+  const error = useSelector(getError, shallowEqual);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -60,8 +48,8 @@ const Login = () => {
     setVerification(true);
   };
 
-  const recendVerification = () => {
-    dispatch(userOperations.recendVerification(userInfo.email));
+  const resendVerification = () => {
+    dispatch(userOperations.resendVerification(userInfo.email));
   };
 
   const InputLabelStyled = styled(InputLabel)`
@@ -83,13 +71,13 @@ const Login = () => {
       );
   };
   const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -133,15 +121,15 @@ const Login = () => {
   const closeModal = () => {
     setShowModal(false);
     setVerification(false);
-  };  
- console.log(error);
+  };
+
   const { vertical, horizontal } = state;
   return (
     <>
       <div className={styles.wrapper}>
-      {showModal ?
+        {!showModal || (
           <Modal
-            open={Boolean(error==="Верифікуйте ваш Email!")}
+            open={error === "Верифікуйте ваш Email"}
             onClose={closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -151,14 +139,19 @@ const Login = () => {
                 Верифікуйте свій Email
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Якщо хочете використовувати всі можливості сайту, натисніть на кнопку
+                Надіслати повторно листа на {userInfo.email}?
               </Typography>
-              <ButtonColor type="button" onClick={recendVerification} style={{marginTop:10,marginRight:0}}>
-              Надіслати повторно верифікацію Email
-            </ButtonColor>
+              <ButtonColor
+                type="button"
+                onClick={resendVerification}
+                style={{ marginTop: 10, marginRight: 0 }}
+              >
+                Так
+              </ButtonColor>
             </Box>
-          </Modal>:""}
-        { verification ? (
+          </Modal>
+        )}
+        {!verification || (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
             open={verification}
@@ -169,13 +162,12 @@ const Login = () => {
               Введіть email с равликом(@) та доменом
             </Alert>
           </Snackbar>
-        ) : (
-          ""
         )}
-        {showModal ? (
+
+        {!showModal || (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
-            open={error!=="Верифікуйте ваш Email!"}
+            open={error !== null && error !== "Верифікуйте ваш Email"}
             autoHideDuration={60000}
             onClose={closeModal}
           >
@@ -183,23 +175,11 @@ const Login = () => {
               {error}
             </Alert>
           </Snackbar>
-        ) : (
-          ""
         )}
 
         <h1 className={styles.header}>ВХІД</h1>
         <form action="submit" onSubmit={submitForm}>
           <div className={styles.inputWrapper}>
-            {/* <label className={styles.paragrahp}>
-              Логін
-              <Input
-                className={styles.input}
-                name="email"
-                onType={handleChange}
-                value={userInfo.email}
-                required
-              ></Input>
-            </label> */}
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
@@ -218,18 +198,6 @@ const Login = () => {
                 onChange={handleChange1("email")}
               />
             </FormControl>
-
-            {/* <label className={styles.paragrahpSecond}>
-              Пароль
-              <Input
-                className={styles.input}
-                name="password"
-                onType={handleChange}
-                value={userInfo.password}
-                required
-                type={showPassword ? "password" : "text"}
-              ></Input>
-            </label> */}
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
@@ -261,7 +229,7 @@ const Login = () => {
                 }
               />
             </FormControl>
-          </div>{" "}
+          </div>
           <div className={styles.wrapperButtons}>
             {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
               <ButtonColor type="submit">Логін</ButtonColor>
@@ -270,20 +238,8 @@ const Login = () => {
                 Логін
               </ButtonColor>
             )}
-            {/* <ButtonColor type="button" onClick={recendVerification}>
-              Надіслати повторно верифікацію Email
-            </ButtonColor> */}
-            {/* <Link to="/signup" className={styles.link}>
-              Реєстрація
-            </Link> */}
           </div>
         </form>
-        {/* <Button
-          className={styles.hide}
-          btnText={showPassword ? "показати" : "приховати"}
-          onClickBtn={changePassword}
-          type="button"
-        ></Button> */}
       </div>
     </>
   );
