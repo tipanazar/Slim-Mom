@@ -234,7 +234,7 @@ const Login = () => {
                 Логін
               </ButtonColor>
             )}
-            <ButtonColor type="button" onClick={emailIsVerify}>верификувати емеил</ButtonColor>
+            <ButtonColor type="button" onClick={emailIsVerify}>Надіслати повторно верифікацію Email</ButtonColor>
             {/* <Link to="/signup" className={styles.link}>
               Реєстрація
             </Link> */}
