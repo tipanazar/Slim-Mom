@@ -63,7 +63,7 @@ const recendVerification = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     console.log({userData});
     try {
-      const result = await auth.VerifyUser({email:userData});
+      const result = await auth.recendVerification({email:userData});
       console.log(result);
       return result;
     } catch (err) {

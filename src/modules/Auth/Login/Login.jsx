@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import {  getError , getToken, getVerify, } from "../../../redux/userAccount/userAccount-selectors.js";
+import {
+  getError,
+  getToken,
+  getVerify,
+} from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 import Input from "@mui/material/Input";
 
@@ -18,18 +22,18 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import styles from "./login.module.scss";
-import { Alert, Snackbar,  } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 
 const initialState = {
   email: "",
   password: "",
 };
-  
+
 const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
   const [showPassword, setShow] = useState(false);
-  const [verification,setVerification]=useState(false)
+  const [verification, setVerification] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [userInfo, setUserInfo] = useState({
     ...initialState,
@@ -44,21 +48,13 @@ const Login = () => {
       setShowModal(true);
       return dispatch(userOperations.loginUser(userInfo));
     }
-    setVerification(true)
-
+    setVerification(true);
   };
 
-  // const handleChange = ({ target }) => {
-  //   const { name, value } = target;
-  //   setUserInfo((prevForm) => ({
-  //     ...prevForm,
-  //     [name]: value,
-  //   }));
-  // };
+  const recendVerification = () => {
+    dispatch(userOperations.recendVerification(userInfo.email));
+  };
 
-  const emailIsVerify=()=>{
-    dispatch(userOperations.verifyUser(userInfo.email ));
-  }
   const InputLabelStyled = styled(InputLabel)`
     font-family: "Verdana";
     font-style: normal;
@@ -77,7 +73,6 @@ const Login = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
-
 
   const ButtonColor = styled(Button)({
     boxShadow: "0px 4px 10px rgba(252, 132, 45, 0.5)",
@@ -124,7 +119,7 @@ const Login = () => {
   return (
     <>
       <div className={styles.wrapper}>
-      {verification ?(
+        { verification ? (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
             open={verification}
@@ -134,7 +129,10 @@ const Login = () => {
             <Alert severity="error" sx={{ width: "100%" }} onClose={closeModal}>
               Введіть email с равликом(@) та доменом
             </Alert>
-          </Snackbar>):""}
+          </Snackbar>
+        ) : (
+          ""
+        )}
         {showModal ? (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
@@ -196,13 +194,13 @@ const Login = () => {
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
-              color={userInfo.password.length>5 ? "warning" : "error"}
+              color={userInfo.password.length > 5 ? "warning" : "error"}
             >
               <InputLabelStyled htmlFor="password">Пароль</InputLabelStyled>
 
               <Input
                 required
-                color={userInfo.password.length>5 ? "warning" : "error"}
+                color={userInfo.password.length > 5 ? "warning" : "error"}
                 fullWidth
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -233,7 +231,9 @@ const Login = () => {
                 Логін
               </ButtonColor>
             )}
-            <ButtonColor type="button" onClick={emailIsVerify}>Надіслати повторно верифікацію Email</ButtonColor>
+            <ButtonColor type="button" onClick={recendVerification}>
+              Надіслати повторно верифікацію Email
+            </ButtonColor>
             {/* <Link to="/signup" className={styles.link}>
               Реєстрація
             </Link> */}
