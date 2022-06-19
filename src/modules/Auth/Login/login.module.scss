@@ -110,3 +110,12 @@
   border: 0px;
   background-color: inherit;
 }
+.buttonwraper{
+  @include mq(mobile-only){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  display: flex;
+  justify-content: space-between;
+}

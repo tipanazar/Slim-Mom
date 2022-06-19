@@ -75,11 +75,13 @@ const Login = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+    // border: "2px solid #fc842d",
     boxShadow: 24,
     p: 4,
+    textAlign: "center",
+    width: 500,
+    height: "auto",
   };
   const ButtonColor = styled(Button)({
     boxShadow: "0px 4px 10px rgba(252, 132, 45, 0.5)",
@@ -122,6 +124,7 @@ const Login = () => {
     setShowModal(false);
     setVerification(false);
   };
+  console.log(error);
 
   const { vertical, horizontal } = state;
   return (
@@ -129,6 +132,7 @@ const Login = () => {
       <div className={styles.wrapper}>
         {!showModal || (
           <Modal
+            disableAutoFocus={true}
             open={error === "Верифікуйте ваш Email"}
             onClose={closeModal}
             aria-labelledby="modal-modal-title"
@@ -141,13 +145,23 @@ const Login = () => {
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Надіслати повторно листа на {userInfo.email}?
               </Typography>
-              <ButtonColor
-                type="button"
-                onClick={resendVerification}
-                style={{ marginTop: 10, marginRight: 0 }}
-              >
-                Так
-              </ButtonColor>
+            
+                <div className={styles.buttonwraper}>
+                <ButtonColor
+                  type="button"
+                  onClick={resendVerification}
+                  style={{ marginTop: 10, marginRight: 0 }}
+                >
+                  Так
+                </ButtonColor>
+                <ButtonColor
+                  type="button"
+                  onClick={closeModal}
+                  style={{ marginTop: 10, marginRight: 0 }}
+                >
+                  Ні
+                </ButtonColor>
+                </div>
             </Box>
           </Modal>
         )}
@@ -230,15 +244,14 @@ const Login = () => {
               />
             </FormControl>
           </div>
-          <div className={styles.wrapperButtons}>
-            {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
-              <ButtonColor type="submit">Логін</ButtonColor>
-            ) : (
-              <ButtonColor disabled type="submit">
-                Логін
-              </ButtonColor>
-            )}
-          </div>
+
+          {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
+            <ButtonColor type="submit">Логін</ButtonColor>
+          ) : (
+            <ButtonColor disabled type="submit" style={{backgroundColor: "gray",color:"warning",    boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)", cursor:"not-allowed" }}>
+              Логін
+            </ButtonColor>
+          )}
         </form>
       </div>
     </>
