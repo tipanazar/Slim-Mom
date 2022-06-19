@@ -1,0 +1,20 @@
+.calendarContainer{
+    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+}
+
+.calendarInput {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  
+  .calendarInput:focus:hover {
+    outline: none;
+     
+  }

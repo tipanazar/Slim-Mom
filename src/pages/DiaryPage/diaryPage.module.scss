@@ -1,0 +1,10 @@
+.mainBox {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 150px;
+}
+
+.diaryBox {
+    display: flex;
+    flex-direction: column;
+}
