@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { userOperations } from "./userAccount-operations";
 
-const { registerUser, loginUser, logoutUser, getCurrentUser ,verifyUser } = userOperations;
+const { registerUser, loginUser, logoutUser, getCurrentUser ,recendVerification } = userOperations;
 
 const initialState = {
   user: {
@@ -79,16 +79,16 @@ const userSlice = createSlice({
       state.refreshError = true; // распылить пэйлоад
       state.loading = false;
     },
-    [verifyUser.pending]: (state) => {
+    [recendVerification.pending]: (state) => {
       state.loading = true;
       state.refreshError = null;
     },
-    [verifyUser.fulfilled]: (state, { payload }) => {
+    [recendVerification.fulfilled]: (state, { payload }) => {
       state.user = { ...payload };
       state.isUserLogin = true;
       state.loading = false;
     },
-    [verifyUser.rejected]: (state) => {
+    [recendVerification.rejected]: (state) => {
       state.refreshError = true; // распылить пэйлоад
       state.loading = false;
     },

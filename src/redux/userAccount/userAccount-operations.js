@@ -58,7 +58,7 @@ const getCurrentUser = createAsyncThunk(
   }
 );
 
-const verifyUser = createAsyncThunk(
+const recendVerification = createAsyncThunk(
   "/auth/verify",
   async (userData, { rejectWithValue }) => {
     console.log({userData});
@@ -77,5 +77,5 @@ export const userOperations = {
   loginUser,
   logoutUser,
   getCurrentUser,
-  verifyUser
+  recendVerification
 };

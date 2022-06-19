@@ -29,7 +29,6 @@ const initialState = {
 const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
-  const userName = useSelector(getVerify, shallowEqual);
   const [showPassword, setShow] = useState(false);
   const [verification,setVerification]=useState(false)
   const [showModal, setShowModal] = useState(true);
@@ -49,7 +48,7 @@ const Login = () => {
     setVerification(true)
 
   };
-  console.log(userName);
+
   // const handleChange = ({ target }) => {
   //   const { name, value } = target;
   //   setUserInfo((prevForm) => ({
@@ -58,7 +57,7 @@ const Login = () => {
   //   }));
   // };
 
-  const emailVerifecate=()=>{
+  const emailIsVerify=()=>{
     dispatch(userOperations.verifyUser(userInfo.email ));
   }
   const InputLabelStyled = styled(InputLabel)`
@@ -231,11 +230,11 @@ const Login = () => {
             {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
               <ButtonColor type="submit">Логін</ButtonColor>
             ) : (
-              <ButtonColor disabled type="submit" style={{}}>
+              <ButtonColor disabled type="submit">
                 Логін
               </ButtonColor>
             )}
-            <ButtonColor type="button" onClick={emailVerifecate}>верификувати емеил</ButtonColor>
+            <ButtonColor type="button" onClick={emailIsVerify}>верификувати емеил</ButtonColor>
             {/* <Link to="/signup" className={styles.link}>
               Реєстрація
             </Link> */}
