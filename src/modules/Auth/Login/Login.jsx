@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
+import {  getError , getToken, getVerify, } from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 // import Input from "../../../shared/components/Input/Input";
 import Input from "@mui/material/Input";
@@ -19,23 +19,23 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import styles from "./login.module.scss";
-import { Alert, Snackbar, Typography } from "@mui/material";
+import { Alert, Snackbar,  } from "@mui/material";
 
 const initialState = {
   email: "",
   password: "",
 };
-
+  
 const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
+  const userName = useSelector(getVerify, shallowEqual);
   const [showPassword, setShow] = useState(false);
   const [verification,setVerification]=useState(false)
   const [showModal, setShowModal] = useState(true);
   const [userInfo, setUserInfo] = useState({
     ...initialState,
   });
-
   const [state] = useState({
     vertical: "top",
     horizontal: "center",
@@ -49,6 +49,7 @@ const Login = () => {
     setVerification(true)
 
   };
+  console.log(userName);
   // const handleChange = ({ target }) => {
   //   const { name, value } = target;
   //   setUserInfo((prevForm) => ({
@@ -56,6 +57,10 @@ const Login = () => {
   //     [name]: value,
   //   }));
   // };
+
+  const emailVerifecate=()=>{
+    dispatch(userOperations.verifyUser(userInfo.email ));
+  }
   const InputLabelStyled = styled(InputLabel)`
     font-family: "Verdana";
     font-style: normal;
@@ -118,7 +123,6 @@ const Login = () => {
     setVerification(false);
   };
   const { vertical, horizontal } = state;
-  console.log(verification);
   return (
     <>
       <div className={styles.wrapper}>
@@ -231,7 +235,7 @@ const Login = () => {
                 Логін
               </ButtonColor>
             )}
-
+            <ButtonColor type="button" onClick={emailVerifecate}>верификувати емеил</ButtonColor>
             {/* <Link to="/signup" className={styles.link}>
               Реєстрація
             </Link> */}
