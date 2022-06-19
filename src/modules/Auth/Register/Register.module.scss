@@ -124,14 +124,22 @@
 }
 
 .alert {
-   height: 40px;
+   // height: 40px;
    font-family: var(--main-font);
    font-style: normal;   
-   font-size: 14px;
+   font-size: 16px;
    line-height: 17px;
    letter-spacing: 0.04em;
    color: red;
 
 }
 
+.message {
+   font-family: var(--main-font);
+   font-style: normal;   
+   font-size: 16px;
+   line-height: 20px;
+   letter-spacing: 0.05em;
+   color: rgb(0, 58, 0);
+}
 
