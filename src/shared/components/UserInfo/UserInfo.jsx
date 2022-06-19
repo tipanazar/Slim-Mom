@@ -14,7 +14,7 @@ const UserInfo = () => {
   const userName = useSelector(getUserName, shallowEqual);
   const error = useSelector(getError, shallowEqual);
   const dispatch = useDispatch();
-  !error || console.log(error);
+  !error || console.log("Error: ", error);
   return (
     <div className={styles.userInfoBlock}>
       <p className={styles.userName}>{userName}</p>
