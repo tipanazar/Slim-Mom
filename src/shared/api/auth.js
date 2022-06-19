@@ -20,12 +20,10 @@ const loginUser = async (userData) => {
 const getCurrentUser = async (accToken) => {
   addAccessToken(accToken);
   const { data: result } = await axios.get("/auth/user");
-  console.log(result);
   return result;
 };
 const resendVerification = async (userData) => {
   const {data} = await axios.post("/auth/verify", userData);
-  console.log(data)
   return data;
 };
 
