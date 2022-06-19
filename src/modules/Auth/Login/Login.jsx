@@ -29,6 +29,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
   const [showPassword, setShow] = useState(false);
+  const [verification,setVerification]=useState(false)
   const [showModal, setShowModal] = useState(true);
   const [userInfo, setUserInfo] = useState({
     ...initialState,
@@ -40,8 +41,12 @@ const Login = () => {
   });
   const submitForm = (e) => {
     e.preventDefault();
-    dispatch(userOperations.loginUser(userInfo));
-    setShowModal(true);
+    if (validateEmail(userInfo.email)) {
+      setShowModal(true);
+      return dispatch(userOperations.loginUser(userInfo));
+    }
+    setVerification(true)
+
   };
   // const handleChange = ({ target }) => {
   //   const { name, value } = target;
@@ -63,13 +68,12 @@ const Login = () => {
   `;
   const validateEmail = (email) => {
     return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
-    };
-    
-    console.log(validateEmail(userInfo.email));
+  };
+
 
   const ButtonColor = styled(Button)({
     boxShadow: "0px 4px 10px rgba(252, 132, 45, 0.5)",
@@ -110,12 +114,24 @@ const Login = () => {
   };
   const closeModal = () => {
     setShowModal(false);
+    setVerification(false);
   };
   const { vertical, horizontal } = state;
-
+  console.log(verification);
   return (
     <>
       <div className={styles.wrapper}>
+      {verification ?(
+          <Snackbar
+            anchorOrigin={{ horizontal, vertical }}
+            open={verification}
+            autoHideDuration={6000}
+            onClose={closeModal}
+          >
+            <Alert severity="error" sx={{ width: "100%" }} onClose={closeModal}>
+              Введіть email с равликом(@) та доменом
+            </Alert>
+          </Snackbar>):""}
         {showModal ? (
           <Snackbar
             anchorOrigin={{ horizontal, vertical }}
@@ -147,15 +163,15 @@ const Login = () => {
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
-              color={validateEmail(userInfo.email)?"warning":"error"}
+              color={validateEmail(userInfo.email) ? "warning" : "error"}
             >
               <InputLabelStyled htmlFor="Login" className="InputLabel">
-              {validateEmail(userInfo.email)?"все добре ви молодець":"Введите корректний email"}
+                введіть Email
               </InputLabelStyled>
               <Input
                 required
                 style={{ marginBottom: 40 }}
-                color={validateEmail(userInfo.email)?"warning":"error"}
+                color={validateEmail(userInfo.email) ? "warning" : "error"}
                 fullWidth
                 id="Login"
                 value={userInfo.email}
@@ -177,13 +193,13 @@ const Login = () => {
             <FormControl
               sx={{ m: 0, width: "25ch" }}
               variant="standard"
-              color="warning"
+              color={userInfo.password.length>5 ? "warning" : "error"}
             >
               <InputLabelStyled htmlFor="password">Пароль</InputLabelStyled>
 
               <Input
                 required
-                color="warning"
+                color={userInfo.password.length>5 ? "warning" : "error"}
                 fullWidth
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -207,11 +223,11 @@ const Login = () => {
             </FormControl>
           </div>{" "}
           <div className={styles.wrapperButtons}>
-            {userInfo.email.length >= 5 && userInfo.password.length >= 5 && validateEmail(userInfo.email) ? (
+            {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
               <ButtonColor type="submit">Логін</ButtonColor>
             ) : (
               <ButtonColor disabled type="submit" style={{}}>
-                Непрацює
+                Логін
               </ButtonColor>
             )}
 
