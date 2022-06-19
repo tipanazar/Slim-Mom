@@ -43,6 +43,7 @@ const getCurrentUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const result = await auth.getCurrentUser(userData);
+      
       return result;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
@@ -57,9 +58,24 @@ const getCurrentUser = createAsyncThunk(
   }
 );
 
+const recendVerification = createAsyncThunk(
+  "/auth/verify",
+  async (userData, { rejectWithValue }) => {
+    console.log({userData});
+    try {
+      const result = await auth.recendVerification({email:userData});
+      console.log(result);
+      return result;
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 export const userOperations = {
   registerUser,
   loginUser,
   logoutUser,
   getCurrentUser,
+  recendVerification
 };

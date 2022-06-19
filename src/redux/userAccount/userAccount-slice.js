@@ -2,7 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { userOperations } from "./userAccount-operations";
 
-const { registerUser, loginUser, logoutUser, getCurrentUser } = userOperations;
+const {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getCurrentUser,
+  recendVerification,
+} = userOperations;
 
 const initialState = {
   user: {
@@ -13,6 +19,7 @@ const initialState = {
   loading: false,
   refreshError: null,
   error: null,
+  verify: false,
 };
 
 const userSlice = createSlice({
@@ -40,6 +47,7 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       state.user = payload.name;
       state.token = payload.token;
+      state.verify = payload.verify;
       state.isUserLogin = true;
       state.loading = false;
     },
@@ -52,7 +60,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [logoutUser.fulfilled]: (state, { payload }) => {
+    [logoutUser.fulfilled]: (state) => {
       state.user = { ...initialState.user };
       state.token = "";
       state.isUserLogin = false;
@@ -73,7 +81,20 @@ const userSlice = createSlice({
       state.loading = false;
     },
     [getCurrentUser.rejected]: (state) => {
-      state.refreshError = true; // распылить пэйлоад
+      state.refreshError = true;
+      state.loading = false;
+    },
+
+    [recendVerification.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [recendVerification.fulfilled]: (state) => {
+      state.loading = false;
+    },
+    [recendVerification.rejected]: (state, { payload }) => {
+      console.log(payload);
+      state.error = true; // распылить пэйлоад
       state.loading = false;
     },
   },
