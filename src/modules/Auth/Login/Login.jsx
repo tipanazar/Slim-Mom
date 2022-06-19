@@ -206,7 +206,7 @@ const Login = () => {
               color={validateEmail(userInfo.email) ? "warning" : "error"}
             >
               <InputLabelStyled htmlFor="Login" className="InputLabel">
-                введіть Email
+                Email
               </InputLabelStyled>
               <Input
                 required
