@@ -24,9 +24,9 @@ const getCurrentUser = async (accToken) => {
   return result;
 };
 const recendVerification = async (userData) => {
-  console.log(userData);
-  const { data: result } = await axios.post(`/auth/verify`, userData);
-  return result;
+  const {data} = await axios.post("/auth/verify", userData);
+  console.log(data)
+  return data;
 };
 
 const logoutUser = async () => {
