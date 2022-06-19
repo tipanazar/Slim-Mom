@@ -94,7 +94,7 @@ const userSlice = createSlice({
     },
     [recendVerification.rejected]: (state, { payload }) => {
       console.log(payload);
-      state.error = true; // распылить пэйлоад
+      state.error = payload; // распылить пэйлоад
       state.loading = false;
     },
   },
