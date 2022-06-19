@@ -20,8 +20,15 @@ const loginUser = async (userData) => {
 const getCurrentUser = async (accToken) => {
   addAccessToken(accToken);
   const { data: result } = await axios.get("/auth/user");
+  console.log(result);
   return result;
 };
+const VerifyUser = async (userData) => {
+  console.log(userData);
+  const { data: result } = await axios.post(`/auth/verify`,userData);
+  return result;
+};
+
 
 const logoutUser = async () => {
   const result = await axios.get("/auth/logout");
@@ -34,6 +41,7 @@ const authApi = {
   loginUser,
   getCurrentUser,
   logoutUser,
+  VerifyUser
 };
 
 export default authApi;

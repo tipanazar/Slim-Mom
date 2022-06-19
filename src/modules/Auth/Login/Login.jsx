@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import { getError } from "../../../redux/userAccount/userAccount-selectors.js";
+import {  getError , getToken, getVerify, } from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 import Input from "@mui/material/Input";
 
@@ -18,13 +18,13 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import styles from "./login.module.scss";
-import { Alert, Snackbar, Typography } from "@mui/material";
+import { Alert, Snackbar,  } from "@mui/material";
 
 const initialState = {
   email: "",
   password: "",
 };
-
+  
 const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
@@ -34,7 +34,6 @@ const Login = () => {
   const [userInfo, setUserInfo] = useState({
     ...initialState,
   });
-
   const [state] = useState({
     vertical: "top",
     horizontal: "center",
@@ -48,6 +47,7 @@ const Login = () => {
     setVerification(true)
 
   };
+
   // const handleChange = ({ target }) => {
   //   const { name, value } = target;
   //   setUserInfo((prevForm) => ({
@@ -55,6 +55,10 @@ const Login = () => {
   //     [name]: value,
   //   }));
   // };
+
+  const emailIsVerify=()=>{
+    dispatch(userOperations.verifyUser(userInfo.email ));
+  }
   const InputLabelStyled = styled(InputLabel)`
     font-family: "Verdana";
     font-style: normal;
@@ -117,7 +121,6 @@ const Login = () => {
     setVerification(false);
   };
   const { vertical, horizontal } = state;
-  console.log(verification);
   return (
     <>
       <div className={styles.wrapper}>
@@ -226,11 +229,11 @@ const Login = () => {
             {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
               <ButtonColor type="submit">Логін</ButtonColor>
             ) : (
-              <ButtonColor disabled type="submit" style={{}}>
+              <ButtonColor disabled type="submit">
                 Логін
               </ButtonColor>
             )}
-
+            <ButtonColor type="button" onClick={emailIsVerify}>Надіслати повторно верифікацію Email</ButtonColor>
             {/* <Link to="/signup" className={styles.link}>
               Реєстрація
             </Link> */}
