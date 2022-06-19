@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
 import { createReducer, createSlice } from "@reduxjs/toolkit";
-import { productsOperations } from "./products-operations";
+import productsOperations  from "./products-operations";
 
 const { searchPoduct, addPoduct, deleteProduct, dayInfo } = productsOperations;
-import authActions from "../auth/authActions";
 
 const initialState = {
   productList: [],

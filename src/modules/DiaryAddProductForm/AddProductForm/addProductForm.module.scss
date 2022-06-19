@@ -1,0 +1,55 @@
+@import "../../../sass/main.scss";
+
+
+.listProducts {
+  max-height: 200px;
+  overflow-y: scroll;
+
+  background-image: linear-gradient(to bottom, #f44336 15%);
+}
+.listProducts::-webkit-scrollbar {
+  width: 6px;
+  background: var(--font-grey-color);
+  max-height: 240px;
+}
+.listProducts::-webkit-scrollbar-thumb {
+  background: var(--universal-darkblue-color);
+  height: 40px;
+}
+@media screen and (min-width: 768px) {
+  .listProducts {
+    max-height: 240px;
+    margin-bottom: 60px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .listProducts {
+    max-height: 290px;
+  }
+}
+
+
+.button {
+  border-radius: 50%;
+  background-color: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+.button:focus:hover {
+  outline: none;
+}
+.svg {
+  width: 15px;
+  height: 15px;
+  fill: fff;
+}

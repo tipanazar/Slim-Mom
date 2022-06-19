@@ -17,9 +17,9 @@ const searchPoduct = createAsyncThunk(
 
 const addPoduct = createAsyncThunk(
   "/diary/addProduct",
-  async (product, { rejectWithValue }) => {
+  async (productInfo, { rejectWithValue }) => {
     try {
-      const result = await diaryApi.addProductToDiary(product);
+      const result = await diaryApi.addProductToDiary(productInfo);
       return result;
     } catch (err) {
       return rejectWithValue(err);

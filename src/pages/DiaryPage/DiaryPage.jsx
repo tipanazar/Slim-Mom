@@ -5,16 +5,20 @@ import RightSideBar from "../../modules/RightSideBar";
 import DiaryAddProductForm from "../../modules/DiaryAddProductForm";
 import CalendarInput from "../../shared/components/Calendar";
 
+import { useDevice } from "../../shared/hooks/useDevice";
+
 import styles from "./diaryPage.module.scss";
 
-const DiaryPage = () => { 
 
+
+const DiaryPage = () => { 
+  const { isMobileDevice } = useDevice();
   return (
     <>
       <div className={styles.mainBox}>
         <div className={styles.diaryBox}>
           <CalendarInput />
-          <DiaryAddProductForm />
+          {isMobileDevice || <DiaryAddProductForm />}
           <DiaryProductsList />
         </div>
         <div>

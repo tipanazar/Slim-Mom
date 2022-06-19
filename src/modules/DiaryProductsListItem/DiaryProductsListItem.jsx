@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import prouctsOperations from '../../redux/products/products-operations';
-import getPickedDate from '../../redux/products/products-selectors';
+import {getPickedDate} from '../../redux/products/products-selectors';
 
 import styles from "./diaryProductsListItem.module.scss";
 import sprite from '../../images/icons/symbol-defs.svg';
