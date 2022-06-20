@@ -44,11 +44,12 @@ const Register = () => {
     mode: "all"
   });  
 
-  const MessageConfirmation = <p className={style.message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>;
+  const MessageConfirmation = <p className={style.confirm_message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>;
 
-  const MessageError = <p className={style.alert} >{error}. <span className={style.form_title}>Увійти?</span></p>;
+  const MessageError = <p className={style.error_message} >{error}. <span className={style.form_title}>Увійти?</span></p>;
 
-  const MessageNothing = <p className={style.alert} > Ой, щось пішло не так. <span className={style.form_title}>Спробуйте ще раз!</span></p>;
+  const MessageNothing =
+    <p className={style.form_title} >Чекаємо разом!</p>;
 
   const onButtonToSignin = () => {
     reset();
@@ -146,7 +147,6 @@ const Register = () => {
           <div className={style.input_alert}>
             {errors?.name && <p>{errors?.name?.message }</p>}
           </div>
-
           
           <label htmlFor="mail" className={style.label}>
             Електронна пошта *
@@ -166,7 +166,6 @@ const Register = () => {
           <div className={style.input_alert}>
             {errors?.email && <p>{errors?.email?.message }</p>}
           </div>
-
           
           <label htmlFor="password" className={style.label}>
             Пароль *
@@ -200,7 +199,6 @@ const Register = () => {
             {errors?.password && <p>{errors?.password?.message }</p>}
           </div>
 
-
            <label htmlFor="passwordConfirmation" className={style.label}>
             Повторіть пароль *
            </label> 
@@ -228,13 +226,14 @@ const Register = () => {
                 minLength: { value: 6, message: "Мінімальна кількість знаків - 6!" },
                 maxLength: { value: 20, message: "Максимальна кількість знаків - 20!" }
             })}                      
-            />            
-          <div className={style.input_alert}>
+            />
+            <div className={style.input_alert}>
             {errors?.passwordConfirmation && <p>{errors?.passwordConfirmation?.message}</p>}
-            { password !== passwordConfirmation && <p className={style.input_alert}>Введені паролі не співпадають!</p>              
-            }
-            { !isActivReg && MessageToUser }
-          </div>          
+              {password !== passwordConfirmation && <p>Введені паролі не співпадають!</p>}
+            </div>
+            <div className={style.message}>
+            { !isActivReg && MessageToUser }  
+            </div>            
         </div>
         <div className={style.btn_wrapper}>
           {!isActivReg && ButtonAfterRegister}
@@ -242,8 +241,7 @@ const Register = () => {
         </div>
       </form>
     </div> 
-    </div>
-    
+    </div>    
   );
 };
 
