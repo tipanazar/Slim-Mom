@@ -1,3 +1,5 @@
+// @import "../main.scss";
+
 *,
 *::before,
 *::after {
@@ -28,13 +30,17 @@ div#modalRoot {
   width: 100vw;
   height: 100vh;
   display: none;
-  background-color: var(--modal-background-grey-color);
+  align-items: center;
+  justify-content: center;
   z-index: 2;
   cursor: pointer;
+  @include mq(tablet) {
+    background-color: var(--modal-background-grey-color);
+  }
 }
 
 main {
-  flex-grow: 1;  //что бы растягивалось на всю высоту экрана
+  flex-grow: 1; //что бы растягивалось на всю высоту экрана
 }
 
 img {
