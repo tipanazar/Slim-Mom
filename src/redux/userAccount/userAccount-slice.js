@@ -39,7 +39,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      state.user = payload.user.name;
+      state.user = payload.user?.name;
       state.token = payload.token;
       state.isUserLogin = true;
       state.loading = false;

@@ -12,27 +12,24 @@ import sprite from "../../../images/icons/symbol-defs.svg";
 import styles from "./addProductForm.module.scss";
 
 const AddProductForm = () => {
-    console.log("Form")  
   const [searchQuerry, setSearchQuerry] = useState("");
   const [weight, setWeight] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");  
+  const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
-
+  
   const dispatch = useDispatch();
   const date = useSelector(getPickedDate);
 
-  const handleChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
+  const handleChange = (inputValue) => {    
+   setSelectedOption(inputValue);
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     if (searchQuerry) {
-      productsApi
-        .searchProducts(searchQuerry)
-        .then(({ data }) =>
-          data.products.map((product) => ({ value: product, label: product }))
-        )
-        .then((data) => setOptions(data));
+        productsApi.searchProducts(searchQuerry).then(( {data} ) =>{            
+             return data.map((product) => ({ value: product._id, label: product?.title?.ua??"Продукт без названия" }))
+            })
+            .then((data) => setOptions(data))
     }
   }, [searchQuerry]);
 
@@ -43,13 +40,15 @@ const AddProductForm = () => {
       weight,
       date,
     };
+    console.log(newProduct)
     dispatch(productsOperations.addPoduct(newProduct));
     setSearchQuerry("");
     setWeight("");
     setSelectedOption("");
     setOptions([]);
-  };  
+  };
 
+  
   const handleNumberValue = ({ target }) => {
     const regexp = /^[0-9\b]+$/;
     const { value } = target;
@@ -58,45 +57,37 @@ const AddProductForm = () => {
       setWeight(value);
     }
   };
-
+    
   return (
-    <div className={styles.wrapper}>      
-        <form onSubmit={postNewProduct} className={styles.form}>
-          <Select
-            required
-            value={selectedOption}
-            onChange={handleChange}
-            options={options}
-            inputValue={searchQuerry}
-            onInputChange={debounce(setSearchQuerry, 250)}
-            styles={customStyles}
-            placeholder="Введите название продукта"
-          />
-          <input
-            className={styles.test}
-            type="text"
-            required
-            value={selectedOption}
-            onChange={handleChange}
-          />
-          <input
-            required
-            className={styles.weight}
-            name="weight"
-            value={weight}
-            min="1"
-            autoComplete="off"
-            onChange={handleNumberValue}
-            type="input"
-            placeholder="Граммы"
-          />
-          <button className={styles.button} type="submit">
-            <svg className={styles.svg}>
-              <use href={sprite + "#icon-plus"}></use>
-            </svg>
-          </button>
-        </form>
-          
+    <div className={styles.wrapper}>
+      <form onSubmit={postNewProduct} className={styles.form}>
+        <Select
+          required
+          value={selectedOption}
+          onChange={handleChange}
+          options={options}
+          inputValue={searchQuerry}
+          onInputChange={debounce(setSearchQuerry,250)}
+          styles={customStyles}
+          placeholder="Введите название продукта"
+        />        
+        <input
+          required
+          className={styles.weight}
+          name="weight"
+          value={weight}
+          min="1"
+          autoComplete="off"
+          onChange={handleNumberValue}
+          type="input"
+          placeholder="Граммы"
+        />
+        <button className={styles.button} type="submit">
+          <svg className={styles.svg}>
+            <use href={sprite + "#icon-plus"}></use>
+          </svg>
+        </button>
+      </form>
     </div>
   );
 };
