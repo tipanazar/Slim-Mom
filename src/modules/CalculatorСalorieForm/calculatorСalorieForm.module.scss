@@ -19,7 +19,6 @@
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  text-align: center;
   line-height: 1.44;
   letter-spacing: 0.04em;
   color: #212121;
@@ -27,6 +26,7 @@
   @include mq(tablet){
     font-size: 34px;
     line-height: 41px;
+    margin-bottom: 60px;
   }
 }
 
