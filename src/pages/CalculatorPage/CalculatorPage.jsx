@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Loader from "../../shared/components/Loader";
 import { getCaloriesAndProductsForUser } from "../../shared/api/products";
 import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
+import backgroundImg from "../../images/background/medium/calculator.png";
 
 import styles from "./calculatorPage.module.scss";
-import background from "../../images/background/medium/calculator.png";
 
 const CalculatorPage = () => {
   const [data, setData] = useState(null);
@@ -48,14 +48,12 @@ const CalculatorPage = () => {
   };
   return (
     <>
-      <main className={styles.mainBlock}>
       {info.loading && <Loader />}
-        <CalculatorСalorieForm
-          title="Дізнайся про свою добову норму калорій"
-          onChange={onChange}
-        />
-      <img className={styles.backgroundImg} src={background} alt="bg" />
-      </main>
+      <CalculatorСalorieForm
+        title="Дізнайся про свою добову норму калорій"
+        onChange={onChange}
+      />
+      <img className={styles.backgroundImg} src={backgroundImg} alt="backgroundImg" />
     </>
   );
 };
