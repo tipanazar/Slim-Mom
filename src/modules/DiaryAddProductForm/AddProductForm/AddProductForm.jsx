@@ -39,7 +39,7 @@ const AddProductForm = () => {
   const postNewProduct = (e) => {
     e.preventDefault();
     const newProduct = {
-      _id: selectedOption._id,
+      productId: selectedOption._id,
       weight,
       date,
     };
