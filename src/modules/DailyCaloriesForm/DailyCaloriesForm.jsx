@@ -59,12 +59,12 @@ const DailyCaloriesForm = () => {
 
   const closeModal = () => {
     setModalOpen(false);
+    modalRoot.style.display = "none";
   };
 
   const productsList = info.items?.products.map((product, idx) => (
     <li className={styles.modalProductsItem} key={product._id}>
-      {" "}
-      {`${idx + 1}.`} {product.title.ua}
+      {product.title.ua}
     </li>
   ));
 
@@ -102,31 +102,16 @@ const DailyCaloriesForm = () => {
                   Ваша рекомендована добова норма калорій становить
                 </h2>
                 <p className={styles.modalCaloriesNum}>
-                  {/* {info.items.calories} */}
-                  9999
+                  {info.items.calories}
                   <span className={styles.modalCaloriesText}> ккал</span>
                 </p>
                 <h3 className={styles.modalListTitle}>
                   Продукти, які вам не варто вживати
                 </h3>
-                {/* <ul className={styles.modalProductsList}>{productsList}</ul> */}
-                <ol className={styles.modalProductsList}>
-                  <li className={styles.modalProductsItem}>Соль</li>
-                  <li className={styles.modalProductsItem}>Сахар</li>
-                  <li className={styles.modalProductsItem}>Молоко</li>
-                  <li className={styles.modalProductsItem}>Коонфат</li>
-                  <li className={styles.modalProductsItem}>Коонфат</li>
-                  <li className={styles.modalProductsItem}>Коонфат</li>
-                  <li className={styles.modalProductsItem}>Коонфат</li>
-                  <li className={styles.modalProductsItem}>Перец</li>
-                  <li className={styles.modalProductsItem}>Гранат</li>
-                  <li className={styles.modalProductsItem}>Апельсин</li>
-                  <li className={styles.modalProductsItem}>Яблоко</li>
-                  <li className={styles.modalProductsItem}>Грейпфрут</li>
-                </ol>
+                <ol className={styles.modalProductsList}>{productsList}</ol>
                 <Link
                   className={styles.modalContinueLink}
-                  onClick={() => setModalOpen(false)}
+                  onClick={closeModal}
                   to="/signup"
                 >
                   Почати худнути

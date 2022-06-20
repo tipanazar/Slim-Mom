@@ -10,7 +10,8 @@
 .header {
   position: relative;
   display: flex;
-  width: 100vw;
+  // width: 100vw;
+  width: 100%;
   min-height: 83px;
   @include mq(desktop) {
     padding: 80px 0 0 16px;
