@@ -7,16 +7,23 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../../shared/components/Button";
 
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import style from "./Register.module.scss";
 
 const emailRegexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ' a-zA-Z]+$/;
 
-
 const Register = () => {
 
   const [isActivReg, setActivReg] = useState(true);
   const [userEmail, setUserEmail] = useState("");
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);  
 
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
@@ -35,22 +42,14 @@ const Register = () => {
     watch
   } = useForm({
     mode: "all"
-  });
+  });  
 
-  const name = watch("name");
-  const email = watch("email");
-  const password = watch("password");
-  const passwordConfirmation = watch("passwordConfirmation");
+  const MessageConfirmation = <p className={style.message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>;
 
-  let MessageToUser = null;  
-  let ButtonAfterRegister = null;  
+  const MessageError = <p className={style.alert} >{error}. <span className={style.form_title}>Увійти?</span></p>;
 
-  const MessageConfirmation = <p className={style.message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>
+  const MessageNothing = <p className={style.alert} > Ой, щось пішло не так. <span className={style.form_title}>Спробуйте ще раз!</span></p>;
 
-  const MessageError = <p className={style.alert} >{error}. <span className={style.form_title}>Увійти?</span></p>
-
-  const MessageNothing = <p className={style.alert} > Ой, щось пішло не так. <span className={style.form_title}>Спробуйте ще раз!</span></p>  
-  
   const onButtonToSignin = () => {
     reset();
     setActivReg(true);  
@@ -61,43 +60,49 @@ const Register = () => {
     setActivReg(true);   
     navigate('/signup');     
   };
-  
-  const ButtonRegister = <Button
-            type="submit"
-            onClickBtn={handleSubmit}
-            btnText="Реєстрація"
-            className={style.button} />
 
   const ButtonToSignin = <Button
-            type="button"
-            onClickBtn={onButtonToSignin}
-            btnText="Увійти"
-    className={style.button} />
+    type="button"
+    onClickBtn={onButtonToSignin}
+    btnText="Увійти"
+    className={style.button} />;
   
   const ButtonToSignup = <Button
-            type="button"
-            onClickBtn={onButtonToSignup}
-            btnText="Добре"
-    className={style.button} />
+    type="button"
+    onClickBtn={onButtonToSignup}
+    btnText="Добре"
+    className={style.button} />;
   
-    if (!isActivReg) {
-       if (!error && !userName) {
-        MessageToUser = MessageNothing;
-        ButtonAfterRegister = ButtonToSignup;
-      };
-      if (error && !userName) {
-        MessageToUser = MessageError;
-        ButtonAfterRegister = ButtonToSignin;
-      }; 
-      if (!error && userName) {
+  let MessageToUser = MessageNothing;  
+  let ButtonAfterRegister = ButtonToSignup;  
+    
+    if (userName) {
         MessageToUser = MessageConfirmation;
         ButtonAfterRegister = ButtonToSignin;
-      };
-                
-    } else {
-      MessageToUser = null;
-      ButtonAfterRegister = null;      
-  }; 
+    };
+    if (error) {
+        MessageToUser = MessageError;
+        ButtonAfterRegister = ButtonToSignin;
+      };  
+  
+  const ButtonRegister = <Button
+    type="submit"
+    onClickBtn={handleSubmit}
+    btnText="Реєстрація"
+    className={style.button} />;
+    
+  
+  const changeShowPassword1 = () => {
+    setShowPassword1((prev) => (prev = !prev));
+  };
+  const changeShowPassword2 = () => {
+    setShowPassword2((prev) => (prev = !prev));
+  };
+
+  const name = watch("name");
+  const email = watch("email");
+  const password = watch("password");
+  const passwordConfirmation = watch("passwordConfirmation");
 
   const onSubmit = (data) => {
 
@@ -123,9 +128,11 @@ const Register = () => {
           <label htmlFor="name" className={style.label} >
             Ім'я *
           </label>   
-            <input
-              id="name"                   
-              className={style.input}                      
+            <Input
+            id="name"             
+            className={style.input}
+            color={"warning"}
+            fontSize={"14px"}
             {...register("name", {                
                 required: "Поле обов'язково для заповнення",
                 pattern: {
@@ -144,9 +151,10 @@ const Register = () => {
           <label htmlFor="mail" className={style.label}>
             Електронна пошта *
           </label>           
-          <input
-            id="mail"                          
-              className={style.input}                
+          <Input
+            id="mail"               
+            className={style.input}
+            color={"warning"}
             {...register("email", {              
                 required: "Поле обов'язково для заповнення",
                 pattern: {
@@ -163,9 +171,25 @@ const Register = () => {
           <label htmlFor="password" className={style.label}>
             Пароль *
           </label>           
-          <input
-            id="password"                      
-              className={style.input}              
+          <Input
+            id="password"           
+            className={style.input}
+            type={showPassword1 ? "text" : "password"}
+            color={"warning"}
+            endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={changeShowPassword1}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                      }}
+                      edge="end"
+                    >
+                      {showPassword1 ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
             {...register("password", {               
                 required: "Поле обов'язково для заповнення",                
                 minLength: { value: 6, message: "Мінімальна кількість знаків - 6!" },
@@ -180,9 +204,25 @@ const Register = () => {
            <label htmlFor="passwordConfirmation" className={style.label}>
             Повторіть пароль *
            </label> 
-          <input
-            id="passwordConfirmation"                    
-              className={style.input}             
+          <Input
+            id="passwordConfirmation" 
+            className={style.input}
+            color={"warning"}
+            type={showPassword2 ? "text" : "password"}
+            endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={changeShowPassword2}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                      }}
+                      edge="end"
+                    >
+                      {showPassword2 ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
             {...register("passwordConfirmation", {                
                 required: "Поле обов'язково для заповнення",                
                 minLength: { value: 6, message: "Мінімальна кількість знаків - 6!" },
@@ -198,13 +238,7 @@ const Register = () => {
         </div>
         <div className={style.btn_wrapper}>
           {!isActivReg && ButtonAfterRegister}
-          {isActivReg && ButtonRegister}
-          {/* <Button
-            type="submit"
-            onClickBtn={handleSubmit}
-            btnText="Реєстрація"
-            className={style.button}
-          /> */}
+          {isActivReg && ButtonRegister}          
         </div>
       </form>
     </div> 
