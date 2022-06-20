@@ -4,38 +4,40 @@
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  @include mq(tablet) {
-    margin-top: 60px;
-  }
-  @include mq(desktop) {
-    margin-top: 100px;
-  }
+  @include mq(tablet) {   
+      margin-top: 160px;
+  };
+//   @include mq(desktop) {   
+//       margin-top: 100px;
+//   };
 
   padding: 16px;
 }
 
 .form_wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   // width: 400px;
 
-  @include mq(tablet) {
-    align-items: flex-start;
+   @include mq(tablet) {
+    width: 500px;
+      align-items: flex-start;
   }
 }
 
 .form_title {
-  margin: 0;
-  font-family: var(--secondary-font);
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 13.4px;
-  text-align: center;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--button-orange-color);
-  margin-bottom: 60px;
+   margin: 0;
+   font-family: var(--second-font);
+   font-style: normal;
+   font-weight: bold;
+   font-size: 14px;
+   line-height: 13px;
+   // text-align: center;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+   color: var(--button-orange-color);
+   margin-bottom: 55px;
 }
 
 .form {
@@ -52,15 +54,15 @@
 }
 
 .inputs_wrapper {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   margin-bottom: 40px;
 
-  @include mq(tablet) {
-    width: 100%;
-    align-items: start;
+   @include mq(tablet) {
+     width: 100%;
+      align-items: start;
   }
 }
 
@@ -77,26 +79,33 @@
 }
 
 .input {
-  margin: 0;
-  padding: 0;
-  width: 280px;
-  @include mq(tablet) {
+   margin: 0;
+   padding: 0;
+   width: 280px;
+   font-size: 14px;
+   @include mq(tablet) {
     width: 240px;
   }
-  height: 35px;
-  border: none;
-  border-bottom: 1px solid var(--horizontal-row-color);
-  margin-bottom: 10px;
+   height: 35px;
+   border: none;
+   border-bottom: 1px solid var(--horizontal-row-color);
+   // margin-bottom: 2px;   
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--horizontal-row-color);
 }
 
 .label {
-  font-family: var(--main-font);
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-  color: var(--font-grey-color);
+   font-family: var(--main-font);
+   font-style: normal;
+   font-weight: bold;
+   font-size: 14px;
+   line-height: 17px;
+   letter-spacing: 0.04em;
+   margin-top: 5px;
+   color:var(--font-grey-color);
 }
 
 .button {
@@ -136,32 +145,43 @@
 }
 
 .input_alert {
-  // height: 40px;
-  font-family: var(--main-font);
-  font-style: normal;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-  color: red;
+   // height: 40px;
+   font-family: var(--main-font);
+   font-style: normal;   
+   font-size: 14px;
+   // font-weight: bold;
+   line-height: 17px;
+   letter-spacing: 0.04em;
+   color: red;
 }
 .alert {
-  // height: 40px;
-  font-family: var(--main-font);
-  font-style: normal;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 20px;
-  letter-spacing: 0.05em;
-  color: red;
+   // height: 40px;
+   font-family: var(--main-font);
+   font-style: normal;   
+   font-size: 14px;   
+   line-height: 17px;
+   letter-spacing: 0.05em;
+   text-align: center;
+   color: red;
+   @include mq(tablet) {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 20px;
+      text-align: start;   
+  };
 }
 
 .message {
-  font-family: var(--main-font);
-  font-style: normal;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 20px;
-  letter-spacing: 0.05em;
-  color: rgb(0, 58, 0);
+   font-family: var(--main-font);
+   font-style: normal;   
+   font-size: 14px;   
+   line-height: 17px;
+   letter-spacing: 0.05em;
+   color: rgb(0, 58, 0);
+   @include mq(tablet) {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 20px;
+      text-align: start;   
+  };
 }
