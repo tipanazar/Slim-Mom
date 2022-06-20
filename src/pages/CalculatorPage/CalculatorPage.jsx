@@ -1,7 +1,8 @@
-import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
-import { getCaloriesAndProductsForUser } from "../../shared/api/products";
-import Loader from "../../shared/components/Loader";
 import { useEffect, useState } from "react";
+
+import Loader from "../../shared/components/Loader";
+import { getCaloriesAndProductsForUser } from "../../shared/api/products";
+import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
 
 const CalculatorPage = () => {
   const [data, setData] = useState(null);
