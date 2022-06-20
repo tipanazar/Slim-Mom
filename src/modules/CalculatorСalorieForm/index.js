@@ -1,1 +1,1 @@
-export {default} from './CalculatorCalorieForm'
+export { default } from "./CalculatorCalorieForm";

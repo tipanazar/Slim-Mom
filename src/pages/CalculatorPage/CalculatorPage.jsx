@@ -8,44 +8,49 @@ const CalculatorPage = () => {
   const [info, setInfo] = useState({
     items: null,
     loading: false,
-    error: null
-  })
-  useEffect(()=>{
-    if(!data){
+    error: null,
+  });
+  useEffect(() => {
+    if (!data) {
       return;
     }
     const fetchInfo = async () => {
       try {
-        setInfo(prevData => ({
+        setInfo((prevData) => ({
           ...prevData,
           loading: true,
-        }))
-        const result = await getCaloriesAndProductsForUser(data, data.bloodType);
+        }));
+        const result = await getCaloriesAndProductsForUser(
+          data,
+          data.bloodType
+        );
         setInfo({
-          items: {...result},
+          items: { ...result },
           loading: false,
-          error: null
+          error: null,
         });
       } catch (err) {
         setInfo({
           items: null,
           loading: false,
-          error: err
-        })
+          error: err,
+        });
       }
     };
     fetchInfo();
-  }, [data])
+  }, [data]);
   const onChange = (data) => {
     setData(data);
   };
   return (
     <>
-    {info.loading && <Loader/>}
-    <CalculatorСalorieForm title='Дізнайся про свою добову норму калорій' onChange={onChange}/>;
-
+      {info.loading && <Loader />}
+      <CalculatorСalorieForm
+        title="Дізнайся про свою добову норму калорій"
+        onChange={onChange}
+      />
     </>
-    )
+  );
 };
 
 export default CalculatorPage;
