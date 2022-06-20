@@ -1,6 +1,10 @@
 @import "../../../sass/main.scss";
 
 .wrapper {
+  @include mq(mobile-only)
+  {
+    margin-top: 40px;
+  }
   display: flex;
   flex-direction: column;
   margin-top: 160px;
@@ -135,4 +139,8 @@
   color: #ffffff;
   margin-top: 60px;
   margin-right: 32px;
+  @include mq(mobile-only){
+    margin-left: 50px;
+  }
 }
+
