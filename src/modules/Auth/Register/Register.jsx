@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { getError, getUserName } from "../../../redux/userAccount/userAccount-selectors.js";
+import {
+  getError,
+  getUserName,
+} from "../../../redux/userAccount/userAccount-selectors.js";
 import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 import { useNavigate } from "react-router-dom";
 
@@ -19,30 +22,27 @@ const emailRegexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ' a-zA-Z]+$/;
 
 const Register = () => {
-
   const [isActivReg, setActivReg] = useState(true);
   const [userEmail, setUserEmail] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);  
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const dispatch = useDispatch();
   const error = useSelector(getError, shallowEqual);
-  
-  const userName = useSelector(getUserName, shallowEqual);  
-  
+
+  const userName = useSelector(getUserName, shallowEqual);
+
   const navigate = useNavigate();
 
   const {
     register,
-    formState: {
-      errors,
-    },
+    formState: { errors },
     handleSubmit,
     reset,
-    watch
+    watch,
   } = useForm({
-    mode: "all"
-  });  
+    mode: "all",
+  });
 
   const MessageConfirmation = <p className={style.confirm_message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>;
 
@@ -53,46 +53,54 @@ const Register = () => {
 
   const onButtonToSignin = () => {
     reset();
-    setActivReg(true);  
-    navigate('/signin');      
+    setActivReg(true);
+    navigate("/signin");
   };
   const onButtonToSignup = () => {
     reset();
-    setActivReg(true);   
-    navigate('/signup');     
+    setActivReg(true);
+    navigate("/signup");
   };
 
-  const ButtonToSignin = <Button
-    type="button"
-    onClickBtn={onButtonToSignin}
-    btnText="Увійти"
-    className={style.button} />;
-  
-  const ButtonToSignup = <Button
-    type="button"
-    onClickBtn={onButtonToSignup}
-    btnText="Добре"
-    className={style.button} />;
-  
-  let MessageToUser = MessageNothing;  
-  let ButtonAfterRegister = ButtonToSignup;  
-    
-    if (userName) {
-        MessageToUser = MessageConfirmation;
-        ButtonAfterRegister = ButtonToSignin;
-    };
-    if (error) {
-        MessageToUser = MessageError;
-        ButtonAfterRegister = ButtonToSignin;
-      };  
-  
-  const ButtonRegister = <Button
-    type="submit"
-    onClickBtn={handleSubmit}
-    btnText="Реєстрація"
-    className={style.button} />;
-    
-  
+  const ButtonToSignin = (
+    <Button
+      type="button"
+      onClickBtn={onButtonToSignin}
+      btnText="Увійти"
+      className={style.button}
+    />
+  );
+
+  const ButtonToSignup = (
+    <Button
+      type="button"
+      onClickBtn={onButtonToSignup}
+      btnText="Добре"
+      className={style.button}
+    />
+  );
+
+  let MessageToUser = MessageNothing;
+  let ButtonAfterRegister = ButtonToSignup;
+
+  if (userName) {
+    MessageToUser = MessageConfirmation;
+    ButtonAfterRegister = ButtonToSignin;
+  }
+  if (error) {
+    MessageToUser = MessageError;
+    ButtonAfterRegister = ButtonToSignin;
+  }
+
+  const ButtonRegister = (
+    <Button
+      type="submit"
+      onClickBtn={handleSubmit}
+      btnText="Реєстрація"
+      className={style.button}
+    />
+  );
+
   const changeShowPassword1 = () => {
     setShowPassword1((prev) => (prev = !prev));
   };
@@ -106,39 +114,36 @@ const Register = () => {
   const passwordConfirmation = watch("passwordConfirmation");
 
   const onSubmit = (data) => {
-
     setActivReg(false);
-    setUserEmail(email);    
-    dispatch(userOperations.registerUser({
-      name,
-      email,
-      password
-    }));   
-  };  
-  
+    setUserEmail(email);
+    dispatch(
+      userOperations.registerUser({
+        name,
+        email,
+        password,
+      })
+    );
+  };
+
   return (
     <div className={style.wrapper}>
-     <div className={style.form_wrapper}>
-      <h2 className={style.form_title}>Реєстрація</h2>
-      <form
-        className={style.form}
-        onSubmit={handleSubmit(onSubmit)}>
-        
-        <div className={style.inputs_wrapper}>
-
-          <label htmlFor="name" className={style.label} >
-            Ім'я *
-          </label>   
+      <div className={style.form_wrapper}>
+        <h2 className={style.form_title}>Реєстрація</h2>
+        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.inputs_wrapper}>
+            <label htmlFor="name" className={style.label}>
+              Ім'я *
+            </label>
             <Input
-            id="name"             
-            className={style.input}
-            color={"warning"}
-            fontSize={"14px"}
-            {...register("name", {                
+              id="name"
+              className={style.input}
+              color={"warning"}
+              fontSize={"14px"}
+              {...register("name", {
                 required: "Поле обов'язково для заповнення",
                 pattern: {
-                    value: nameRegexp,
-                    message: 'Не допустимі символи!'
+                  value: nameRegexp,
+                  message: "Не допустимі символи!",
                 },
                 minLength: { value: 2, message: "Мінімальна кількість букв - 2!" },
                 maxLength: { value: 16, message: "Максимальна кількість букв - 16!" }

@@ -142,7 +142,10 @@ const Login = () => {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Верифікуйте свій Email
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 1, mb: 2, fontSize: 16 }}>
+              <Typography
+                id="modal-modal-description"
+                sx={{ mt: 1, mb: 2, fontSize: 16 }}
+              >
                 Надіслати повторно листа на "{userInfo.email}"?
               </Typography>
 
@@ -192,10 +195,10 @@ const Login = () => {
         )}
 
         <h1 className={styles.header}>ВХІД</h1>
-        <form action="submit" onSubmit={submitForm}>
+        <form action="submit" onSubmit={submitForm} className={styles.form}>
           <div className={styles.inputWrapper}>
             <FormControl
-              sx={{ m: 0, width: "25ch" }}
+              sx={{ m: 0, width: "29ch" }}
               variant="standard"
               color={validateEmail(userInfo.email) ? "warning" : "error"}
             >
@@ -213,7 +216,7 @@ const Login = () => {
               />
             </FormControl>
             <FormControl
-              sx={{ m: 0, width: "25ch" }}
+              sx={{ m: 0, width: "29ch" }}
               variant="standard"
               color={userInfo.password.length > 5 ? "warning" : "error"}
             >
