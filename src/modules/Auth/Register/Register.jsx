@@ -44,28 +44,12 @@ const Register = () => {
     mode: "all",
   });
 
-  const MessageConfirmation = (
-    <p className={style.message}>
-      Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї
-      електронної пошти {userEmail} та{" "}
-      <span className={style.form_title}>підтвердіть реєстрацію</span>. Після
-      цього залогіньтеся.
-    </p>
-  );
+  const MessageConfirmation = <p className={style.confirm_message}>Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після цього залогіньтеся.</p>;
 
-  const MessageError = (
-    <p className={style.alert}>
-      {error}. <span className={style.form_title}>Увійти?</span>
-    </p>
-  );
+  const MessageError = <p className={style.error_message} >{error}. <span className={style.form_title}>Увійти?</span></p>;
 
-  const MessageNothing = (
-    <p className={style.alert}>
-      {" "}
-      Ой, щось пішло не так.{" "}
-      <span className={style.form_title}>Спробуйте ще раз!</span>
-    </p>
-  );
+  const MessageNothing =
+    <p className={style.form_title} >Чекаємо разом!</p>;
 
   const onButtonToSignin = () => {
     reset();
@@ -161,130 +145,108 @@ const Register = () => {
                   value: nameRegexp,
                   message: "Не допустимі символи!",
                 },
-                minLength: {
-                  value: 2,
-                  message: "Мінімальна кількість букв - 2!",
-                },
-                maxLength: {
-                  value: 16,
-                  message: "Максимальна кількість букв - 16!",
-                },
-              })}
-            />
-            <div className={style.input_alert}>
-              {errors?.name && <p>{errors?.name?.message}</p>}
-            </div>
-
-            <label htmlFor="mail" className={style.label}>
-              Електронна пошта *
-            </label>
-            <Input
-              id="mail"
-              className={style.input}
-              color={"warning"}
-              {...register("email", {
+                minLength: { value: 2, message: "Мінімальна кількість букв - 2!" },
+                maxLength: { value: 16, message: "Максимальна кількість букв - 16!" }
+            })}                      
+            />           
+          <div className={style.input_alert}>
+            {errors?.name && <p>{errors?.name?.message }</p>}
+          </div>
+          
+          <label htmlFor="mail" className={style.label}>
+            Електронна пошта *
+          </label>           
+          <Input
+            id="mail"               
+            className={style.input}
+            color={"warning"}
+            {...register("email", {              
                 required: "Поле обов'язково для заповнення",
                 pattern: {
-                  value: emailRegexp,
-                  message: "Не допустимий формат, перевірте адресу!",
-                },
-              })}
-            />
-            <div className={style.input_alert}>
-              {errors?.email && <p>{errors?.email?.message}</p>}
-            </div>
-
-            <label htmlFor="password" className={style.label}>
-              Пароль *
-            </label>
-            <Input
-              id="password"
-              className={style.input}
-              type={showPassword1 ? "text" : "password"}
-              color={"warning"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={changeShowPassword1}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                    }}
-                    edge="end"
-                  >
-                    {showPassword1 ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              {...register("password", {
-                required: "Поле обов'язково для заповнення",
-                minLength: {
-                  value: 6,
-                  message: "Мінімальна кількість знаків - 6!",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Максимальна кількість знаків - 20!",
-                },
-              })}
-            />
-            <div className={style.input_alert}>
-              {errors?.password && <p>{errors?.password?.message}</p>}
-            </div>
-
-            <label htmlFor="passwordConfirmation" className={style.label}>
-              Повторіть пароль *
-            </label>
-            <Input
-              id="passwordConfirmation"
-              className={style.input}
-              color={"warning"}
-              type={showPassword2 ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={changeShowPassword2}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                    }}
-                    edge="end"
-                  >
-                    {showPassword2 ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              {...register("passwordConfirmation", {
-                required: "Поле обов'язково для заповнення",
-                minLength: {
-                  value: 6,
-                  message: "Мінімальна кількість знаків - 6!",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Максимальна кількість знаків - 20!",
-                },
-              })}
-            />
-            <div className={style.input_alert}>
-              {errors?.passwordConfirmation && (
-                <p>{errors?.passwordConfirmation?.message}</p>
-              )}
-              {password !== passwordConfirmation && (
-                <p className={style.input_alert}>
-                  Введені паролі не співпадають!
-                </p>
-              )}
-              {!isActivReg && MessageToUser}
-            </div>
+                    value: emailRegexp,
+                    message: 'Не допустимий формат, перевірте адресу!'
+                },                
+            })}                      
+            />            
+          <div className={style.input_alert}>
+            {errors?.email && <p>{errors?.email?.message }</p>}
           </div>
-          <div className={style.btn_wrapper}>
-            {!isActivReg && ButtonAfterRegister}
-            {isActivReg && ButtonRegister}
+          
+          <label htmlFor="password" className={style.label}>
+            Пароль *
+          </label>           
+          <Input
+            id="password"           
+            className={style.input}
+            type={showPassword1 ? "text" : "password"}
+            color={"warning"}
+            endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={changeShowPassword1}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                      }}
+                      edge="end"
+                    >
+                      {showPassword1 ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+            {...register("password", {               
+                required: "Поле обов'язково для заповнення",                
+                minLength: { value: 6, message: "Мінімальна кількість знаків - 6!" },
+                maxLength: { value: 20, message: "Максимальна кількість знаків - 20!" }
+            })}                      
+            />            
+          <div className={style.input_alert}>
+            {errors?.password && <p>{errors?.password?.message }</p>}
           </div>
-        </form>
-      </div>
-    </div>
+
+           <label htmlFor="passwordConfirmation" className={style.label}>
+            Повторіть пароль *
+           </label> 
+          <Input
+            id="passwordConfirmation" 
+            className={style.input}
+            color={"warning"}
+            type={showPassword2 ? "text" : "password"}
+            endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={changeShowPassword2}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                      }}
+                      edge="end"
+                    >
+                      {showPassword2 ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+            {...register("passwordConfirmation", {                
+                required: "Поле обов'язково для заповнення",                
+                minLength: { value: 6, message: "Мінімальна кількість знаків - 6!" },
+                maxLength: { value: 20, message: "Максимальна кількість знаків - 20!" }
+            })}                      
+            />
+            <div className={style.input_alert}>
+            {errors?.passwordConfirmation && <p>{errors?.passwordConfirmation?.message}</p>}
+              {password !== passwordConfirmation && <p>Введені паролі не співпадають!</p>}
+            </div>
+            <div className={style.message}>
+            { !isActivReg && MessageToUser }  
+            </div>            
+        </div>
+        <div className={style.btn_wrapper}>
+          {!isActivReg && ButtonAfterRegister}
+          {isActivReg && ButtonRegister}          
+        </div>
+      </form>
+    </div> 
+    </div>    
   );
 };
 

@@ -7,10 +7,6 @@
   @include mq(tablet) {   
       margin-top: 160px;
   };
-//   @include mq(desktop) {   
-//       margin-top: 100px;
-//   };
-
   padding: 16px;
 }
 
@@ -37,7 +33,7 @@
    letter-spacing: 0.04em;
    text-transform: uppercase;
    color: var(--button-orange-color);
-   margin-bottom: 55px;
+   margin-bottom: 50px;
 }
 
 .form {
@@ -58,7 +54,7 @@
    display: flex;
    flex-direction: column;
    align-items: start;
-   margin-bottom: 40px;
+   margin-bottom: 10px;
 
    @include mq(tablet) {
      width: 100%;
@@ -88,14 +84,14 @@
   }
    height: 35px;
    border: none;
-   border-bottom: 1px solid var(--horizontal-row-color);
+   // border-bottom: 1px solid var(--horizontal-row-color);
    // margin-bottom: 2px;   
 }
 
-.input:focus {
-  outline: none;
-  border-bottom: 2px solid var(--horizontal-row-color);
-}
+// .input:focus {
+//   outline: none;
+//   border-bottom: 2px solid var(--horizontal-row-color);
+// }
 
 .label {
    font-family: var(--main-font);
@@ -145,7 +141,7 @@
 }
 
 .input_alert {
-   // height: 40px;
+   min-height: 15px;
    font-family: var(--main-font);
    font-style: normal;   
    font-size: 14px;
@@ -154,34 +150,26 @@
    letter-spacing: 0.04em;
    color: red;
 }
-.alert {
-   // height: 40px;
-   font-family: var(--main-font);
+
+.message {
+  min-height: 45px;
+  font-family: var(--main-font);
    font-style: normal;   
    font-size: 14px;   
    line-height: 17px;
    letter-spacing: 0.05em;
    text-align: center;
-   color: red;
    @include mq(tablet) {
       font-size: 16px;
       font-weight: bold;
       line-height: 20px;
-      text-align: start;   
-  };
-}
+      text-align: start;    
+}}
 
-.message {
-   font-family: var(--main-font);
-   font-style: normal;   
-   font-size: 14px;   
-   line-height: 17px;
-   letter-spacing: 0.05em;
-   color: rgb(0, 58, 0);
-   @include mq(tablet) {
-      font-size: 16px;
-      font-weight: bold;
-      line-height: 20px;
-      text-align: start;   
+.error_message {   
+   color: red;   
   };
+
+.confirm_message {  
+   color: rgb(0, 58, 0);   
 }
