@@ -1,11 +1,22 @@
 @import "../../../sass/main.scss";
 
-.backgroundImg {
-  @include mq(mobile-only) {
-    display: none;
+.backgroundMedium {
+  display: none;
+  @include mq(tablet-only) {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: -1;
   }
-  position: absolute;
-  top: 0px;
-  right: 0;
-  z-index: -1;
+}
+.backgroundBig {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: -1;
+  }
 }

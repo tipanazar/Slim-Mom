@@ -1,5 +1,7 @@
 import Register from "../../../modules/Auth/Register/Register";
-import backgroundImg from "../../../images/background/medium/auth.png";
+
+import backgroundMedium from "../../../images/background/medium/auth.png";
+import backgroundBig from "../../../images/background/big/common.png";
 
 import styles from "./registerPage.module.scss";
 
@@ -8,8 +10,13 @@ const RegisterPage = () => {
     <>
       <Register />
       <img
-        className={styles.backgroundImg}
-        src={backgroundImg}
+        className={styles.backgroundMedium}
+        src={backgroundMedium}
+        alt="backgroundImg"
+      />
+      <img
+        className={styles.backgroundBig}
+        src={backgroundBig}
         alt="backgroundImg"
       />
     </>
