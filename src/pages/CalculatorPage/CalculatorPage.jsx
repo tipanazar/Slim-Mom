@@ -39,6 +39,7 @@ const CalculatorPage = () => {
   const onChange = (data) => {
     setData(data);
   };
+  //hell
   return (
     <>
     {info.loading && <Loader/>}
