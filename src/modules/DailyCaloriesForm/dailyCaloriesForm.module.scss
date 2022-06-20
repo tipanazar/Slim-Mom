@@ -189,6 +189,17 @@
   padding-bottom: 40px;
 }
 
+.productText{
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9B9FAA;
+  margin-bottom: 5px;
+}
+
 .button {
   display: flex;
   align-items: center;
