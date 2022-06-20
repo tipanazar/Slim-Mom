@@ -1,0 +1,19 @@
+@import "../../sass/main.scss";
+
+.mainBlock {
+  @include mq(mobile-only) {
+    display: flex;
+    justify-content: center;
+  }
+  position: relative;
+}
+
+.backgroundImg {
+  @include mq(mobile-only) {
+    display: none;
+  }
+  position: absolute;
+  top: -85px;
+  right: 0;
+  z-index: -1;
+}

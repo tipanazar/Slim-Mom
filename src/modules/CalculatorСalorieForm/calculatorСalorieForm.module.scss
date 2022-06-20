@@ -130,13 +130,8 @@
   margin: 0;
   padding: 5px;
   width: 280px;
-  @include mq(tablet) {
-    width: 240px;
-  }
   height: 35px;
   border: none;
-  border-bottom: 1px solid var(--horizontal-row-color);
-  margin-bottom: 20px;
   font-family: var(--main-font);
   font-style: normal;
   font-weight: bold;
@@ -144,6 +139,11 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: var(--font-grey-color);
+  @include mq(tablet) {
+    width: 240px;
+    border-bottom: 1px solid var(--horizontal-ro-color);
+    margin-bottom: 20px;
+  }
 }
 
 .error {
@@ -193,6 +193,9 @@
   width: 45px;
   margin-left: 20px;
   justify-content: space-between;
+  &:first-child {
+    margin-left: 5px;
+  }
 }
 .radioBtnText {
   font-family: var(--main-font);
