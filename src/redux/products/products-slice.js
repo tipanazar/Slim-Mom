@@ -1,10 +1,9 @@
-import { combineReducers } from "redux";
-import { createReducer, createSlice, createAction } from "@reduxjs/toolkit";
+
+import { createSlice} from "@reduxjs/toolkit";
 import productsOperations  from "./products-operations";
 
-import {setPickedDate, removePickedDate} from "./products-actions"
 
-const { searchPoduct, addPoduct, deleteProduct, dayInfo } = productsOperations;
+const { searchPoduct, addPoduct, deleteProduct, dayInfo, setDate } = productsOperations;
 
 const initialState = {
   productList: [],
@@ -15,18 +14,15 @@ const initialState = {
   error: null,
 };
 
-const pickedDate = createReducer(initialState.pickedDate, {
-    [setPickedDate]: (_, { payload }) => payload,
-    [removePickedDate]: () => initialState.pickedDate,
-  });
-
+ 
 const productsSlice = createSlice({
   name: "products",
-  initialState,
-  reducers: {
-    pickedDate,
+  initialState, 
+  reducers:{
+    set: setDate
+  
   },
-  extraReducers: {
+  extraReducers: {   
     [searchPoduct.pending]: (state) => {
       state.loading = true;
       state.error = null;
@@ -79,5 +75,7 @@ const productsSlice = createSlice({
     },
   },
 });
+
+export const {actions} = productsSlice;
 
 export default productsSlice.reducer;

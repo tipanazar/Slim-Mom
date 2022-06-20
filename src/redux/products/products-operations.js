@@ -52,10 +52,26 @@ const dayInfo = createAsyncThunk(
   }
 );
 
+const setDate =  {reducer : (state, {payload}) => {
+  state.pickedDate = payload
+  return state
+},
+prepare: (startDate) => {
+const day = startDate.getDate();
+const month = startDate.getMonth() + 1;
+const year = startDate.getFullYear();
+const chosenDate = `${day > 9 ? day : `0` + day}-${
+  month > 9 ? month : `0` + month
+}-${year}`;
+return { payload: chosenDate }
+}}
+
+
 const productsOperations = {
   searchPoduct,
   addPoduct,
   deleteProduct,
-  dayInfo,
+  dayInfo,  
+  setDate,
 };
 export default productsOperations;

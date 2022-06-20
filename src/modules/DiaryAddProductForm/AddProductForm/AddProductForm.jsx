@@ -21,6 +21,7 @@ const AddProductForm = () => {
   const date = useSelector(getPickedDate);
 
   const handleChange = (inputValue) => {    
+    console.log(inputValue)
    setSelectedOption(inputValue);
   };
 
@@ -36,7 +37,7 @@ const AddProductForm = () => {
   const postNewProduct = (e) => {
     e.preventDefault();
     const newProduct = {
-      productId: selectedOption._id,
+      productId: selectedOption.value,
       weight,
       date,
     };
