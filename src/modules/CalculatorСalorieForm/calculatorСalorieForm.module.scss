@@ -19,14 +19,14 @@
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  text-align: center;
   line-height: 1.44;
   letter-spacing: 0.04em;
   color: #212121;
   margin-bottom: 30px;
-  @include mq(tablet){
+  @include mq(tablet) {
     font-size: 34px;
     line-height: 41px;
+    margin-bottom: 60px;
   }
 }
 
@@ -54,8 +54,8 @@
   @include mq(tablet) {
     width: 100%;
     align-items: start;
-    &:nth-child(3){
-        margin-bottom: 0;
+    &:nth-child(3) {
+      margin-bottom: 0;
     }
   }
 }
@@ -114,10 +114,9 @@
   border-radius: 30px;
   cursor: pointer;
 }
-.button:disabled{
-    opacity: 0.7;
+.button:disabled {
+  opacity: 0.7;
 }
-
 
 .button:focus {
   outline: none;
@@ -131,13 +130,8 @@
   margin: 0;
   padding: 5px;
   width: 280px;
-  @include mq(tablet) {
-    width: 240px;
-  }
   height: 35px;
   border: none;
-  border-bottom: 1px solid var(--horizontal-row-color);
-  margin-bottom: 20px;
   font-family: var(--main-font);
   font-style: normal;
   font-weight: bold;
@@ -145,6 +139,11 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: var(--font-grey-color);
+  @include mq(tablet) {
+    width: 240px;
+    border-bottom: 1px solid var(--horizontal-ro-color);
+    margin-bottom: 20px;
+  }
 }
 
 .error {
@@ -166,6 +165,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .customRadioBtn .checkmark {
   width: calc(100% - 9px);
@@ -183,47 +183,46 @@
   display: inline-block;
 }
 
-
-.radioBtns_wrapper{ 
-    display: flex;
-  
+.radioBtns_wrapper {
+  display: flex;
 }
 
-.oneRadioBtn_wrapper{
-    display: flex;
-    align-items: center;
-    width: 45px;
-    margin-left: 20px;
-    justify-content: space-between;
+.oneRadioBtn_wrapper {
+  display: flex;
+  align-items: center;
+  width: 45px;
+  margin-left: 20px;
+  justify-content: space-between;
+  &:first-child {
+    margin-left: 5px;
+  }
 }
-.radioBtnText{
-    font-family: var(--main-font);
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-    color: var(--font-grey-color);
+.radioBtnText {
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: var(--font-grey-color);
 }
 
-.tablet_input_wrapper{
-    &:last-child{
-        margin-bottom: 40px;
+.tablet_input_wrapper {
+  &:last-child {
+    margin-bottom: 40px;
+  }
+  @include mq(tablet) {
+    margin-right: 32px;
+    &:last-child {
+      margin-bottom: 0;
     }
-    @include mq(tablet) {
-        margin-right: 32px;
-        &:last-child{
-            margin-bottom: 0;
-        }
-        &:first-child{
-            margin-bottom: 60px;
-        }
-      }
-
-
-}
-.row_wrapper{
-    @include mq(tablet){
-        display: flex;
+    &:first-child {
+      margin-bottom: 60px;
     }
+  }
+}
+.row_wrapper {
+  @include mq(tablet) {
+    display: flex;
+  }
 }

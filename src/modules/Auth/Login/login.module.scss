@@ -1,11 +1,11 @@
 @import "../../../sass/main.scss";
 
 .wrapper {
-  @include mq(mobile-only)
-  {
+  @include mq(mobile-only) {
+    display: flex;
+    align-items: center;
     margin-top: 40px;
   }
-  display: flex;
   flex-direction: column;
   margin-top: 160px;
   padding: 16px;
@@ -148,7 +148,7 @@
   color: #ffffff;
   margin-top: 60px;
   margin-right: 32px;
-  @include mq(mobile-only){
+  @include mq(mobile-only) {
     margin-left: 50px;
   }
 }

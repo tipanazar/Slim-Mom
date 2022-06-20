@@ -142,7 +142,10 @@ const Login = () => {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Верифікуйте свій Email
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 1, mb: 2, fontSize: 16 }}>
+              <Typography
+                id="modal-modal-description"
+                sx={{ mt: 1, mb: 2, fontSize: 16 }}
+              >
                 Надіслати повторно листа на "{userInfo.email}"?
               </Typography>
 
