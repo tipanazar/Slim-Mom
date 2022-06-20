@@ -24,7 +24,7 @@ const CalculatorСalorieForm = ({
 
 
   const onSubmit = (data) => {
-    onChange(data);
+    console.log(data);
     reset();
   };
 
@@ -44,7 +44,7 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свій зріст! Поле обов'язкове!",
                   pattern: {
                     value: /[0-9]{3}/,
-                    message: 'Некоректні символи!'
+                    message: 'Не допустимі символи!'
                   },
                 })}
               />
@@ -62,7 +62,7 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свій вік! Поле обов'язкове",
                   pattern: {
                     value: /[0-9]{2}/,
-                    message: 'Некоректні символи!'
+                    message: 'Не допустимі символи!'
                   },
                 })}
               />
@@ -80,7 +80,7 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свою вагу! Поле обов'язкове!",
                   pattern: {
                     value: /[0-9]/,
-                    message: 'Некоректні символи!'
+                    message: 'Не допустимі символи!'
                   },
                 })}
               />
@@ -103,9 +103,9 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свою бажану вагу! Поле обов'язкове!",
                   pattern: {
                     value: /[0-9]/,
-                    message: 'Некоректні символи!'
+                    message: 'Не допустимі символи!'
                   },
-                  validate: value => Number(value) <= Number(watchCurrentWeight) || 'Бажана вага не може бути більшою за поточну!'
+                  validate: value => value <= watchCurrentWeight || 'Бажана вага не може бути більшою за поточну!'
                 })}
               />
               {errors?.desiredWeight && (
@@ -175,7 +175,7 @@ const CalculatorСalorieForm = ({
           </div>
         </div>
         <div className={style.btn_wrapper}>
-          <button className={style.button}  type="submit" disabled={!isValid}>
+          <button className={style.button} type="submit" disabled={!isValid}>
             Схуднути!
           </button>
         </div>
