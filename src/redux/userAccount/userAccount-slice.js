@@ -7,7 +7,7 @@ const {
   loginUser,
   logoutUser,
   getCurrentUser,
-  recendVerification,
+  resendVerification,
 } = userOperations;
 
 const initialState = {
@@ -85,16 +85,16 @@ const userSlice = createSlice({
       state.loading = false;
     },
 
-    [recendVerification.pending]: (state) => {
+    [resendVerification.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [recendVerification.fulfilled]: (state) => {
+    [resendVerification.fulfilled]: (state) => {
       state.loading = false;
     },
-    [recendVerification.rejected]: (state, { payload }) => {
+    [resendVerification.rejected]: (state, { payload }) => {
       console.log(payload);
-      state.error = true; // распылить пэйлоад
+      state.error = payload;
       state.loading = false;
     },
   },

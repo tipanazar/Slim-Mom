@@ -20,7 +20,7 @@ const Header = () => {
 
   const isLogin = useSelector(getIsLogin, shallowEqual);
 
-  isModalOpen
+  isModalOpen && isLogin
     ? (modalRoot.style.display = "block")
     : (modalRoot.style.display = "none");
 
