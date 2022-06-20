@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const SvgClose = ({ color, className }) => {
+const CloseModalIconCommon = ({ color, className }) => {
   return (
     <svg
       className={className}
@@ -17,9 +17,9 @@ const SvgClose = ({ color, className }) => {
   );
 };
 
-export default SvgClose;
+export default CloseModalIconCommon;
 
-SvgClose.propTypes = {
+CloseModalIconCommon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
 };
