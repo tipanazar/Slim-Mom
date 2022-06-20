@@ -99,7 +99,7 @@ const Login = () => {
     color: "#ffffff",
     marginTop: 60,
     marginRight: 32,
-
+      
     "&:hover": {
       backgroundColor: "#0069d9",
       borderColor: "#0062cc",
@@ -193,9 +193,9 @@ const Login = () => {
             </Alert>
           </Snackbar>
         )}
-
+   <form action="submit" onSubmit={submitForm} className={styles.form}>
         <h1 className={styles.header}>ВХІД</h1>
-        <form action="submit" onSubmit={submitForm} className={styles.form}>
+     
           <div className={styles.inputWrapper}>
             <FormControl
               sx={{ m: 0, width: "29ch" }}
@@ -248,8 +248,8 @@ const Login = () => {
             </FormControl>
           </div>
 
-          {userInfo.email.length >= 5 && userInfo.password.length >= 5 ? (
-            <ButtonColor type="submit">Логін</ButtonColor>
+          {userInfo.email.length > 5 && userInfo.password.length > 5 ? (
+             <div className={styles.buttonMobile}><ButtonColor type="submit">Логін</ButtonColor></div>
           ) : (
             <ButtonComp
               type="button"
