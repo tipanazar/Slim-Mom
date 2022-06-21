@@ -146,7 +146,7 @@
   color: var(--font-grey-color);
   @include mq(tablet) {
     width: 240px;
-    border-bottom: 1px solid var(--horizontal-ro-color);
+    border-bottom: 1px solid var(--horizontal-row-color);
     margin-bottom: 20px;
   }
 }

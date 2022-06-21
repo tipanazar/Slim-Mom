@@ -181,7 +181,7 @@ const CalculatorСalorieForm = ({
         </div>
       </form>
     </div>
-  )
+  );
 };
 
 export default CalculatorСalorieForm;
