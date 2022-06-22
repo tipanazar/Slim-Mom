@@ -32,7 +32,6 @@ const userSlice = createSlice({
     },
     [registerUser.fulfilled]: (state, { payload }) => {
       state.user = { ...payload };
-      // state.isUserLogin = true;
       state.loading = false;
     },
     [registerUser.rejected]: (state, { payload }) => {
@@ -45,7 +44,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      state.user = payload.name;
+      state.user.name = payload.name;
       state.token = payload.token;
       state.verify = payload.verify;
       state.isUserLogin = true;
