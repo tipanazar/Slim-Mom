@@ -28,10 +28,10 @@
   @include mq(tablet-only) {
     background-color: #f0f1f3;
     width: 100vw;
-    height: 40vh;
+    height: 60vh;
     display: block;
     position: absolute;
-    bottom: -100px;
+    bottom: -40vh;
     right: 0;
     z-index: -1;
   }
