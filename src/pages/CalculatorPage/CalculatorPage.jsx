@@ -44,9 +44,11 @@ const CalculatorPage = () => {
     };
     fetchInfo();
   }, [data]);
+
   const onChange = (data) => {
     setData(data);
   };
+  
   return (
     <>
       <Container>

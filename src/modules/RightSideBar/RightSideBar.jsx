@@ -12,14 +12,14 @@ function RightSideBar() {
   const userForbidenCategories = useSelector(getForbidenCategories);
   const caloriesReceived = useSelector(getCaloriesReceived);
 
-  const date = useSelector(getPickedDate).replace(/\-/g,'.');
+  const date = useSelector(getPickedDate).replace(/-/g,'.');
   const categoriesString = (Array.isArray(userForbidenCategories)) ? userForbidenCategories.reduce(
     (acc, item, index, arr) => {
-      if (index !== arr.length - 1) {
-        acc = acc + `${item}, `;
+      if (index !== Math.min(arr.length, 20) - 1) {
+        acc = acc + `${item.title.ua}, `;
         return acc;
       }
-      acc = acc + `${item}`;
+      acc = acc + `${item.title.ua}`;
       return acc;
     },
     '',

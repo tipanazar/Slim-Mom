@@ -1,10 +1,8 @@
 import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from "react";
 
 import actions from '../../../redux/products/products-operations';
-import {
-  getUserDailyProducts,
+import {  
   getPickedDate,
 } from "../../../redux/products/products-selectors";
 

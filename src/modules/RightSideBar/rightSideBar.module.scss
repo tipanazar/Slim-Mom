@@ -10,7 +10,7 @@ width: 280px;
   line-height: 1.21;
 }
 
-.rightSideBarInfo {
+.rightSideBarInfo {  
   font-weight: 400;
   line-height: 1.21;
   color: #9b9faa;
@@ -26,6 +26,8 @@ p.rightSideBarInfo::first-letter {
 }
 
 p.rightSideBarInfo {
+  height: 250px;
+  overflow-y: auto;
   margin-top: 20px;
 }
 
