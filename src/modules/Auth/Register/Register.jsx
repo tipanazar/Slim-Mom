@@ -124,7 +124,7 @@ const Register = () => {
     boxShadow: 24,
     p: 4,
     textAlign: "center",
-    width: "95vw",
+    width: "80vw",
     maxWidth: "max-content",
     height: "auto",
   };  
