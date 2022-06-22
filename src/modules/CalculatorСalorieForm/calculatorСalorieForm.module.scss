@@ -12,7 +12,6 @@
   @include mq(tablet) {
     width: 600px;
     align-items: flex-start;
-    
   }
   @include mq(desktop) {
     width: 730px;
@@ -227,16 +226,16 @@
     }
   }
 }
-.row_wrapper {  
+.row_wrapper {
   width: 100%;
-    display: flex;
-    flex-direction: column;
-    @include mq(tablet) {
-      flex-direction: row;
-      justify-content: space-around
-    } 
+  display: flex;
+  flex-direction: column;
+  @include mq(tablet) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
 
-.form_form{
+.form_form {
   width: 100%;
 }

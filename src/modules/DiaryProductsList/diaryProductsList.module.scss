@@ -1,6 +1,5 @@
 @import "../../sass/main.scss";
 
-
 .wrapper {
   width: 100%;
 }
@@ -29,19 +28,19 @@
 }
 
 .addFormModal {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    top: 124px;
-    padding-bottom: 20px;
-    height: calc(100vh - 124px);
-    width: 100%;
-    overflow-y: auto;
-    background-color: white;
-    @include mq(tablet) {
-      top: auto;
-      height: 573px;
-      width: 672px;
-    }
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  top: 124px;
+  padding-bottom: 20px;
+  height: calc(100vh - 124px);
+  width: 100%;
+  overflow-y: auto;
+  background-color: white;
+  @include mq(tablet) {
+    top: auto;
+    height: 573px;
+    width: 672px;
+  }
 }

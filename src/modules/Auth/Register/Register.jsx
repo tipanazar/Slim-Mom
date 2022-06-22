@@ -27,7 +27,7 @@ const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ' a-zA-Z]+$/;
 const Register = () => {
   const [isActivReg, setActivReg] = useState(true);
   const [userEmail, setUserEmail] = useState("");
-  const [showModal, setShowModal] = useState(true); 
+  const [showModal, setShowModal] = useState(true);
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
@@ -51,7 +51,8 @@ const Register = () => {
   const MessageConfirmation = (
     <p className={style.confirm_message}>
       Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї
-      електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після
+      електронної пошти {userEmail} та{" "}
+      <span className={style.form_title}>підтвердіть реєстрацію</span>. Після
       цього залогіньтеся.
     </p>
   );
@@ -62,7 +63,12 @@ const Register = () => {
     </p>
   );
 
-  const MessageNothing = <p className={style.error_message}>Ой, щось пішло не так. <span className={style.form_title}>Спробуйте ще раз !</span></p>;
+  const MessageNothing = (
+    <p className={style.error_message}>
+      Ой, щось пішло не так.{" "}
+      <span className={style.form_title}>Спробуйте ще раз !</span>
+    </p>
+  );
 
   const onButtonToSignin = () => {
     closeModal();
@@ -136,9 +142,9 @@ const Register = () => {
     width: "80vw",
     maxWidth: "max-content",
     height: "auto",
-  };  
+  };
 
-   const closeModal = () => {
+  const closeModal = () => {
     setShowModal(false);
     reset();
     setActivReg(true);
@@ -159,7 +165,7 @@ const Register = () => {
   const onSubmit = (data) => {
     setTimeout(() => {
       setActivReg(false);
-    }, 500);    
+    }, 500);
     setUserEmail(email);
     dispatch(
       userOperations.registerUser({
@@ -169,29 +175,29 @@ const Register = () => {
       })
     );
     setShowModal(true);
-  };  
+  };
 
   return (
     <div className={style.wrapper}>
       {!showModal || (
-          <Modal
-            disableAutoFocus={true}
-            open={!isActivReg}
-            onClose={closeModal}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={modalStyle}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Modal
+          disableAutoFocus={true}
+          open={!isActivReg}
+          onClose={closeModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modalStyle}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
               {MessageToUser}
-              </Typography>
-              <div className={style.modal_btn_wrapper}>
+            </Typography>
+            <div className={style.modal_btn_wrapper}>
               {ButtonAfterRegister}
-              {error && ButtonBackToSignup}          
-              </div>
-            </Box>
-          </Modal>
-        )}
+              {error && ButtonBackToSignup}
+            </div>
+          </Box>
+        </Modal>
+      )}
       <div className={style.form_wrapper}>
         <h2 className={style.form_title}>Реєстрація</h2>
         <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -322,9 +328,9 @@ const Register = () => {
               {password !== passwordConfirmation && (
                 <p>Введені паролі не співпадають!</p>
               )}
-            </div>           
+            </div>
           </div>
-          <div className={style.btn_wrapper}>      
+          <div className={style.btn_wrapper}>
             {isActivReg && ButtonRegister}
           </div>
         </form>

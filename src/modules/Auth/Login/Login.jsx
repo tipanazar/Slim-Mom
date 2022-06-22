@@ -60,7 +60,7 @@ const Login = () => {
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
-    color: #9B9FAA;
+    color: #9b9faa;
     :hover {
       color: #fc842d;
     }
@@ -203,7 +203,7 @@ const Login = () => {
               variant="standard"
               color={validateEmail(userInfo.email) ? "warning" : "error"}
             >
-              <InputLabelStyled htmlFor="Login" className="InputLabel" >
+              <InputLabelStyled htmlFor="Login" className="InputLabel">
                 Email
               </InputLabelStyled>
               <Input

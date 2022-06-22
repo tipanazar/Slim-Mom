@@ -29,7 +29,7 @@ const CalculatorСalorieForm = ({
   return (
     <div className={style.form_wrapper}>
       <h2 className={style.form_title}>{title}</h2>
-      <form className={style.form_form}  onSubmit={handleSubmit(onSubmit)}>
+      <form className={style.form_form} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.row_wrapper}>
           <div className={style.tablet_input_wrapper}>
             <div className={style.inputs_wrapper}>

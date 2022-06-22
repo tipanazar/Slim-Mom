@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import productsOperations from "../../../redux/products/products-operations";
 import { getPickedDate } from "../../../redux/products/products-selectors";
@@ -13,27 +13,33 @@ import customStyles from "./selectStyles";
 import sprite from "../../../images/icons/symbol-defs.svg";
 import styles from "./addProductForm.module.scss";
 
-const AddProductForm = ({closeModal}) => {
+const AddProductForm = ({ closeModal }) => {
   const [searchQuerry, setSearchQuerry] = useState("");
   const [weight, setWeight] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
-  
+
   const dispatch = useDispatch();
   const date = useSelector(getPickedDate);
-  
-  const {isMobileDevice} = useDevice();
 
-  const handleChange = (inputValue) => {    
-   setSelectedOption(inputValue);
+  const { isMobileDevice } = useDevice();
+
+  const handleChange = (inputValue) => {
+    setSelectedOption(inputValue);
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     if (searchQuerry) {
-        productsApi.searchProducts(searchQuerry).then(( {data} ) =>{            
-             return data.map((product) => ({ value: product._id, label: product?.title?.ua??"Продукт без названия" , calories: product.calories}))
-            })
-            .then((data) => setOptions(data))
+      productsApi
+        .searchProducts(searchQuerry)
+        .then(({ data }) => {
+          return data.map((product) => ({
+            value: product._id,
+            label: product?.title?.ua ?? "Продукт без названия",
+            calories: product.calories,
+          }));
+        })
+        .then((data) => setOptions(data));
     }
   }, [searchQuerry]);
 
@@ -44,18 +50,19 @@ const AddProductForm = ({closeModal}) => {
       title: selectedOption.label,
       weight,
       date,
-      caloriesBasic:selectedOption.calories,
+      caloriesBasic: selectedOption.calories,
     };
-   
-    dispatch(productsOperations.addPoduct(newProduct));    
+
+    dispatch(productsOperations.addPoduct(newProduct));
     setSearchQuerry("");
     setWeight("");
     setSelectedOption("");
     setOptions([]);
-    if (isMobileDevice){closeModal()}
+    if (isMobileDevice) {
+      closeModal();
+    }
   };
 
-  
   const handleNumberValue = ({ target }) => {
     const regexp = /^[0-9\b]+$/;
     const { value } = target;
@@ -64,7 +71,7 @@ const AddProductForm = ({closeModal}) => {
       setWeight(value);
     }
   };
-    
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={postNewProduct} className={styles.form}>
@@ -74,10 +81,10 @@ const AddProductForm = ({closeModal}) => {
           onChange={handleChange}
           options={options}
           inputValue={searchQuerry}
-          onInputChange={debounce(setSearchQuerry,250)}
+          onInputChange={debounce(setSearchQuerry, 250)}
           styles={customStyles}
           placeholder="Введите название продукта"
-        />        
+        />
         <input
           required
           className={styles.weight}
@@ -90,10 +97,12 @@ const AddProductForm = ({closeModal}) => {
           placeholder="Граммы"
         />
         <button className={styles.button} type="submit">
-          {isMobileDevice || <svg className={styles.svg} >
-            <use href={sprite + "#icon-plus"}></use>
-          </svg> }
-          {isMobileDevice && <span className={styles.buttonText}>ДОДАТИ</span> }
+          {isMobileDevice || (
+            <svg className={styles.svg}>
+              <use href={sprite + "#icon-plus"}></use>
+            </svg>
+          )}
+          {isMobileDevice && <span className={styles.buttonText}>ДОДАТИ</span>}
         </button>
       </form>
     </div>
