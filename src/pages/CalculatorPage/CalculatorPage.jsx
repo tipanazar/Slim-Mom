@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 
+import RightSideBar from "../../modules/RightSideBar";
 import Loader from "../../shared/components/Loader";
 import { getCaloriesAndProductsForUser } from "../../shared/api/products";
 import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
+
+import styles from "./calculatorPage.module.scss";
 
 const CalculatorPage = () => {
   const [data, setData] = useState(null);
@@ -45,11 +48,15 @@ const CalculatorPage = () => {
   };
   return (
     <>
-      {info.loading && <Loader />}
-      <CalculatorСalorieForm
-        title="Дізнайся про свою добову норму калорій"
-        onChange={onChange}
-      />
+      <div className={styles.mainBox}>
+        {info.loading && <Loader />}
+        <CalculatorСalorieForm
+          title="Дізнайся про свою добову норму калорій"
+          onChange={onChange}
+        />
+
+        <RightSideBar />
+      </div>
     </>
   );
 };

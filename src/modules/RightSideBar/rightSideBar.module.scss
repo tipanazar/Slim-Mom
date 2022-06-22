@@ -1,5 +1,4 @@
-.rightSideBarWrapper {
-  padding-top: 40px;
+.rightSideBarWrapper {  
   padding-bottom: 84px;  
 }
 
@@ -34,8 +33,7 @@ p.rightSideBarInfo {
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .rightSideBarWrapper {
     display: flex;
-    justify-content: space-between;
-    padding-top: 91px;
+    justify-content: space-between;    
     padding-bottom: 91px;
   }
 }
@@ -50,8 +48,7 @@ p.rightSideBarInfo {
     margin-top: 60px;
   }
   .rightSideBarWrapper {
-    max-width: 500px;
-    padding: 100px ;
+    max-width: 500px;   
     
   }
 }

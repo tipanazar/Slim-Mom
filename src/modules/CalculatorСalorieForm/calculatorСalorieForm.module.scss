@@ -3,6 +3,7 @@
 .form_wrapper {
   display: flex;
   padding: 20px;
+  padding-top: 0;
   flex-direction: column;
   align-items: center;
   width: 300px;
@@ -11,10 +12,10 @@
   @include mq(tablet) {
     width: 700px;
     align-items: flex-start;
-    margin: 100px 0 0 0;
+    
   }
   @include mq(desktop) {
-    margin: 150px 0 0 0;
+    
   }
 }
 

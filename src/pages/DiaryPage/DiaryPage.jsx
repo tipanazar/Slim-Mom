@@ -20,10 +20,8 @@ const DiaryPage = () => {
           <CalendarInput />
           {isMobileDevice || <DiaryAddProductForm />}
           <DiaryProductsList />
-        </div>
-        <div>
-          <RightSideBar />
-        </div>
+        </div>        
+          <RightSideBar />        
       </div>
     </>
   );

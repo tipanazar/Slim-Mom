@@ -2,14 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { getPickedDate, getCaloriesReceived } from "../../redux/products/products-selectors";
-import { dailyCaloriesRate, forbidenCategories } from '../../redux/userAccount/userAccount-selectors';
+import { getDailyCaloriesRate, getForbidenCategories } from '../../redux/userAccount/userAccount-selectors';
 
 import styles from './rightSideBar.module.scss';
 
 
 function RightSideBar() {
-  const dailyCalories = useSelector(dailyCaloriesRate);
-  const userForbidenCategories = useSelector(forbidenCategories);
+  const dailyCalories = useSelector(getDailyCaloriesRate);
+  const userForbidenCategories = useSelector(getForbidenCategories);
   const caloriesReceived = useSelector(getCaloriesReceived);
 
   const date = useSelector(getPickedDate).replace(/\-/g,'.');
