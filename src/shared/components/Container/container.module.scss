@@ -20,7 +20,7 @@
   }
   @include mq(desktop) {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: 1200px;
     padding-left: 15px;
     padding-right: 15px;

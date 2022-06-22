@@ -1,6 +1,6 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
-import productApi from '../../shared/api/products';
+
 import diaryApi from '../../shared/api/diary';
 
 const formateDate = (startDate) => {
