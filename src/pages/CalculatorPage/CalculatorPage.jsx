@@ -6,8 +6,6 @@ import { getCaloriesAndProductsForUser } from "../../shared/api/products";
 import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
 import Container from "../../shared/components/Container";
 
-import styles from "./calculatorPage.module.scss";
-
 const CalculatorPage = () => {
   const [data, setData] = useState(null);
   const [info, setInfo] = useState({
