@@ -1,93 +1,281 @@
-import { useState, useCallback } from "react";
-import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import {
+  getError,
+  getUserName,
+} from "../../../redux/userAccount/userAccount-selectors.js";
+import { userOperations } from "../../../redux/userAccount/userAccount-operations";
 import { useNavigate } from "react-router-dom";
 
-import { initialState } from "./initialState";
-import Input from "../../../shared/components/Input";
 import Button from "../../../shared/components/Button";
 
-import style from "./Register.module.scss";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import style from "./register.module.scss";
 
+const emailRegexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ' a-zA-Z]+$/;
 
 const Register = () => {
+  const [isActivReg, setActivReg] = useState(true);
+  const [userEmail, setUserEmail] = useState("");
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const dispatch = useDispatch();
+  const error = useSelector(getError, shallowEqual);
+
+  const userName = useSelector(getUserName, shallowEqual);
+
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ ...initialState });
-  const { userName, email, password, passwordConfirmation } = form;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+    watch,
+  } = useForm({
+    mode: "all",
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password !== passwordConfirmation) {
-      alert("Введені паролі не співпадають!");
-      return;
-    }
-    console.log(userName, email, password);
-    navigate('/signup/confirmation');
+  const MessageConfirmation = (
+    <p className={style.confirm_message}>
+      Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї
+      електронної пошти {userEmail} та{" "}
+      <span className={style.form_title}>підтвердіть реєстрацію</span>. Після
+      цього залогіньтеся.
+    </p>
+  );
+
+  const MessageError = (
+    <p className={style.error_message}>
+      {error}. <span className={style.form_title}>Увійти?</span>
+    </p>
+  );
+
+  const MessageNothing = <p className={style.form_title}>Чекаємо разом!</p>;
+
+  const onButtonToSignin = () => {
+    reset();
+    setActivReg(true);
+    navigate("/signin");
+  };
+  const onButtonToSignup = () => {
+    reset();
+    setActivReg(true);
+    navigate("/signup");
   };
 
-  const handleChange = useCallback(({ target }) => {
-    // console.log(target)
-    const { name, value } = target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  }, []);
+  const ButtonToSignin = (
+    <Button
+      type="button"
+      onClickBtn={onButtonToSignin}
+      btnText="Увійти"
+      className={style.button}
+    />
+  );
+
+  const ButtonToSignup = (
+    <Button
+      type="button"
+      onClickBtn={onButtonToSignup}
+      btnText="Добре"
+      className={style.button}
+    />
+  );
+
+  let MessageToUser = MessageNothing;
+  let ButtonAfterRegister = ButtonToSignup;
+
+  if (userName) {
+    MessageToUser = MessageConfirmation;
+    ButtonAfterRegister = ButtonToSignin;
+  }
+  if (error) {
+    MessageToUser = MessageError;
+    ButtonAfterRegister = ButtonToSignin;
+  }
+
+  const ButtonRegister = (
+    <Button
+      type="submit"
+      onClickBtn={handleSubmit}
+      btnText="Реєстрація"
+      className={style.button}
+    />
+  );
+
+  const changeShowPassword1 = () => {
+    setShowPassword1((prev) => (prev = !prev));
+  };
+  const changeShowPassword2 = () => {
+    setShowPassword2((prev) => (prev = !prev));
+  };
+
+  const name = watch("name");
+  const email = watch("email");
+  const password = watch("password");
+  const passwordConfirmation = watch("passwordConfirmation");
+
+  const onSubmit = (data) => {
+    setActivReg(false);
+    setUserEmail(email);
+    dispatch(
+      userOperations.registerUser({
+        name,
+        email,
+        password,
+      })
+    );
+  };
 
   return (
-    <div className={style.form_wrapper}>
-      <h2 className={style.form_title}>Реєстрація</h2>
-      <form className={style.form} onSubmit={handleSubmit}>
-        <div className={style.inputs_wrapper}>
-          <Input
-            name="userName"
-            value={form.userName}
-            type="text"
-            placeholder="Ім'я *"
-            onType={handleChange}
-            className={style.input}
-            required
-          />
-          <Input
-            name="email"
-            value={form.email}
-            type="email"
-            placeholder="Електронна адреса *"
-            onType={handleChange}
-            className={style.input}
-            required
-          />
-          <Input
-            name="password"
-            value={form.password}
-            type="password"
-            placeholder="Пароль *"
-            onType={handleChange}
-            className={style.input}
-            required
-          />
-          <Input
-            name="passwordConfirmation"
-            value={form.passwordConfirmation}
-            type="password"
-            placeholder="Повторіть пароль *"
-            onType={handleChange}
-            className={style.input}
-            required
-          />
-        </div>
-        <div className={style.btn_wrapper}>
-          <Button
-            type="submit"
-            onClickBtn={handleSubmit}
-            btnText="Реєстрація"
-            className={style.button}
-          />
-        </div>
-      </form>
+    <div className={style.wrapper}>
+      <div className={style.form_wrapper}>
+        <h2 className={style.form_title}>Реєстрація</h2>
+        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.inputs_wrapper}>
+            <label htmlFor="name" className={style.label}>
+              Ім'я *
+            </label>
+            <Input
+              id="name"
+              className={style.input}
+              color={"warning"}
+              fontSize={"14px"}
+              {...register("name", {
+                required: "Поле обов'язково для заповнення",
+                pattern: {
+                  value: nameRegexp,
+                  message: "Не допустимі символи!",
+                },
+                minLength: {
+                  value: 2,
+                  message: "Мінімальна кількість букв - 2!",
+                },
+                maxLength: {
+                  value: 16,
+                  message: "Максимальна кількість букв - 16!",
+                },
+              })}
+            />
+            <div className={style.input_alert}>
+              {errors?.name && <p>{errors?.name?.message}</p>}
+            </div>
+
+            <label htmlFor="mail" className={style.label}>
+              Електронна пошта *
+            </label>
+            <Input
+              id="mail"
+              className={style.input}
+              color={"warning"}
+              {...register("email", {
+                required: "Поле обов'язково для заповнення",
+                pattern: {
+                  value: emailRegexp,
+                  message: "Не допустимий формат, перевірте адресу!",
+                },
+              })}
+            />
+            <div className={style.input_alert}>
+              {errors?.email && <p>{errors?.email?.message}</p>}
+            </div>
+
+            <label htmlFor="password" className={style.label}>
+              Пароль *
+            </label>
+            <Input
+              id="password"
+              className={style.input}
+              type={showPassword1 ? "text" : "password"}
+              color={"warning"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={changeShowPassword1}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                    }}
+                    edge="end"
+                  >
+                    {showPassword1 ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              {...register("password", {
+                required: "Поле обов'язково для заповнення",
+                minLength: {
+                  value: 6,
+                  message: "Мінімальна кількість знаків - 6!",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Максимальна кількість знаків - 20!",
+                },
+              })}
+            />
+            <div className={style.input_alert}>
+              {errors?.password && <p>{errors?.password?.message}</p>}
+            </div>
+
+            <label htmlFor="passwordConfirmation" className={style.label}>
+              Повторіть пароль *
+            </label>
+            <Input
+              id="passwordConfirmation"
+              className={style.input}
+              color={"warning"}
+              type={showPassword2 ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={changeShowPassword2}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                    }}
+                    edge="end"
+                  >
+                    {showPassword2 ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              {...register("passwordConfirmation", {
+                required: "Поле обов'язково для заповнення",
+                minLength: {
+                  value: 6,
+                  message: "Мінімальна кількість знаків - 6!",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Максимальна кількість знаків - 20!",
+                },
+              })}
+            />
+            <div className={style.input_alert}>
+              {errors?.passwordConfirmation && (
+                <p>{errors?.passwordConfirmation?.message}</p>
+              )}
+              {password !== passwordConfirmation && (
+                <p>Введені паролі не співпадають!</p>
+              )}
+            </div>
+            <div className={style.message}>{!isActivReg && MessageToUser}</div>
+          </div>
+          <div className={style.btn_wrapper}>
+            {!isActivReg && ButtonAfterRegister}
+            {isActivReg && ButtonRegister}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

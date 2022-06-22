@@ -6,6 +6,11 @@ const addAccessToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+const registerUser = async (userData) => {
+  const { data: result } = await axios.post("/auth/register", userData);
+  return result;
+};
+
 const loginUser = async (userData) => {
   const { data } = await axios.post("/auth/login", userData);
   addAccessToken(data.token);
@@ -14,8 +19,13 @@ const loginUser = async (userData) => {
 
 const getCurrentUser = async (accToken) => {
   addAccessToken(accToken);
-  const { data: result } = await axios.get("/auth/user");
-  return result;
+  const { data } = await axios.get("/auth/user");
+  return data;
+};
+
+const resendVerification = async (userData) => {
+  const { data } = await axios.post("/auth/verify", userData);
+  return data;
 };
 
 const logoutUser = async () => {
@@ -25,9 +35,11 @@ const logoutUser = async () => {
 };
 
 const authApi = {
+  registerUser,
   loginUser,
   getCurrentUser,
   logoutUser,
+  resendVerification,
 };
 
 export default authApi;

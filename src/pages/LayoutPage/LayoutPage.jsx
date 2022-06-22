@@ -12,7 +12,9 @@ const LayoutPage = () => {
     <>
       <Header />
       {!isLogin || <UserInfoBar />}
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };

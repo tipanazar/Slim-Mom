@@ -20,7 +20,7 @@ import productsReducer from './products/products-slice';
 const persistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"], // поменять если надо
+  whitelist: ["token"],
 };
 
 const productsPersistConfig = {

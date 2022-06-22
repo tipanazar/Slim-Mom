@@ -1,15 +1,21 @@
-@import '../../../sass/main.scss';
+@import "../../../sass/main.scss";
 
 .wrapper {
-  display: flex;
+  @include mq(mobile-only) {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+  }
   flex-direction: column;
+  margin-top: 160px;
+  padding: 16px;
 }
 .header {
-    @include mq(mobile-only){
-        text-align: center;
-    }
-   
-  font-family: "Gotham Pro";
+  @include mq(mobile-only) {
+    text-align: center;
+  }
+
+  font-family: var(--secondary-font);
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -18,45 +24,57 @@
   text-transform: uppercase;
   color: #fc842d;
 }
+
+.form{
+  @include mq(mobile-only){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+}
 .inputWrapper {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  width: 240px;
-}
-.input {
-  border: 1px solid #e0e0e0;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-}
-.input:focus {
-  outline: none;
-  border-bottom: 2px solid #fc842d;
+  align-items: flex-start;
 }
 
-.paragrahp{
+.input {
+  // border: 2px solid #e0e0e0 !important;
+  // border-top: 0px !important;
+  // border-left: 0px !important;
+  // border-right: 0px !important;
+  margin-top: 40px;
+}
+.input:focus {
+  outline: none !important;
+  border-bottom: 2px solid #fc842d !important;
+}
+
+.paragrahp {
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
 }
-.paragrahpSecond{
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-    color: #9b9faa;
-    margin-top: 40px;
+.paragrahpSecond {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+  margin-top: 40px;
 }
 
 .button {
-    @include mq(mobile-only){
-       margin-bottom:20px ;
-       margin-right: 0px;
-    }
-    
+  position: relative;
+  @include mq(mobile-only) {
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+
   background-color: #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
@@ -65,7 +83,7 @@
   border: 0px;
   color: #ffffff;
   margin-right: 32px;
-  margin-top: 73px;
+  margin-top: 60px;
   //font
   font-weight: 700;
   font-size: 14px;
@@ -90,11 +108,52 @@
   line-height: 17px;
   letter-spacing: 0.82px;
 }
-.wrapperButtons{
-    @include mq(mobile-only){
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
+.wrapperButtons {
+  @include mq(mobile-only) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.hide {
+  top: 470px;
+  left: 205px;
+  position: absolute;
+  width: 100px;
+  border: 0px;
+  background-color: inherit;
+}
+.buttonwraper {
+  @include mq(mobile-big) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  display: flex;
+  justify-content: space-between;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  border: 0;
+  border-radius: 30px;
+  background-color: grey;
+  width: 182px;
+  height: 44px;
+  color: #ffffff;
+  margin-top: 60px;
+  margin-right: 32px;
+  @include mq(mobile-only) {
+    margin-left: 50px;
+  }
+}
+.buttonMobile{
+  @include mq(mobile-only){
+    margin-left: 50px;
+  }
 }
