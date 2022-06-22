@@ -94,6 +94,15 @@ const Register = () => {
     />
   );
 
+  const ButtonBackToSignup = (
+    <Button
+      type="button"
+      onClickBtn={onButtonToSignup}
+      btnText="До реєстрації"
+      className={style.button}
+    />
+  );
+
   let MessageToUser = MessageNothing;
   let ButtonAfterRegister = ButtonToSignup;
 
@@ -130,7 +139,9 @@ const Register = () => {
   };  
 
    const closeModal = () => {
-    setShowModal(false);    
+    setShowModal(false);
+    reset();
+    setActivReg(true);
   };
 
   const changeShowPassword1 = () => {
@@ -175,7 +186,8 @@ const Register = () => {
               {MessageToUser}
               </Typography>
               <div className={style.modal_btn_wrapper}>
-              {ButtonAfterRegister}          
+              {ButtonAfterRegister}
+              {error && ButtonBackToSignup}          
               </div>
             </Box>
           </Modal>
