@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import auth from "../../shared/api/auth";
+import authApi from "../../shared/api/authApi";
 
 const registerUser = createAsyncThunk(
   "/auth/register",
   async (userData, { rejectWithValue }) => {
     try {
-      const result = await auth.registerUser(userData);
+      const result = await authApi.registerUser(userData);
       return result;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
@@ -18,7 +18,7 @@ const loginUser = createAsyncThunk(
   "/auth/login",
   async (userData, { rejectWithValue }) => {
     try {
-      const result = await auth.loginUser(userData);
+      const result = await authApi.loginUser(userData);
       return result;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
@@ -30,8 +30,7 @@ const logoutUser = createAsyncThunk(
   "/auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      const result = await auth.logoutUser();
-      return result;
+      await authApi.logoutUser();
     } catch (err) {
       return rejectWithValue(err.response.data.message);
     }
@@ -40,20 +39,34 @@ const logoutUser = createAsyncThunk(
 
 const getCurrentUser = createAsyncThunk(
   "/auth/user",
-  async (userData, { rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const result = await auth.getCurrentUser(userData);
+      const { auth } = getState();
+      const result = await authApi.getCurrentUser(auth.token);
       return result;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
     }
   },
   {
-    condition: (userData) => {
-      if (!userData) {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
         return false;
       }
     },
+  }
+);
+
+const resendVerification = createAsyncThunk(
+  "/auth/verify",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const result = await authApi.resendVerification({ email: userData });
+      return result;
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
   }
 );
 
@@ -62,4 +75,5 @@ export const userOperations = {
   loginUser,
   logoutUser,
   getCurrentUser,
+  resendVerification,
 };

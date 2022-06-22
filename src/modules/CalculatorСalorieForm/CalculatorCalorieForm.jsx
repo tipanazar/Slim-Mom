@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 
 import style from "./calculatorСalorieForm.module.scss";
+
 const CalculatorСalorieForm = ({
   title = "Тут може бути ваша реклама, але ніхто не спонсує :(",
   onChange,
@@ -18,20 +19,17 @@ const CalculatorСalorieForm = ({
     },
   });
 
-  const watchCurrentWeight = watch("currentWeight")
-
-
-
+  const watchCurrentWeight = watch("currentWeight");
 
   const onSubmit = (data) => {
-    console.log(data);
+    onChange(data);
     reset();
   };
 
   return (
     <div className={style.form_wrapper}>
       <h2 className={style.form_title}>{title}</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={style.form_form}  onSubmit={handleSubmit(onSubmit)}>
         <div className={style.row_wrapper}>
           <div className={style.tablet_input_wrapper}>
             <div className={style.inputs_wrapper}>
@@ -44,7 +42,7 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свій зріст! Поле обов'язкове!",
                   pattern: {
                     value: /[0-9]{3}/,
-                    message: 'Не допустимі символи!'
+                    message: "Некоректні символи!",
                   },
                 })}
               />
@@ -62,7 +60,7 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свій вік! Поле обов'язкове",
                   pattern: {
                     value: /[0-9]{2}/,
-                    message: 'Не допустимі символи!'
+                    message: "Некоректні символи!",
                   },
                 })}
               />
@@ -80,7 +78,7 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свою вагу! Поле обов'язкове!",
                   pattern: {
                     value: /[0-9]/,
-                    message: 'Не допустимі символи!'
+                    message: "Некоректні символи!",
                   },
                 })}
               />
@@ -103,9 +101,11 @@ const CalculatorСalorieForm = ({
                   required: "Введіть свою бажану вагу! Поле обов'язкове!",
                   pattern: {
                     value: /[0-9]/,
-                    message: 'Не допустимі символи!'
+                    message: "Некоректні символи!",
                   },
-                  validate: value => value <= watchCurrentWeight || 'Бажана вага не може бути більшою за поточну!'
+                  validate: (value) =>
+                    Number(value) <= Number(watchCurrentWeight) ||
+                    "Бажана вага не може бути більшою за поточну!",
                 })}
               />
               {errors?.desiredWeight && (

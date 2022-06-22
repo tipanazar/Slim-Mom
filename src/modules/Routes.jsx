@@ -13,7 +13,6 @@ import LayoutPage from "../pages/LayoutPage";
 import MainPage from "../pages/MainPage";
 
 const RegisterPage = lazy(() => import("../pages/Auth/RegisterPage"));
-const RegisterConfirmPage = lazy(() => import("../pages/Auth/RegisterConfirmPage"));
 const LoginPage = lazy(() => import("../pages/Auth/LoginPage"));
 const DiaryPage = lazy(() => import("../pages/DiaryPage"));
 const CalculatorPage = lazy(() => import("../pages/CalculatorPage"));
@@ -26,8 +25,7 @@ const MyRoutes = () => {
         <Route path="/" element={<LayoutPage />}>
           <Route element={<PublicRoute />}>
             <Route index element={<MainPage />} />
-            <Route exact path="signup" element={<RegisterPage />} />
-            <Route path="signup/confirmation" element={<RegisterConfirmPage />} />
+            <Route path="signup" element={<RegisterPage />} />
             <Route path="signin" element={<LoginPage />} />
           </Route>
           <Route element={<PrivateRoute />}>

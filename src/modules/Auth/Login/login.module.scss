@@ -1,30 +1,48 @@
-@import '../../../sass/main.scss';
+@import "../../../sass/main.scss";
 
 .wrapper {
   display: flex;
-  flex-direction: column;
-  margin-top: 160px;
+  flex-direction: column;  
   padding: 16px;
 }
+
 .header {
-    @include mq(mobile-only){
-        text-align: center;
-    }
-   
-  font-family: "Gotham Pro";
+  margin-bottom: 60px;
+  @include mq(mobile-only) {
+    text-align: center;
+  }
+  margin: 0;
+  font-family: var(--second-font);
   font-style: normal;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 14px;
   line-height: 13px;
+  // text-align: center;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #fc842d;
+  color: var(--button-orange-color);
+  margin-bottom: 60px;
 }
-.inputWrapper {
-  margin-top: 60px;
+
+.form{
   display: flex;
   flex-direction: column;
-  width: 240px;
+  align-items: center;
+  max-width: 280px;
+
+  @include mq(tablet) {
+    max-width: 320px;
+    align-items: flex-start;
+  }
+  @include mq(desktop) {
+    max-width: 400px;   
+  }
+ 
+}
+.inputWrapper {  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .input {
@@ -39,29 +57,29 @@
   border-bottom: 2px solid #fc842d !important;
 }
 
-.paragrahp{
+.paragrahp {
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
 }
-.paragrahpSecond{
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-    color: #9b9faa;
-    margin-top: 40px;
+.paragrahpSecond {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+  margin-top: 40px;
 }
 
 .button {
   position: relative;
-    @include mq(mobile-only){
-       margin-bottom:20px ;
-       margin-right: 0px;
-    }
-    
+  @include mq(mobile-only) {
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+
   background-color: #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
@@ -95,19 +113,52 @@
   line-height: 17px;
   letter-spacing: 0.82px;
 }
-.wrapperButtons{
-    @include mq(mobile-only){
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
+.wrapperButtons {
+  @include mq(mobile-only) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
-.hide{
+.hide {
   top: 470px;
-      left: 205px;
+  left: 205px;
   position: absolute;
   width: 100px;
   border: 0px;
   background-color: inherit;
+}
+.buttonwraper {
+  @include mq(mobile-big) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  display: flex;
+  justify-content: space-between;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  border: 0;
+  border-radius: 30px;
+  background-color: grey;
+  width: 182px;
+  height: 44px;
+  color: #ffffff;
+  margin-top: 60px;
+  margin-right: 32px;
+  @include mq(mobile-only) {
+    margin-left: 50px;
+  }
+}
+.buttonMobile{
+  @include mq(mobile-only){
+    margin-left: 50px;
+  }
 }

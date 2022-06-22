@@ -1,0 +1,28 @@
+@import "../../sass/main.scss";
+
+.mainBox {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 150px;
+}
+
+.backgroundMedium {
+  display: none;
+  @include mq(tablet-only) {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: -1;
+  }
+}
+.backgroundBig {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: -1;
+  }
+}
