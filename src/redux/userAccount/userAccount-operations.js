@@ -6,7 +6,8 @@ const registerUser = createAsyncThunk(
   "/auth/register",
   async (userData, { rejectWithValue }) => {
     try {
-      await authApi.registerUser(userData);
+      const result = await authApi.registerUser(userData);
+      return result;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
     }

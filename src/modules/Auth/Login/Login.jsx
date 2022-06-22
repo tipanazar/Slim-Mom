@@ -140,7 +140,7 @@ const Login = () => {
           >
             <Box sx={modalStyle}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Верифікуйте свій Email
+                Ви не верифікували свій Email
               </Typography>
               <Typography
                 id="modal-modal-description"
