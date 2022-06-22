@@ -1,0 +1,11 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-cross" viewBox="0 0 32 32">
+<path fill="none" stroke="#9b9faa" style="stroke: var(--color1, #9b9faa)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.5714" d="M2.286 2.286l27.429 27.429"></path>
+<path fill="none" stroke="#9b9faa" style="stroke: var(--color1, #9b9faa)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.5714" d="M2.286 29.714l27.429-27.429"></path>
+</symbol>
+<symbol id="icon-plus"  width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M18.72 12.96H12.96V18.72H11.04V12.96H5.28003V11.04H11.04V5.28003H12.96V11.04H18.72V12.96Z" fill="white"/>
+</symbol>
+</defs>
+</svg>

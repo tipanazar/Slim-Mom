@@ -14,6 +14,8 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import userReducer from "./userAccount/userAccount-slice";
+import productsReducer from './products/products-slice';
+
 
 const persistConfig = {
   key: "auth",
@@ -21,11 +23,21 @@ const persistConfig = {
   whitelist: ["token"],
 };
 
+const productsPersistConfig = {
+  key: "products",
+  storage
+};
+
+
+
 const persistedUserReducer = persistReducer(persistConfig, userReducer);
+const persistedProductsReducer = persistReducer(productsPersistConfig, productsReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedUserReducer,
+    products: persistedProductsReducer,   
+    
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

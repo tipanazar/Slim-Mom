@@ -1,5 +1,11 @@
 @import "../../sass/main.scss";
 
+.mainBox {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 150px;
+}
+
 .backgroundMedium {
   display: none;
   @include mq(tablet-only) {
