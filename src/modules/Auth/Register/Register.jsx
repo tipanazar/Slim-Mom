@@ -130,7 +130,9 @@ const Register = () => {
   };  
 
    const closeModal = () => {
-    setShowModal(false);    
+    setShowModal(false);
+    reset();
+    setActivReg(true);
   };
 
   const changeShowPassword1 = () => {
