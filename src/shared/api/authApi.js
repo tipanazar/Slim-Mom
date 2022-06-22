@@ -7,7 +7,7 @@ const addAccessToken = (token) => {
 };
 
 const registerUser = async (userData) => {
-  const { data: result } = await axios.post("/auth/register", userData);
+  const {data: result} = await axios.post("/auth/register", userData);
   return result;
 };
 
