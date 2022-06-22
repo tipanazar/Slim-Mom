@@ -20,7 +20,7 @@ const CalculatorPage = lazy(() => import("../pages/CalculatorPage"));
 const MyRoutes = () => {
   const isLoading = useSelector(getLoading, shallowEqual);
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader backgrColor={"white"} />}>
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route element={<PublicRoute />}>
