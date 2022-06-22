@@ -15,6 +15,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 import style from "./register.module.scss";
 
@@ -24,6 +27,7 @@ const nameRegexp = /^[а-яА-ЯёЁєЄґҐїЇіІ' a-zA-Z]+$/;
 const Register = () => {
   const [isActivReg, setActivReg] = useState(true);
   const [userEmail, setUserEmail] = useState("");
+  const [showModal, setShowModal] = useState(true); 
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
@@ -47,8 +51,7 @@ const Register = () => {
   const MessageConfirmation = (
     <p className={style.confirm_message}>
       Для завершення реєстрації Вам надіслано листа. Перейдіть до своєї
-      електронної пошти {userEmail} та{" "}
-      <span className={style.form_title}>підтвердіть реєстрацію</span>. Після
+      електронної пошти {userEmail} та <span className={style.form_title}>підтвердіть реєстрацію</span>. Після
       цього залогіньтеся.
     </p>
   );
@@ -59,9 +62,10 @@ const Register = () => {
     </p>
   );
 
-  const MessageNothing = <p className={style.form_title}>Чекаємо разом!</p>;
+  const MessageNothing = <p className={style.error_message}>Ой, щось пішло не так. <span className={style.form_title}>Спробуйте ще раз !</span></p>;
 
   const onButtonToSignin = () => {
+    closeModal();
     reset();
     setActivReg(true);
     navigate("/signin");
@@ -111,6 +115,24 @@ const Register = () => {
     />
   );
 
+  const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+    textAlign: "center",
+    width: "80vw",
+    maxWidth: "max-content",
+    height: "auto",
+  };  
+
+   const closeModal = () => {
+    setShowModal(false);    
+  };
+
   const changeShowPassword1 = () => {
     setShowPassword1((prev) => (prev = !prev));
   };
@@ -124,7 +146,9 @@ const Register = () => {
   const passwordConfirmation = watch("passwordConfirmation");
 
   const onSubmit = (data) => {
-    setActivReg(false);
+    setTimeout(() => {
+      setActivReg(false);
+    }, 500);    
     setUserEmail(email);
     dispatch(
       userOperations.registerUser({
@@ -133,10 +157,29 @@ const Register = () => {
         password,
       })
     );
-  };
+    setShowModal(true);
+  };  
 
   return (
     <div className={style.wrapper}>
+      {!showModal || (
+          <Modal
+            disableAutoFocus={true}
+            open={!isActivReg}
+            onClose={closeModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={modalStyle}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+              {MessageToUser}
+              </Typography>
+              <div className={style.modal_btn_wrapper}>
+              {ButtonAfterRegister}          
+              </div>
+            </Box>
+          </Modal>
+        )}
       <div className={style.form_wrapper}>
         <h2 className={style.form_title}>Реєстрація</h2>
         <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -267,11 +310,9 @@ const Register = () => {
               {password !== passwordConfirmation && (
                 <p>Введені паролі не співпадають!</p>
               )}
-            </div>
-            <div className={style.message}>{!isActivReg && MessageToUser}</div>
+            </div>           
           </div>
-          <div className={style.btn_wrapper}>
-            {!isActivReg && ButtonAfterRegister}
+          <div className={style.btn_wrapper}>      
             {isActivReg && ButtonRegister}
           </div>
         </form>
