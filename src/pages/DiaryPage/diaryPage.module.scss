@@ -23,3 +23,29 @@
      
     }
 }
+
+.backgroundMedium {
+    display: none;
+    @include mq( tablet-only) {
+        background-color: #F0F1F3; 
+        width: 100vw;
+        height:40vh;
+      display: block;
+      position: absolute;      
+      bottom: -100px;
+      right: 0;
+      z-index: -1;
+    }
+  }
+  .backgroundBig {
+    display: none;
+    @include mq(desktop) {
+      display: block;
+      position: absolute;
+      width: 30vw;
+      height: 100vh;      
+      top: 0px;
+      right: 0;
+      z-index: -1;
+    }
+  }

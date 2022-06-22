@@ -67,6 +67,8 @@ function RightSideBar() {
             : 'Тут будуть показані продукти, яких Вам краще уникати'}
         </p>
       </div>
+      <div className={styles.rightSideBarDecoration}>
+      </div>
     </div>
   );
 }

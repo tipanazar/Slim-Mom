@@ -7,7 +7,7 @@ import CalendarInput from "../../shared/components/Calendar";
 import Container from "../../shared/components/Container";
 
 import { useDevice } from "../../shared/hooks/useDevice";
-import backgroundMedium from "../../images/background/medium/auth.png";
+import backgroundMedium from "../../images/background/medium/sidebar.png";
 import backgroundBig from "../../images/background/big/sidebar.png";
 
 import styles from "./diaryPage.module.scss";
