@@ -1,7 +1,18 @@
-import styles from './loader.module.scss';
+import { PropTypes } from "prop-types";
 
-const Loader = () => {
-  return <div className={styles.ldsDualRing}></div>;
+import styles from "./loader.module.scss";
+
+const Loader = ({ backgrColor }) => {
+  return (
+    <div
+      className={styles.ldsDualRing}
+      style={{ backgroundColor: backgrColor }}
+    ></div>
+  );
 };
 
 export default Loader;
+
+Loader.propTypes = {
+  backgrColor: PropTypes.string,
+};
