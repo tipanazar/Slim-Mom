@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import productsOperations from "./products-operations";
 
-const {  
-  addPoduct,
-  deleteProduct,
-  dayInfo,
-  dateSetAction,
-  formateDate,
-} = productsOperations;
+const { addPoduct, deleteProduct, dayInfo, dateSetAction, formateDate } =
+  productsOperations;
 
 const initialState = {
-  productList: [],  
+  productList: [],
   pickedDate: formateDate(new Date()).payload,
   caloriesReceived: 0,
   loading: false,
@@ -21,14 +16,13 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   extraReducers: {
-    
     [addPoduct.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
 
     [addPoduct.fulfilled]: (state, { payload }) => {
-        console.log(payload)
+      console.log(payload);
       state.productList = [...payload.productList];
       state.loading = false;
     },
@@ -41,9 +35,9 @@ const productsSlice = createSlice({
       state.error = null;
     },
 
-    [deleteProduct.fulfilled]: (state, { payload }) => {        
-      state.productList = [ ...payload.productList];
-      state.caloriesReceived = payload.caloriesReceived ;
+    [deleteProduct.fulfilled]: (state, { payload }) => {
+      state.productList = [...payload.productList];
+      state.caloriesReceived = payload.caloriesReceived;
       state.loading = false;
     },
     [deleteProduct.rejected]: (state) => {
@@ -54,8 +48,8 @@ const productsSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [dayInfo.fulfilled]: (state, { payload }) => {      
-      state.caloriesReceived = payload.caloriesReceived  ;
+    [dayInfo.fulfilled]: (state, { payload }) => {
+      state.caloriesReceived = payload.caloriesReceived;
       state.productList = [...payload.productList];
       state.loading = false;
     },

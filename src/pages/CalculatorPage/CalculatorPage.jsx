@@ -48,7 +48,7 @@ const CalculatorPage = () => {
   const onChange = (data) => {
     setData(data);
   };
-  
+
   return (
     <>
       <Container>

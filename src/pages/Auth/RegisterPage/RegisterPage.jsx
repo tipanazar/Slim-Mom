@@ -9,18 +9,18 @@ import styles from "./registerPage.module.scss";
 const RegisterPage = () => {
   return (
     <>
-    <Container>
-      <Register />
-      <img
-        className={styles.backgroundMedium}
-        src={backgroundMedium}
-        alt="backgroundImg"
-      />
-      <img
-        className={styles.backgroundBig}
-        src={backgroundBig}
-        alt="backgroundImg"
-      />
+      <Container>
+        <Register />
+        <img
+          className={styles.backgroundMedium}
+          src={backgroundMedium}
+          alt="backgroundImg"
+        />
+        <img
+          className={styles.backgroundBig}
+          src={backgroundBig}
+          alt="backgroundImg"
+        />
       </Container>
     </>
   );

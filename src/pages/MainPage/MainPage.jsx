@@ -7,18 +7,18 @@ import styles from "./mainPage.module.scss";
 const MainPage = () => {
   return (
     <>
-     <div className={styles.mainBox}>
-      <DailyCaloriesForm />
-      <img
-        className={styles.backgroundMedium}
-        src={backgroundMedium}
-        alt="backgroundImg"
-      />
-      <img
-        className={styles.backgroundBig}
-        src={backgroundBig}
-        alt="backgroundImg"
-      />
+      <div className={styles.mainBox}>
+        <DailyCaloriesForm />
+        <img
+          className={styles.backgroundMedium}
+          src={backgroundMedium}
+          alt="backgroundImg"
+        />
+        <img
+          className={styles.backgroundBig}
+          src={backgroundBig}
+          alt="backgroundImg"
+        />
       </div>
     </>
   );
