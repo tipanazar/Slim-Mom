@@ -1,7 +1,9 @@
+@import "../../../sass/main.scss";
 .calendarContainer{
     font-weight: 700;
     display: flex;
     align-items: baseline;
+    margin-bottom: 60px;
 }
 
 .calendarInput {
@@ -12,6 +14,9 @@
     outline: none;
     cursor: pointer;
     background-color: transparent;
+    @include mq(tablet) {
+      font-size: 34px;
+    }
   }
   
   .calendarInput:focus:hover {

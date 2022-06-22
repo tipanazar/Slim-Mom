@@ -4,6 +4,7 @@ import RightSideBar from "../../modules/RightSideBar";
 import Loader from "../../shared/components/Loader";
 import { getCaloriesAndProductsForUser } from "../../shared/api/products";
 import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
+import Container from "../../shared/components/Container";
 
 import styles from "./calculatorPage.module.scss";
 
@@ -48,7 +49,7 @@ const CalculatorPage = () => {
   };
   return (
     <>
-      <div className={styles.mainBox}>
+      <Container>
         {info.loading && <Loader />}
         <CalculatorСalorieForm
           title="Дізнайся про свою добову норму калорій"
@@ -56,7 +57,7 @@ const CalculatorPage = () => {
         />
 
         <RightSideBar />
-      </div>
+      </Container>
     </>
   );
 };

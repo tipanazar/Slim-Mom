@@ -4,9 +4,8 @@
 <path fill="none" stroke="#9b9faa" style="stroke: var(--color1, #9b9faa)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.5714" d="M2.286 2.286l27.429 27.429"></path>
 <path fill="none" stroke="#9b9faa" style="stroke: var(--color1, #9b9faa)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.5714" d="M2.286 29.714l27.429-27.429"></path>
 </symbol>
-<symbol id="icon-plus" viewBox="0 0 32 32">
-<path fill="#fc842d" style="fill: var(--color2, #fc842d)" d="M27.294 14.118c0 6.238-5.057 11.294-11.294 11.294s-11.294-5.057-11.294-11.294c0-6.238 5.057-11.294 11.294-11.294s11.294 5.057 11.294 11.294z"></path>
-<path fill="#fff" style="fill: var(--color3, #fff)" d="M19.162 14.569h-2.711v2.711h-0.904v-2.711h-2.711v-0.904h2.711v-2.711h0.904v2.711h2.711v0.904z"></path>
+<symbol id="icon-plus"  width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M18.72 12.96H12.96V18.72H11.04V12.96H5.28003V11.04H11.04V5.28003H12.96V11.04H18.72V12.96Z" fill="white"/>
 </symbol>
 </defs>
 </svg>

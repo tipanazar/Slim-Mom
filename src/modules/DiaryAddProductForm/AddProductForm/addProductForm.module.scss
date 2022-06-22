@@ -1,5 +1,33 @@
 @import "../../../sass/main.scss";
 
+.wrapper{  
+  width:100%;
+  margin-bottom: 60px;
+}
+
+.form{
+  display: flex;
+    height: 200px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  @include mq(tablet) {
+    height: 50px;
+    flex-direction: row;
+  }
+}
+
+.weight{
+  width: 150px;
+  border: none;  
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  @include mq(desktop) {
+    margin-left: 50px;
+  margin-right: 50px;
+  }
+  
+}
 
 .listProducts {
   max-height: 200px;
@@ -39,17 +67,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 40px;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 60px;
+  
 }
 .button:focus:hover {
   outline: none;
 }
 .svg {
-  width: 15px;
-  height: 15px;
-  fill: fff;
+  width: 24px;
+  height: 24px;
+  fill: #fff;
 }

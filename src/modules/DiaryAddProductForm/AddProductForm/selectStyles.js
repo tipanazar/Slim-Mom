@@ -17,14 +17,13 @@ const customStyles = {
       color: '#9B9FAA',
     }),
     control: () => ({
-      width: 260,
+      width: 400,
     }),
     dropdownIndicator: () => ({
       display: 'none',
     }),
     container: provided => ({
-      ...provided,
-      paddingTop: 23,
+      ...provided,      
       borderBottom: '1px solid #e0e0e0',
       maxHeight: 70,
       position: 'relative',

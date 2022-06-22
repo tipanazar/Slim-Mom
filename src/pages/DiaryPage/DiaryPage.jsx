@@ -4,6 +4,7 @@ import DiaryProductsList from "../../modules/DiaryProductsList";
 import RightSideBar from "../../modules/RightSideBar";
 import DiaryAddProductForm from "../../modules/DiaryAddProductForm";
 import CalendarInput from "../../shared/components/Calendar";
+import Container from "../../shared/components/Container";
 
 import { useDevice } from "../../shared/hooks/useDevice";
 
@@ -15,14 +16,14 @@ const DiaryPage = () => {
   const { isMobileDevice } = useDevice();
   return (
     <>
-      <div className={styles.mainBox}>
+      <Container>
         <div className={styles.diaryBox}>
           <CalendarInput />
           {isMobileDevice || <DiaryAddProductForm />}
           <DiaryProductsList />
         </div>        
           <RightSideBar />        
-      </div>
+      </Container>
     </>
   );
 };

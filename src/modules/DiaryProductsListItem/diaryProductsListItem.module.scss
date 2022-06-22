@@ -2,30 +2,42 @@
 
 .item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
   margin-bottom: 20px;
+  font-size: 12px;
 }
 .prodName {
   display: block;
   border-bottom: 1px solid #e0e0e0;
-  width: 120px;
+  width: 140px;
   padding-bottom: 10px;
-    justify-content: flex-end;
-  align-items: flex;
+  justify-content: flex-end;
+  text-align: start;
+  margin-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.prodWeight {  
+.prodWeight {
   width: 50px;
   text-align: center;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-right: 5px;
 }
-.prodKCal {  
-  width: 70px;
+.prodKCal {
+  width: 80px;
   text-align: center;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-right: 5px;
 }
 .btn {
   background-color: transparent;
@@ -45,15 +57,21 @@
 @media screen and (min-width: 768px) {
   .item {
     padding-left: 0;
+    font-size: 16px;
   }
   .prodName {
-    width: 240px;
+    width: 400px;
     padding-bottom: 20px;
+    margin-right: 20px;
+    white-space: wrap;
+  overflow: hidden;
   }
   .prodWeight,
   .prodKCal {
     width: 105px;
     text-align: end;
+    padding-bottom: 20px;
+    margin-right: 20px;
   }
   .btn {
     margin-right: 35px;

@@ -7,6 +7,7 @@ import styles from "./mainPage.module.scss";
 const MainPage = () => {
   return (
     <>
+     <div className={styles.mainBox}>
       <DailyCaloriesForm />
       <img
         className={styles.backgroundMedium}
@@ -18,6 +19,7 @@ const MainPage = () => {
         src={backgroundBig}
         alt="backgroundImg"
       />
+      </div>
     </>
   );
 };

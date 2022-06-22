@@ -86,7 +86,7 @@ const AddProductForm = () => {
           placeholder="Граммы"
         />
         <button className={styles.button} type="submit">
-          <svg className={styles.svg}>
+          <svg className={styles.svg} >
             <use href={sprite + "#icon-plus"}></use>
           </svg>
         </button>

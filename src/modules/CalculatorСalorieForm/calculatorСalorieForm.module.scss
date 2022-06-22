@@ -10,12 +10,12 @@
   margin: 0 auto;
 
   @include mq(tablet) {
-    width: 700px;
+    width: 600px;
     align-items: flex-start;
     
   }
   @include mq(desktop) {
-    
+    width: 730px;
   }
 }
 
@@ -42,7 +42,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
-  width: 300px;
+  max-width: 300px;
 
   @include mq(tablet) {
     width: 100%;
@@ -81,7 +81,7 @@
 .input {
   margin: 0;
   padding: 5px;
-  width: 280px;
+  width: 100%;
   @include mq(tablet) {
     width: 240px;
     padding-bottom: 20px;
@@ -227,8 +227,16 @@
     }
   }
 }
-.row_wrapper {
-  @include mq(tablet) {
+.row_wrapper {  
+  width: 100%;
     display: flex;
-  }
+    flex-direction: column;
+    @include mq(tablet) {
+      flex-direction: row;
+      justify-content: space-around
+    } 
+}
+
+.form_form{
+  width: 100%;
 }

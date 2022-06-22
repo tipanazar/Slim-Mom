@@ -1,6 +1,9 @@
 .rightSideBarWrapper {  
   padding-bottom: 84px;  
 }
+.rightSideBarCalories,.rightSideBarCategories {
+width: 280px;
+}
 
 .rightSideBarHeader {
   font-weight: 700;
@@ -30,6 +33,12 @@ p.rightSideBarInfo {
   margin-top: 25px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .rightSideBarCategories {
+    margin-top: 40px;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .rightSideBarWrapper {
     display: flex;
@@ -38,11 +47,7 @@ p.rightSideBarInfo {
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
-  .rightSideBarCategories {
-    margin-top: 40px;
-  }
-}
+
 @media screen and (min-width: 1280px) {
   .rightSideBarCategories {
     margin-top: 60px;

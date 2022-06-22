@@ -35,7 +35,7 @@ function RightSideBar() {
 
   return (
     <div className={styles.rightSideBarWrapper}>
-      <div>
+      <div className={styles.rightSideBarCalories}>
         <h3 className={styles.rightSideBarHeader}>Звіт за {date}</h3>
         <ul className={styles.rightSideBarData}>
           <li className={styles.rightSideBarItem}>

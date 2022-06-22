@@ -33,13 +33,11 @@ const DiaryProductsList = () => {
     console.log("open");
     setModalOpen(true);
   };
-const elements = userDailyProducts.map((product) => {
-  console.log("prod", product)
+const elements = userDailyProducts.map((product) => {  
   return (<DiaryProductsListItem key={product._id} product={product} />)
 })
-console.log(elements)
   return (
-    <div>
+    <div className={styles.wrapper}>
       <ul className={styles.listProducts}>
         {elements}
       </ul>
