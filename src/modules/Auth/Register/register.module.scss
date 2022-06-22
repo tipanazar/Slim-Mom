@@ -78,14 +78,7 @@
   font-size: 14px;  
   height: 35px;
   border: none;
-  // border-bottom: 1px solid var(--horizontal-row-color);
-  // margin-bottom: 2px;
 }
-
-// .input:focus {
-//   outline: none;
-//   border-bottom: 2px solid var(--horizontal-row-color);
-// }
 
 .label {
   font-family: var(--main-font);
@@ -145,22 +138,6 @@
   color: red;
 }
 
-// .message {
-//   min-height: 45px;
-//   font-family: var(--main-font);
-//   font-style: normal;
-//   font-size: 14px;
-//   line-height: 17px;
-//   letter-spacing: 0.05em;
-//   text-align: center;
-//   @include mq(tablet) {
-//     font-size: 16px;
-//     font-weight: bold;
-//     line-height: 20px;
-//     text-align: start;
-//   }
-// }
-
 .error_message {
   color: red;
 }
@@ -170,5 +147,13 @@
 }
 
 .modal_btn_wrapper {
-  padding-top: 30px;
+  padding-top: 30px; 
 }
+
+.button:first-child {
+    margin-right: 0;
+    @include mq(tablet) {
+    margin-right: 30px;
+  }
+}
+

@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import debounce from "lodash.debounce";
+import PropTypes from 'prop-types';
 
 import productsOperations from "../../../redux/products/products-operations";
 import { getPickedDate } from "../../../redux/products/products-selectors";
 import productsApi from "../../../shared/api/products";
+import { useDevice } from "../../../shared/hooks/useDevice";
 
 import customStyles from "./selectStyles";
 import sprite from "../../../images/icons/symbol-defs.svg";
 import styles from "./addProductForm.module.scss";
 
-const AddProductForm = () => {
+const AddProductForm = ({closeModal}) => {
   const [searchQuerry, setSearchQuerry] = useState("");
   const [weight, setWeight] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -19,9 +21,10 @@ const AddProductForm = () => {
   
   const dispatch = useDispatch();
   const date = useSelector(getPickedDate);
+  
+  const {isMobileDevice} = useDevice();
 
   const handleChange = (inputValue) => {    
-    console.log(inputValue)
    setSelectedOption(inputValue);
   };
 
@@ -44,11 +47,12 @@ const AddProductForm = () => {
       caloriesBasic:selectedOption.calories,
     };
    
-    dispatch(productsOperations.addPoduct(newProduct));
+    dispatch(productsOperations.addPoduct(newProduct));    
     setSearchQuerry("");
     setWeight("");
     setSelectedOption("");
     setOptions([]);
+    if (isMobileDevice){closeModal()}
   };
 
   
@@ -86,9 +90,10 @@ const AddProductForm = () => {
           placeholder="Граммы"
         />
         <button className={styles.button} type="submit">
-          <svg className={styles.svg} >
+          {isMobileDevice || <svg className={styles.svg} >
             <use href={sprite + "#icon-plus"}></use>
-          </svg>
+          </svg> }
+          {isMobileDevice && <span className={styles.buttonText}>ДОДАТИ</span> }
         </button>
       </form>
     </div>
@@ -96,3 +101,7 @@ const AddProductForm = () => {
 };
 
 export default AddProductForm;
+
+AddProductForm.propTypes = {
+  closeModal: PropTypes.func,
+};

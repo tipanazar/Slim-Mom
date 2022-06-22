@@ -7,8 +7,7 @@ import Modal from "../../shared/components/Modal";
 import AddProductForm from "../DiaryAddProductForm/AddProductForm";
 
 import {
-  getUserDailyProducts,
-  getPickedDate,
+  getUserDailyProducts,  
 } from "../../redux/products/products-selectors";
 import sprite from "../../images/icons/symbol-defs.svg";
 
@@ -50,7 +49,9 @@ const elements = userDailyProducts.map((product) => {
       )}
       {isModalOpen && (
         <Modal closeModal={onCloseModal}>
-          <AddProductForm />
+          <div className={styles.addFormModal}>
+          <AddProductForm closeModal={onCloseModal} />
+          </div>
         </Modal>
       )}
     </div>

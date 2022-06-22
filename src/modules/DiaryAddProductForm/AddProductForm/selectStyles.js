@@ -17,7 +17,10 @@ const customStyles = {
       color: '#9B9FAA',
     }),
     control: () => ({
-      width: 400,
+      width: 300,
+      "@media only screen and (min-width: 1200px)": {        
+        width: 400,
+    },
     }),
     dropdownIndicator: () => ({
       display: 'none',
