@@ -2,11 +2,7 @@
 
 .wrapper {
   display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  @include mq(tablet) {
-    margin-top: 160px;
-  }
+  flex-direction: column;  
   padding: 16px;
 }
 
@@ -14,11 +10,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // width: 400px;
+  width: 280px;
 
   @include mq(tablet) {
-    width: 500px;
+    width: 320px;
     align-items: flex-start;
+  }
+  @include mq(desktop) {
+    width: 400px;
+   
   }
 }
 
@@ -33,7 +33,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--button-orange-color);
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .form {
@@ -42,11 +42,8 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
-  width: 300px;
-
-  @include mq(tablet) {
-    width: 100%;
-  }
+  width: 100%;
+ 
 }
 
 .inputs_wrapper {
@@ -55,9 +52,8 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 10px;
-
-  @include mq(tablet) {
-    width: 100%;
+  width: 100%;
+  @include mq(tablet) {    
     align-items: start;
   }
 }
@@ -77,11 +73,8 @@
 .input {
   margin: 0;
   padding: 0;
-  width: 280px;
-  font-size: 14px;
-  @include mq(tablet) {
-    width: 240px;
-  }
+  width: 100%;
+  font-size: 14px;  
   height: 35px;
   border: none;
   // border-bottom: 1px solid var(--horizontal-row-color);

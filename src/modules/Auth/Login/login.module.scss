@@ -1,40 +1,45 @@
 @import "../../../sass/main.scss";
 
 .wrapper {
-  @include mq(mobile-only) {
-    display: flex;
-    align-items: center;
-    margin-top: 40px;
-  }
-  flex-direction: column;
-  margin-top: 160px;
+  display: flex;
+  flex-direction: column;  
   padding: 16px;
 }
+
 .header {
+  margin-bottom: 60px;
   @include mq(mobile-only) {
     text-align: center;
   }
-
-  font-family: var(--secondary-font);
+  margin: 0;
+  font-family: var(--second-font);
   font-style: normal;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 14px;
   line-height: 13px;
+  // text-align: center;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #fc842d;
+  color: var(--button-orange-color);
+  margin-bottom: 60px;
 }
 
 .form{
-  @include mq(mobile-only){
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 280px;
+
+  @include mq(tablet) {
+    max-width: 320px;
+    align-items: flex-start;
+  }
+  @include mq(desktop) {
+    max-width: 400px;   
   }
  
 }
-.inputWrapper {
-  margin-top: 60px;
+.inputWrapper {  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
