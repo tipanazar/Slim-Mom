@@ -49,7 +49,7 @@ const DailyCaloriesForm = () => {
     };
     fetchInfo();
   }, [data]);
-  
+
   const onChange = (data) => {
     setData(data);
   };

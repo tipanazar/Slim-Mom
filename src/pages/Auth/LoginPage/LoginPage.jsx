@@ -9,18 +9,18 @@ import styles from "./loginPage.module.scss";
 const LoginPage = () => {
   return (
     <>
-    <Container>
-      <Login />
-      <img
-        className={styles.backgroundMedium}
-        src={backgroundMedium}
-        alt="backgroundImg"
-      />
-      <img
-        className={styles.backgroundBig}
-        src={backgroundBig}
-        alt="backgroundImg"
-      />
+      <Container>
+        <Login />
+        <img
+          className={styles.backgroundMedium}
+          src={backgroundMedium}
+          alt="backgroundImg"
+        />
+        <img
+          className={styles.backgroundBig}
+          src={backgroundBig}
+          alt="backgroundImg"
+        />
       </Container>
     </>
   );

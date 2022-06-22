@@ -56,10 +56,11 @@ const Login = () => {
   const InputLabelStyled = styled(InputLabel)`
     font-family: "Verdana";
     font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
+    color: #9b9faa;
     :hover {
       color: #fc842d;
     }
@@ -101,7 +102,7 @@ const Login = () => {
     color: "#ffffff",
     marginTop: 60,
     marginRight: 32,
-      
+
     "&:hover": {
       backgroundColor: "#0069d9",
       borderColor: "#0062cc",
@@ -195,9 +196,9 @@ const Login = () => {
             </Alert>
           </Snackbar>
         )}
-   <form action="submit" onSubmit={submitForm} className={styles.form}>
-        <h1 className={styles.header}>ВХІД</h1>
-     
+        <form action="submit" onSubmit={submitForm} className={styles.form}>
+          <h1 className={styles.header}>ВХІД</h1>
+
           <div className={styles.inputWrapper}>
             <FormControl
               sx={{ m: 0, width: "29ch" }}
@@ -251,7 +252,9 @@ const Login = () => {
           </div>
 
           {userInfo.email.length > 5 && userInfo.password.length > 5 ? (
-             <div className={styles.buttonMobile}><ButtonColor type="submit">Логін</ButtonColor></div>
+            <div className={styles.buttonMobile}>
+              <ButtonColor type="submit">Логін</ButtonColor>
+            </div>
           ) : (
             <ButtonComp
               type="button"

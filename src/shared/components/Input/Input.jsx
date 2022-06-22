@@ -1,9 +1,16 @@
-import { memo } from 'react';
+import { memo } from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const Input = ({ type, name, value, placeholder, required, onType, className }) => {
- 
+const Input = ({
+  type,
+  name,
+  value,
+  placeholder,
+  required,
+  onType,
+  className,
+}) => {
   return (
     <input
       className={className}
@@ -16,7 +23,6 @@ const Input = ({ type, name, value, placeholder, required, onType, className }) 
     />
   );
 };
-
 
 Input.propTypes = {
   type: PropTypes.string,
