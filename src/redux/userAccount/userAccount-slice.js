@@ -30,10 +30,9 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [registerUser.fulfilled]: (state, responce) => {
-      console.log(responce)
-      // state.user = { ...payload };
-      // state.isUserLogin = true;
+    [registerUser.fulfilled]: (state, { payload }) => {
+      console.log(payload)
+      state.user = { ...payload };     
       state.loading = false;
     },
     [registerUser.rejected]: (state, { payload }) => {
