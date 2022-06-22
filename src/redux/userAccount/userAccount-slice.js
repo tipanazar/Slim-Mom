@@ -13,6 +13,8 @@ const {
 const initialState = {
   user: {
     name: "",
+    notAllowedProducts: [],
+    parameters:{}
   },
   token: "",
   isUserLogin: false,
@@ -44,6 +46,9 @@ const userSlice = createSlice({
       state.error = null;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
+      console.log(payload)
+      state.user.notAllowedProducts = payload.notAllowedProducts;
+      state.user.parameters = payload.parameters;
       state.user.name = payload.name;
       state.token = payload.token;
       state.verify = payload.verify;
