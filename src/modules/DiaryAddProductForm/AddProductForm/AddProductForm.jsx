@@ -28,7 +28,7 @@ const AddProductForm = () => {
   useEffect(() => {    
     if (searchQuerry) {
         productsApi.searchProducts(searchQuerry).then(( {data} ) =>{            
-             return data.map((product) => ({ value: product._id, label: product?.title?.ua??"Продукт без названия" }))
+             return data.map((product) => ({ value: product._id, label: product?.title?.ua??"Продукт без названия" , calories: product.calories}))
             })
             .then((data) => setOptions(data))
     }
@@ -38,10 +38,12 @@ const AddProductForm = () => {
     e.preventDefault();
     const newProduct = {
       productId: selectedOption.value,
+      title: selectedOption.label,
       weight,
       date,
+      caloriesBasic:selectedOption.calories,
     };
-    console.log(newProduct)
+   
     dispatch(productsOperations.addPoduct(newProduct));
     setSearchQuerry("");
     setWeight("");

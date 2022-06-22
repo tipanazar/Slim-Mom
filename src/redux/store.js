@@ -25,8 +25,7 @@ const persistConfig = {
 
 const productsPersistConfig = {
   key: "products",
-  storage,
-  whitelist: ["token"], // поменять если надо
+  storage
 };
 
 

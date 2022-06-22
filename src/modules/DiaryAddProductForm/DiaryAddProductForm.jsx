@@ -5,10 +5,6 @@ import AddProductForm from './AddProductForm'
 const DiaryAddProductForm = () => {
   const { isTabletAndDesktop} = useDevice();
   
-  
-  
-  
-
   return (
     <div>
       {isTabletAndDesktop && <AddProductForm/>}      

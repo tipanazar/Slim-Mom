@@ -11,10 +11,10 @@ const DiaryProductsListItem = ({product}) => {
 
   const date = useSelector(getPickedDate);
 
-  const { id, title, weight, calories } = product;
+  const { _id, title, weight, calories } = product;
 
   const deleteProduct = () =>
-    dispatch(prouctsOperations.deleteProduct({ id, date }));
+    dispatch(prouctsOperations.deleteProduct({ _id, date }));
 
   return (
     <li className={styles.item}>

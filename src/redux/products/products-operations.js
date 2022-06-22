@@ -1,19 +1,17 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
 import productApi from '../../shared/api/products';
 import diaryApi from '../../shared/api/diary';
 
-const searchPoduct = createAsyncThunk(
-  "/products/search",
-  async (searchQuerry, { rejectWithValue }) => {
-    try {
-      const result = await productApi.searchProducts(searchQuerry);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+const formateDate = (startDate) => {
+  const day = startDate.getDate();
+  const month = startDate.getMonth() + 1;
+  const year = startDate.getFullYear();
+  const chosenDate = `${day > 9 ? day : `0` + day}-${
+    month > 9 ? month : `0` + month
+  }-${year}`;
+  return { payload: chosenDate }
   }
-);
 
 const addPoduct = createAsyncThunk(
   "/diary/addProduct",
@@ -44,7 +42,8 @@ const dayInfo = createAsyncThunk(
   "/diary/info",
   async (date, { rejectWithValue }) => {
     try {
-      const result = await diaryApi.getDiaryInfo(date);
+      const result = await diaryApi.getDiaryInfo(formateDate(date).payload);
+      console.log(result)
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -52,26 +51,16 @@ const dayInfo = createAsyncThunk(
   }
 );
 
-const setDate =  {reducer : (state, {payload}) => {
-  state.pickedDate = payload
-  return state
-},
-prepare: (startDate) => {
-const day = startDate.getDate();
-const month = startDate.getMonth() + 1;
-const year = startDate.getFullYear();
-const chosenDate = `${day > 9 ? day : `0` + day}-${
-  month > 9 ? month : `0` + month
-}-${year}`;
-return { payload: chosenDate }
-}}
 
 
-const productsOperations = {
-  searchPoduct,
+const dateSetAction = createAction( "date/set", formateDate)
+
+const productsOperations = {  
   addPoduct,
   deleteProduct,
   dayInfo,  
-  setDate,
+  dateSetAction,
+  formateDate,
 };
+
 export default productsOperations;
