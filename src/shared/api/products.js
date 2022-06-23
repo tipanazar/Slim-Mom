@@ -10,10 +10,6 @@ const getNotAllowedProducts = async (groupBlood) => {
   return data;
 };
 
-const productsApi = {
-  searchProducts,
-  getNotAllowedProducts,
-};
 
 export const getCaloriesAndProducts = async (data, bloodType) => {
   const { data: result } = await axios.post(
@@ -23,12 +19,20 @@ export const getCaloriesAndProducts = async (data, bloodType) => {
   return result;
 };
 
-export const getCaloriesAndProductsForUser = async (data, bloodType) => {
+export const getCaloriesAndProductsForUser = async (data, bloodType) => { 
   const { data: result } = await axios.post(
     `/products/user/bloodtype/${bloodType}`,
     data
   );
   return result;
 };
+
+const productsApi = {
+  searchProducts,
+  getNotAllowedProducts,
+  getCaloriesAndProductsForUser,
+  getCaloriesAndProducts
+};
+
 
 export default productsApi;
