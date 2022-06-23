@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
 
 import productsOperations from "../../../redux/products/products-operations";
 import { getPickedDate } from "../../../redux/products/products-selectors";
 import productsApi from "../../../shared/api/products";
 import { useDevice } from "../../../shared/hooks/useDevice";
+import { useDebounce } from "../../../shared/hooks/useDebounce";
 
 import customStyles from "./selectStyles";
 import sprite from "../../../images/icons/symbol-defs.svg";
@@ -28,10 +28,11 @@ const AddProductForm = ({ closeModal }) => {
     setSelectedOption(inputValue);
   };
 
+  const debouncedSearchQuerry = useDebounce(searchQuerry, 500);
   useEffect(() => {
-    if (searchQuerry) {
+    if (debouncedSearchQuerry) {
       productsApi
-        .searchProducts(searchQuerry)
+        .searchProducts(debouncedSearchQuerry)
         .then(({ data }) => {
           return data.map((product) => ({
             value: product._id,
@@ -41,7 +42,7 @@ const AddProductForm = ({ closeModal }) => {
         })
         .then((data) => setOptions(data));
     }
-  }, [searchQuerry]);
+  }, [debouncedSearchQuerry]);
 
   const postNewProduct = (e) => {
     e.preventDefault();
@@ -81,7 +82,7 @@ const AddProductForm = ({ closeModal }) => {
           onChange={handleChange}
           options={options}
           inputValue={searchQuerry}
-          onInputChange={debounce(setSearchQuerry, 250)}
+          onInputChange={setSearchQuerry}
           styles={customStyles}
           placeholder="Введите название продукта"
         />
