@@ -22,7 +22,7 @@ const productsSlice = createSlice({
     },
 
     [addPoduct.fulfilled]: (state, { payload }) => {
-      console.log(payload);
+      state.caloriesReceived = payload.caloriesReceived;
       state.productList = [...payload.productList];
       state.loading = false;
     },
