@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,7 +7,7 @@ import productsOperations from "../../../redux/products/products-operations";
 import { getPickedDate } from "../../../redux/products/products-selectors";
 import productsApi from "../../../shared/api/products";
 import { useDevice } from "../../../shared/hooks/useDevice";
-import {useDebounce} from "../../../shared/hooks/useDebounce"
+import { useDebounce } from "../../../shared/hooks/useDebounce";
 
 import customStyles from "./selectStyles";
 import sprite from "../../../images/icons/symbol-defs.svg";
@@ -27,22 +27,21 @@ const AddProductForm = ({ closeModal }) => {
   const handleChange = (inputValue) => {
     setSelectedOption(inputValue);
   };
-  
+
   const debouncedSearchQuerry = useDebounce(searchQuerry, 500);
-  useEffect(() => { 
+  useEffect(() => {
     if (debouncedSearchQuerry) {
-     productsApi
-      .searchProducts(debouncedSearchQuerry)
-      .then(({ data }) => {
-        return data.map((product) => ({
-          value: product._id,
-          label: product?.title?.ua ?? "Продукт без названия",
-          calories: product.calories,
-        }));
-      })
-      .then((data) => setOptions(data)) ;
-    }  
-   
+      productsApi
+        .searchProducts(debouncedSearchQuerry)
+        .then(({ data }) => {
+          return data.map((product) => ({
+            value: product._id,
+            label: product?.title?.ua ?? "Продукт без названия",
+            calories: product.calories,
+          }));
+        })
+        .then((data) => setOptions(data));
+    }
   }, [debouncedSearchQuerry]);
 
   const postNewProduct = (e) => {
