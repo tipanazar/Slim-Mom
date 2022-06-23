@@ -41,7 +41,6 @@ const dayInfo = createAsyncThunk(
   async (date, { rejectWithValue }) => {
     try {
       const result = await diaryApi.getDiaryInfo(formateDate(date).payload);
-      console.log(result);
       return result;
     } catch (err) {
       return rejectWithValue(err);
