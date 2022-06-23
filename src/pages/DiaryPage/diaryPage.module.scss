@@ -14,6 +14,7 @@
   margin-bottom: 40px;
 
   @include mq(tablet) {
+    min-height: 450px;
     width: 600px;
     align-items: flex-start;
     margin-bottom: 80px;
@@ -28,10 +29,10 @@
   @include mq(tablet-only) {
     background-color: #f0f1f3;
     width: 100vw;
-    height: 60vh;
+    height: 350px;
     display: block;
     position: absolute;
-    bottom: -40vh;
+    top: 650px;
     right: 0;
     z-index: -1;
   }

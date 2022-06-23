@@ -45,8 +45,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [loginUser.fulfilled]: (state, { payload }) => {
-      console.log(payload)
+    [loginUser.fulfilled]: (state, { payload }) => {     
       state.user.notAllowedProducts = payload.notAllowedProducts;
       state.user.parameters = payload.parameters;
       state.user.name = payload.name;
