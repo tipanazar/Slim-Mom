@@ -70,10 +70,12 @@ const resendVerification = createAsyncThunk(
   }
 );
 
+
+
 export const userOperations = {
   registerUser,
   loginUser,
   logoutUser,
   getCurrentUser,
-  resendVerification,
+  resendVerification
 };

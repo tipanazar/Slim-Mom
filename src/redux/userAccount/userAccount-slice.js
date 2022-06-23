@@ -2,19 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { userOperations } from "./userAccount-operations";
 
+import { calculatorOperations } from "../calculator/calculator-operations";
+
 const {
   registerUser,
   loginUser,
   logoutUser,
   getCurrentUser,
-  resendVerification,
+  resendVerification
 } = userOperations;
+
+const {  
+  getCaloriesAndProductsForUser,
+} = calculatorOperations;
 
 const initialState = {
   user: {
     name: "",
     notAllowedProducts: [],
-    parameters:{}
+    parameters: {},
   },
   token: "",
   isUserLogin: false,
@@ -45,7 +51,7 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [loginUser.fulfilled]: (state, { payload }) => {     
+    [loginUser.fulfilled]: (state, { payload }) => {
       state.user.notAllowedProducts = payload.notAllowedProducts;
       state.user.parameters = payload.parameters;
       state.user.name = payload.name;
@@ -96,7 +102,20 @@ const userSlice = createSlice({
       state.loading = false;
     },
     [resendVerification.rejected]: (state, { payload }) => {
-      console.log(payload);
+      state.error = payload;
+      state.loading = false;
+    },
+
+    [getCaloriesAndProductsForUser.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [getCaloriesAndProductsForUser.fulfilled]: (state,  { payload }) => {
+      state.user.notAllowedProducts = payload.products;
+      state.user.parameters.calories = payload.calories;      
+      state.loading = false;
+    },
+    [getCaloriesAndProductsForUser.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
     },
