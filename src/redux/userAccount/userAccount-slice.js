@@ -2,14 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { userOperations } from "./userAccount-operations";
 
+import { calculatorOperations } from "../calculator/calculator-operations";
+
 const {
   registerUser,
   loginUser,
   logoutUser,
   getCurrentUser,
-  resendVerification,
-  getCaloriesAndProductsForUser,
+  resendVerification
 } = userOperations;
+
+const {  
+  getCaloriesAndProductsForUser,
+} = calculatorOperations;
 
 const initialState = {
   user: {

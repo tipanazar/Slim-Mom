@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import {userOperations} from "../../redux/userAccount/userAccount-operations";
+import {calculatorOperations} from "../../redux/calculator/calculator-operations"
 import RightSideBar from "../../modules/RightSideBar";
 import Loader from "../../shared/components/Loader";
 import CalculatorСalorieForm from "../../modules/CalculatorСalorieForm";
@@ -12,7 +12,7 @@ const CalculatorPage = () => {
   const loading = useSelector(getLoading);
 
   const onChange = (data) => {        
-    dispatch(userOperations.getCaloriesAndProductsForUser(data));
+    dispatch(calculatorOperations.getCaloriesAndProductsForUser(data));
   };
 
   return (
