@@ -40,17 +40,14 @@
   width: 86px;
   border: 0;
   padding: 0;
-  background-color: var(--header-grey-color);
+  background-color: transparent;
   font-family: var(--secondary-font);
   color: #90939a;
   font-weight: 700;
   font-size: 16px;
   line-height: 1;
   letter-spacing: 0.08em;
-
-  @include mq(tablet) {
-    background-color: white;
-  }
+  
   @include mq(desktop) {
     display: flex;
     align-items: flex-end;

@@ -10,6 +10,7 @@
   margin: 0 auto;
 
   @include mq(tablet) {
+    margin: 0;
     width: 600px;
     align-items: flex-start;
   }
