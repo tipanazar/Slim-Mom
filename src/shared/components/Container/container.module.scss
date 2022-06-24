@@ -1,0 +1,27 @@
+@import "../../../sass/main.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 320px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 30px;  
+  @include mq(tablet) {
+    max-width: 725px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 100px;    
+  }
+  @include mq(desktop) {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1200px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 150px;    
+  }
+}

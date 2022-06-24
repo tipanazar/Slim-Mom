@@ -1,0 +1,51 @@
+@import "../../sass/main.scss";
+
+.mainBox {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 150px;
+}
+
+.diaryBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 280px;
+  margin-bottom: 40px;
+
+  @include mq(tablet) {
+    min-height: 450px;
+    width: 600px;
+    align-items: flex-start;
+    margin-bottom: 80px;
+  }
+  @include mq(desktop) {
+    width: 730px;   
+  }
+}
+
+.backgroundMedium {
+  display: none;
+  @include mq(tablet-only) {
+    background-color: #f0f1f3;
+    width: 100vw;
+    height: 350px;
+    display: block;
+    position: absolute;
+    top: 650px;
+    right: 0;
+    z-index: -1;
+  }
+}
+.backgroundBig {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+    position: absolute;
+    width: 30vw;
+    height: 100vh;
+    top: 0px;
+    right: 0;
+    z-index: -1;
+  }
+}

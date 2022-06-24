@@ -1,0 +1,56 @@
+@import "../../../sass/main.scss";
+
+%horizontalRow {
+  position: absolute;
+  display: block;
+  content: "";
+  outline: 1px solid #d8d8d8;
+  height: 32px;
+  right: 86px;
+}
+
+.userInfoBlock {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  &::after {
+    @extend %horizontalRow;
+  }
+  @include mq(desktop) {
+    align-items: flex-end;
+    &::after {
+      @extend %horizontalRow;
+      transform: translateY(25%);
+    }
+  }
+}
+
+.userName {
+  margin-right: 16px;
+  font-family: var(--secondary-font);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.07;
+  letter-spacing: 0.04em;
+}
+
+.logoutBtn {
+  height: 100%;
+  width: 86px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  font-family: var(--secondary-font);
+  color: #90939a;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  
+  @include mq(desktop) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+}

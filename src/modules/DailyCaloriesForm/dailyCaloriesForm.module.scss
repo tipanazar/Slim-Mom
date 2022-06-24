@@ -1,0 +1,141 @@
+@import "../../sass/main.scss";
+
+// Modal styles below
+.modalMainBlock {
+  position: fixed;
+  top: 84px;
+  padding-bottom: 20px;
+  height: calc(100vh - 84px);
+  width: 100%;
+  overflow-y: auto;
+  background-color: white;
+  @include mq(tablet) {
+    top: auto;
+    height: 573px;
+    width: 672px;
+  }
+
+  .modalCloseBtnBar {
+    display: flex;
+    width: 100%;
+    background-color: var(--header-grey-color);
+    height: 40px;
+    margin-bottom: 40px;
+    @include mq(tablet) {
+      justify-content: flex-end;
+      margin-bottom: 64px;
+      background-color: white;
+    }
+    .modalCloseBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--header-grey-color);
+      height: 40px;
+      width: 40px;
+      border: 0;
+      padding: 0;
+      @include mq(tablet) {
+        background-color: white;
+      }
+    }
+    .modalCloseModalIconSmall {
+      @include mq(tablet) {
+        display: none;
+      }
+    }
+    .modalCloseModalIconCommon {
+      display: none;
+      @include mq(tablet) {
+        display: block;
+      }
+    }
+  }
+
+  .modalContentBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .modalMainTitle {
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.44;
+    color: var(--font-black-color);
+    @include mq(tablet) {
+      font-size: 26px;
+      line-height: 32px;
+    }
+  }
+
+  .modalCaloriesNum {
+    position: relative;
+    margin-bottom: 52px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--universal-darkblue-color);
+    &:after {
+      position: absolute;
+      content: "";
+      width: 280px;
+      outline: 1px solid var(--horizontal-row-color);
+      left: 50%;
+      bottom: -32px;
+      transform: translateX(-50%);
+      @include mq(tablet) {
+        width: 320px;
+      }
+    }
+    .modalCaloriesText {
+      font-size: 16px;
+      line-height: 1.44;
+    }
+  }
+
+  .modalListTitle {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.21;
+    letter-spacing: 0.04em;
+    color: var(--font-black-color);
+    text-align: center;
+  }
+
+  .modalProductsList {
+    width: 100%;
+    max-height: 170px;
+    padding-left: 0;
+    margin: 0 0 20px 0;
+    list-style: decimal-leading-zero inside;
+    overflow-y: auto;
+    @include mq(tablet) {
+      max-height: 131px;
+    }
+    .modalProductsItem {
+      margin-bottom: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.21;
+      letter-spacing: 0.04em;
+      color: var(--font-grey-color);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .modalContinueLink {
+    padding: 13px 29px;
+    border-radius: 30px;
+    border: 0;
+    color: white;
+    background-color: var(--button-orange-color);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  }
+}

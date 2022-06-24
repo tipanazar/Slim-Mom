@@ -1,0 +1,83 @@
+// @import "../main.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  margin: 0;
+  font-family: var(--main-font);
+  // &::-webkit-scrollbar {
+  //   display: block; // скрывает скроллбар со страницы
+  // }
+}
+
+div#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+div#modalRoot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  cursor: pointer;
+  @include mq(tablet) {
+    background-color: var(--modal-background-grey-color);
+  }
+}
+
+main {
+  flex-grow: 1; //что бы растягивалось на всю высоту экрана
+}
+
+img {
+  display: block;
+  // width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-text-color);
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}

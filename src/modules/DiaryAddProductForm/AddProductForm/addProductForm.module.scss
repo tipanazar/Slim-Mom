@@ -1,0 +1,88 @@
+@import "../../../sass/main.scss";
+
+.wrapper {
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.form {
+  display: flex;
+  height: 200px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @include mq(tablet) {
+    height: 50px;
+    flex-direction: row;
+  }
+}
+
+.weight {
+  width: 300px;
+  border: none;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e0e0e0;
+  @include mq(tablet) {
+    width: 150px;
+  }
+  @include mq(desktop) {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+.listProducts {
+  max-height: 200px;
+  overflow-y: scroll;
+
+  background-image: linear-gradient(to bottom, #f44336 15%);
+}
+.listProducts::-webkit-scrollbar {
+  width: 6px;
+  background: var(--font-grey-color);
+  max-height: 240px;
+}
+.listProducts::-webkit-scrollbar-thumb {
+  background: var(--universal-darkblue-color);
+  height: 40px;
+}
+@include mq(tablet) {
+  .listProducts {
+    max-height: 240px;
+    margin-bottom: 60px;
+  }
+}
+@include mq(desktop) {
+  .listProducts {
+    max-height: 290px;
+  }
+}
+
+.button {
+  border-radius: 30px;
+  background-color: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border: none;
+  width: 180px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mq(tablet) {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+}
+.button:focus:hover {
+  outline: none;
+}
+.svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.buttonText {
+  color: white;
+}

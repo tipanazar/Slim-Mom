@@ -1,0 +1,137 @@
+@import "../../sass/main.scss";
+
+%rowRules {
+  position: absolute;
+  display: block;
+  content: "";
+  outline: 1px solid var(--horizontal-row-color);
+}
+
+.header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 83px;
+  @include mq(desktop) {
+    padding: 80px 0 0 16px;
+    align-items: flex-end;
+  }
+  &::after {
+    @extend %rowRules;
+    top: 100%;
+    width: 100%;
+    @include mq(desktop) {
+      display: none;
+    }
+  }
+}
+
+.headerLinksBlock {
+  display: flex;
+  align-items: center;
+  padding: 20px 0 16px 20px;
+  width: 100%;
+  justify-content: space-between;
+  margin-right: auto;
+  @include mq(desktop) {
+    padding: 0;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+}
+
+.authLinks {
+  margin-right: 20px;
+  @include mq(tablet-only) {
+    margin-right: 32px;
+  }
+  @include mq(desktop) {
+    margin-right: 0;
+  }
+  &::before {
+    @extend %rowRules;
+    @include mq(desktop) {
+      top: 121px;
+      left: 203px;
+      height: 32px;
+    }
+  }
+}
+
+.logoBig {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+    margin-right: 40px;
+  }
+}
+
+.logoMed {
+  display: none;
+  @include mq(tablet-only) {
+    display: block;
+  }
+}
+
+.logoSmall {
+  @include mq(mobile-medium) {
+    display: block;
+  }
+  @include mq(tablet) {
+    display: none;
+  }
+}
+
+.logoImg {
+  width: 46.7px;
+  height: 41.7px;
+  margin-right: 52px;
+  @include mq(mobile-medium) {
+    display: none;
+  }
+}
+
+.navigationBlock {
+  display: none;
+  margin-right: 20px;
+  @include mq(tablet) {
+    margin-right: 32px;
+  }
+  @include mq(desktop) {
+    display: block;
+  }
+}
+
+.userInfoBlock {
+  display: none;
+  @include mq(tablet) {
+    display: flex;
+    align-items: center;
+  }
+  @include mq(desktop) {
+    height: 66px;
+    align-items: flex-end;
+  }
+}
+
+.modalButton {
+  min-width: 86px;
+  background-color: white;
+  padding: 0;
+  border: 0;
+  @include mq(desktop) {
+    display: none;
+  }
+}
+
+// Modal Styles
+.modalBlock {
+  position: relative;
+  background-color: var(--universal-darkblue-color);
+  height: 100vh;
+  width: 100vw;
+  padding-top: 10vh;
+  @include mq(tablet) {
+    padding-top: 13vh;
+  }
+}
