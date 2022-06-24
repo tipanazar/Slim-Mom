@@ -72,6 +72,7 @@ const Login = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
+
   const modalStyle = {
     position: "absolute",
     top: "50%",
@@ -85,6 +86,7 @@ const Login = () => {
     maxWidth: "max-content",
     height: "auto",
   };
+
   const ButtonColor = styled(Button)({
     boxShadow: "0px 4px 10px rgba(252, 132, 45, 0.5)",
     textTransform: "none",

@@ -26,7 +26,6 @@ const DiaryProductsList = () => {
     setModalOpen(false);
   };
   const onOpenModal = () => {
-    console.log("open");
     setModalOpen(true);
   };
   const elements = userDailyProducts.map((product) => {
